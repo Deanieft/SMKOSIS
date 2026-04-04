@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arsip Foto</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f1f5f9; margin: 0; }
+    .arsip-track { display: flex; gap: 1rem; overflow-x: auto; padding: 2rem; scroll-behavior: smooth; }
+    .arsip-track::-webkit-scrollbar { display: none; }
+    .arsip-rope { position: relative; width: 100%; height: 30px; margin-bottom: -22px; }
+    .arsip-rope::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background-image: repeating-linear-gradient(135deg, #825a2c, #825a2c 4px, #d7b68a 4px, #d7b68a 8px);
+      transform: translateY(-50%);
+      box-shadow: inset 0 0 4px rgba(0,0,0,0.2);
+    }
+
+    .polaroid { position: relative; min-width: 240px; max-width: 240px; background: #fff; border: 8px solid #fff; border-radius: 15px; box-shadow: 0 10px 24px rgba(0,0,0,0.15); transition: transform 0.25s ease, box-shadow 0.25s ease; cursor: pointer; }
+    .polaroid::before { content: ''; position: absolute; top: -26px; left: 50%; transform: translateX(-50%); width: 2px; height: 24px; background: #64748b; }
+    .polaroid::after { content: ''; position: absolute; top: -7px; left: 50%; transform: translateX(-50%); width: 14px; height: 14px; background: #94a3b8; border-radius: 50%; }
+    .polaroid img { display: block; width: 100%; height: 150px; object-fit: cover; border-radius: 8px; }
+    .polaroid .caption { margin: 0.75rem 0 0.25rem 0; font-weight: 700; color: #0f172a; text-align: center; }
+    .polaroid .meta { font-size: 12px; color: #64748b; text-align: center; }
+
+    .polaroid:hover { transform: translateY(-12px) rotate(-3deg); box-shadow: 0 18px 36px rgba(0,0,0,0.28); }
+
+    .wind { animation: windShake 0.5s ease-out 2 both; }
+    @keyframes windShake {
+      0% { transform: translateX(0) rotate(-1deg); }
+      20% { transform: translateX(-12px) rotate(4deg); }
+      40% { transform: translateX(8px) rotate(-3deg); }
+      60% { transform: translateX(-6px) rotate(2deg); }
+      80% { transform: translateX(3px) rotate(-1deg); }
+      100% { transform: translateX(0) rotate(0deg); }
+    }
+
+    .brown-btn { background: linear-gradient(135deg, #0ea5e9, #06b6d4); }
+  </style>
+</head>
+<body>
+  <div class="max-w-6xl mx-auto px-4 py-10">
+    <div class="text-center mb-6">
+      <h1 class="text-3xl sm:text-4xl font-extrabold">Arsip Foto Interaktif</h1>
+      <p class="text-slate-600 mt-2">Arahkan kursor ke polaroid untuk efek angin; klik untuk detail. Gunakan form untuk menambah foto baru.</p>
+      <h1 class="text-2xl font-bold mt-4">Periode 2024 - 2025</h1>
+      <a href="index.html" class="mt-4 inline-block px-6 py-2 text-white font-semibold rounded-lg brown-btn hover:opacity-90">Kembali ke Beranda</a>
+    </div>
+
+    <div id="polaroid-track" class="arsip-track"></div>
+
+    <div class="mt-8 p-6 bg-white rounded-2xl shadow-lg">
+      <h2 class="text-xl font-bold mb-4">Tambah Arsip Foto</h2>
+      <form id="arsip-form" class="space-y-3">
+        <input id="arsip-title" type="text" placeholder="Judul Kegiatan" class="w-full px-3 py-2 border rounded-lg" required>
+        <input id="arsip-img" type="url" placeholder="URL Foto" class="w-full px-3 py-2 border rounded-lg" required>
+        <input id="arsip-year" type="number" placeholder="Tahun" class="w-full px-3 py-2 border rounded-lg" value="2026">
+        <button type="submit" class="w-full py-2 rounded-lg text-white font-semibold brown-btn hover:opacity-90">Tambah</button>
+      </form>
+      <p id="arsip-feedback" class="text-sm text-green-600 mt-3 hidden">Arsip berhasil ditambahkan.</p>
+    </div>
+  </div>
+
+  <script>
+    const arsipData = [
+      { year: 2022, title: 'Kegiatan Seni', img: 'https://via.placeholder.com/420x280?text=Seni+2022' },
+      { year: 2022, title: 'Olahraga', img: 'https://via.placeholder.com/420x280?text=Olahraga+2022' },
+      { year: 2023, title: 'Bakti Sosial', img: 'https://via.placeholder.com/420x280?text=Bakti+Sosial+2023' },
+      { year: 2023, title: 'Expo Inovasi', img: 'https://via.placeholder.com/420x280?text=Expo+2023' },
+      { year: 2024, title: 'Pentas Musik', img: 'https://via.placeholder.com/420x280?text=Pentas+Musik+2024' },
+      { year: 2024, title: 'Pendakian', img: 'https://via.placeholder.com/420x280?text=Pendakian+2024' }
+    ];
+
+    const track = document.getElementById('polaroid-track');
+
+    function renderArsip() {
+      track.innerHTML = '';
+      arsipData.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.classList.add('polaroid');
+        card.innerHTML = `\n          <img src="${item.img}" alt="${item.title}">\n          <div class="caption">${item.title}</div>\n          <div class="meta">Tahun ${item.year}</div>\n        `;
+
+        card.addEventListener('mouseenter', () => {
+          card.classList.add('wind');
+          clearTimeout(card._windTimeout);
+        });
+        card.addEventListener('mouseleave', () => {
+          // biarkan gerakan 'angin' tetap berjalan sisa animasi sebelum berhenti
+          clearTimeout(card._windTimeout);
+          card._windTimeout = setTimeout(() => {
+            card.classList.remove('wind');
+          }, 700);
+        });
+        card.addEventListener('animationend', (event) => {
+          if (event.animationName === 'windShake' && !card.matches(':hover')) {
+            card.classList.remove('wind');
+          }
+        });
+
+        card.addEventListener('click', () => {
+          const detail = `Judul: ${item.title}\nTahun: ${item.year}`;
+          alert(detail);
+          card.classList.add('selected');
+          setTimeout(() => card.classList.remove('selected'), 400);
+        });
+
+        track.appendChild(card);
+      });
+    }
+
+    document.getElementById('arsip-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const title = document.getElementById('arsip-title').value.trim();
+      const img = document.getElementById('arsip-img').value.trim();
+      const year = Number(document.getElementById('arsip-year').value) || new Date().getFullYear();
+      if (!title || !img) return;
+      arsipData.push({ year, title, img });
+      renderArsip();
+      const feedback = document.getElementById('arsip-feedback');
+      feedback.classList.remove('hidden');
+      setTimeout(() => feedback.classList.add('hidden'), 3000);
+      e.target.reset();
+      document.getElementById('arsip-year').value = year;
+    });
+
+    renderArsip();
+  </script>
+</body>
+</html>
