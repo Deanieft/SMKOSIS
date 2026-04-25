@@ -4,8 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OSIS SMKN 1 Tarumajaya Portal</title>
-  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="/_sdk/element_sdk.js"></script>
   <script src="/_sdk/data_sdk.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;family=Playfair+Display:wght@700;800;900&amp;display=swap" rel="stylesheet">
@@ -158,9 +157,8 @@
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
      <div class="flex items-center justify-between h-16">
       <div class="flex items-center gap-2">
-      <div class="w-9 h-9 rounded-lg flex items-center justify-center font-bold text-white text-sm" style="background: linear-gradient(135deg, #0ea5e9, #06b6d4);">
-        O       
-      </div><span id="nav-brand" class="font-bold text-white text-lg">OSIS SMKN 1 Tarumajaya</span>
+      <img src="Aset Gambar/Logo_OSIS.svg.png" alt="Logo OSIS" class="w-9 h-9 rounded-lg">
+      <span id="nav-brand" class="font-bold text-white text-lg">OSIS SMKN 1 Tarumajaya</span>
        <button id="notification-bell" class="ml-2 p-1 rounded-full hover:bg-white/10 transition-all duration-200 bell-shake" onclick="toggleNotification()" title="Notifikasi">
         <i data-lucide="bell" style="width:20px;height:20px; color: #38bdf8;"></i>
        </button>
@@ -206,6 +204,31 @@
        <div class="text-xs text-slate-400">
         Program
        </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Kalender Proker -->
+   <section id="kalender" class="py-16 sm:py-20" style="background: #f8fafc;">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+     <div class="text-center mb-10"><span class="text-xs font-semibold tracking-widest uppercase" style="color: #0ea5e9;">Jadwal</span>
+      <h2 class="section-title text-3xl sm:text-4xl font-bold mt-2" style="color: #0f172a;">Kalender Program Kerja</h2>
+      <p class="text-slate-500 mt-2 text-sm">Jadwal acara dan deadline penting OSIS.</p>
+     </div>
+     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="rounded-2xl p-6 border" style="background: white; border-color: #e2e8f0;">
+       <h3 class="font-bold text-lg" style="color: #0f172a;">15 Januari 2026</h3>
+       <p class="text-sm text-slate-500 mt-1">Pelantikan OSIS 2026</p>
+       <button onclick="markAttendance('Pelantikan')" class="mt-4 px-4 py-2 bg-green-500 text-white rounded">Absen</button>
+      </div>
+      <div class="rounded-2xl p-6 border" style="background: white; border-color: #e2e8f0;">
+       <h3 class="font-bold text-lg" style="color: #0f172a;">20-22 Februari 2026</h3>
+       <p class="text-sm text-slate-500 mt-1">Lomba Antar Kelas</p>
+       <button onclick="markAttendance('Lomba')" class="mt-4 px-4 py-2 bg-green-500 text-white rounded">Absen</button>
+      </div>
+      <div class="rounded-2xl p-6 border" style="background: white; border-color: #e2e8f0;">
+       <h3 class="font-bold text-lg" style="color: #0f172a;">1-10 Maret 2026</h3>
+       <p class="text-sm text-slate-500 mt-1">Rekrutmen Anggota Baru</p>
+       <button onclick="markAttendance('Rekrutmen')" class="mt-4 px-4 py-2 bg-green-500 text-white rounded">Absen</button>
       </div>
      </div>
     </div>
@@ -452,20 +475,28 @@
        <button onclick="manageFinance()" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">Kelola</button>
       </div>
       <div class="rounded-2xl p-6 border" style="background: white; border-color: #e2e8f0;">
+       <h3 class="font-bold text-lg" style="color: #0f172a;">Kustomisasi Warna</h3>
+       <p class="text-sm text-slate-500 mt-1">Pilih warna tema website.</p>
+       <input id="primary-color" type="color" value="#0ea5e9" class="mt-2">
+       <input id="secondary-color" type="color" value="#06b6d4" class="mt-2 ml-2">
+       <input id="text-color" type="color" value="#0f172a" class="mt-2 ml-2">
+       <button onclick="applyColors()" class="mt-2 px-4 py-2 bg-purple-500 text-white rounded">Terapkan</button>
+      </div>
+      <div class="rounded-2xl p-6 border" style="background: white; border-color: #e2e8f0;">
        <h3 class="font-bold text-lg" style="color: #0f172a;">Notifikasi Email</h3>
        <p class="text-sm text-slate-500 mt-1">Set email untuk notifikasi.</p>
        <input id="notification-email" type="email" placeholder="email@example.com" class="mt-2 px-3 py-1 border rounded w-full">
        <button onclick="setNotificationEmail()" class="mt-2 px-4 py-2 bg-green-500 text-white rounded">Set</button>
       </div>
       <div class="rounded-2xl p-6 border" style="background: white; border-color: #e2e8f0;">
-       <h3 class="font-bold text-lg" style="color: #0f172a;">Set Role</h3>
-       <p class="text-sm text-slate-500 mt-1">Ubah role user (untuk demo).</p>
-       <select id="role-select" class="mt-2 px-3 py-1 border rounded w-full">
-        <option>siswa</option>
-        <option>admin</option>
-        <option>ketua</option>
-       </select>
-       <button onclick="setRole()" class="mt-2 px-4 py-2 bg-purple-500 text-white rounded">Set Role</button>
+       <h3 class="font-bold text-lg" style="color: #0f172a;">Statistik Acara</h3>
+       <p class="text-sm text-slate-500 mt-1">Pie chart komposisi kategori acara.</p>
+       <canvas id="eventChart" width="200" height="200"></canvas>
+      </div>
+      <div class="rounded-2xl p-6 border" style="background: white; border-color: #e2e8f0;">
+       <h3 class="font-bold text-lg" style="color: #0f172a;">Presensi</h3>
+       <p class="text-sm text-slate-500 mt-1">Generate QR untuk absensi event.</p>
+       <button onclick="generateQR()" class="mt-4 px-4 py-2 bg-orange-500 text-white rounded">Generate QR</button>
       </div>
      </div>
      <div id="finance-panel" style="display:none; margin-top: 20px;" class="rounded-2xl p-6 border" style="background: white; border-color: #e2e8f0;">
@@ -504,6 +535,9 @@
    <footer class="py-6 text-center" style="background: #020617;">
     <p class="text-xs text-slate-500">© 2026 OSIS SMKN 1 Tarumajaya. Dibuat oleh Mahasiswa Universitas Nusa Mandiri.</p>
    </footer>
+  </div><!-- Chatbot -->
+  <div id="chatbot" class="fixed bottom-6 left-6 w-14 h-14 bg-blue-500 rounded-full flex items-center justify-center cursor-pointer shadow-lg z-40" onclick="openChatbot()">
+    <i data-lucide="message-circle" class="text-white w-6 h-6"></i>
   </div><!-- Toast container -->
   <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2"></div>
   <script>
@@ -901,6 +935,21 @@
 
   lucide.createIcons();
 
+  // Pie chart
+  if (document.getElementById('eventChart')) {
+    const ctx = document.getElementById('eventChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: ['Keagamaan', 'Olahraga', 'Seni', 'Sosial', 'Pendidikan'],
+        datasets: [{
+          data: [90, 5, 2, 2, 1],
+          backgroundColor: ['#ff6384', '#36a2eb', '#cc65fe', '#ffce56', '#4bc0c0']
+        }]
+      }
+    });
+  }
+
   // RBAC
   if (userRole === 'ketua' || userRole === 'admin') {
     document.getElementById('admin').style.display = 'block';
@@ -952,6 +1001,35 @@
       showToast('Pertanyaan dikirim!', 'success');
       document.getElementById('qa-input').value = '';
     }
+  }
+
+  function applyColors() {
+    const primary = document.getElementById('primary-color').value;
+    const secondary = document.getElementById('secondary-color').value;
+    const text = document.getElementById('text-color').value;
+    window.elementSdk.setConfig({
+      primary_action_color: primary,
+      secondary_action_color: secondary,
+      text_color: text
+    });
+    showToast('Warna diterapkan!', 'success');
+  }
+
+  function openChatbot() {
+    alert('Chatbot: Halo! Ada yang bisa saya bantu?');
+  }
+
+  function markAttendance(event) {
+    // Simulate QR scan
+    const qr = prompt('Scan QR code:');
+    if (qr) {
+      window.dataSdk.create({ type: 'attendance', event: event, qr_code: qr, created_at: new Date().toISOString() });
+      showToast('Absensi berhasil!', 'success');
+    }
+  }
+
+  function generateQR() {
+    alert('QR Code generated: https://example.com/qr/123');
   }
 
   document.getElementById('finance-form').addEventListener('submit', async (e) => {
