@@ -165,11 +165,11 @@
         <i data-lucide="bell" style="width:20px;height:20px; color: #38bdf8;"></i>
        </button>
       </div>
-      <div class="hidden md:flex items-center gap-6"><a href="#beranda" class="nav-link text-slate-300 hover:text-white text-sm font-medium">Beranda</a> <a href="#struktur" class="nav-link text-slate-300 hover:text-white text-sm font-medium">Struktur</a> <a href="#berita" class="nav-link text-slate-300 hover:text-white text-sm font-medium">Berita</a> <a href="#pendaftaran" class="nav-link text-slate-300 hover:text-white text-sm font-medium">Pendaftaran</a> <a href="#feedback" class="nav-link text-slate-300 hover:text-white text-sm font-medium">Feedback</a> <a href="#kontak" class="nav-link text-slate-300 hover:text-white text-sm font-medium">Kontak</a>
+      <div class="hidden md:flex items-center gap-6"><a href="#beranda" class="nav-link text-slate-300 hover:text-white text-sm font-medium">Beranda</a> <a href="#struktur" class="nav-link text-slate-300 hover:text-white text-sm font-medium">Struktur</a> <a href="#berita" class="nav-link text-slate-300 hover:text-white text-sm font-medium">Berita</a> <a href="#pendaftaran" class="nav-link text-slate-300 hover:text-white text-sm font-medium">Pendaftaran</a> <a href="#feedback" class="nav-link text-slate-300 hover:text-white text-sm font-medium">Feedback</a> <a href="#kontak" class="nav-link text-slate-300 hover:text-white text-sm font-medium">Kontak</a> <a href="#admin" id="admin-link" style="display:none;" class="nav-link text-slate-300 hover:text-white text-sm font-medium">Admin</a>
       </div><button id="mobile-toggle" class="md:hidden text-white" onclick="toggleMobileMenu()"> <i data-lucide="menu" style="width:24px;height:24px;"></i> </button>
      </div>
      <div id="mobile-menu" class="mobile-menu md:hidden">
-      <div class="flex flex-col gap-3 pb-4"><a href="#beranda" onclick="closeMobileMenu()" class="text-slate-300 hover:text-white text-sm font-medium py-1">Beranda</a> <a href="#struktur" onclick="closeMobileMenu()" class="text-slate-300 hover:text-white text-sm font-medium py-1">Struktur</a> <a href="#berita" onclick="closeMobileMenu()" class="text-slate-300 hover:text-white text-sm font-medium py-1">Berita</a> <a href="#pendaftaran" onclick="closeMobileMenu()" class="text-slate-300 hover:text-white text-sm font-medium py-1">Pendaftaran</a> <a href="#feedback" onclick="closeMobileMenu()" class="text-slate-300 hover:text-white text-sm font-medium py-1">Feedback</a> <a href="#kontak" onclick="closeMobileMenu()" class="text-slate-300 hover:text-white text-sm font-medium py-1">Kontak</a>
+      <div class="flex flex-col gap-3 pb-4"><a href="#beranda" onclick="closeMobileMenu()" class="text-slate-300 hover:text-white text-sm font-medium py-1">Beranda</a> <a href="#struktur" onclick="closeMobileMenu()" class="text-slate-300 hover:text-white text-sm font-medium py-1">Struktur</a> <a href="#berita" onclick="closeMobileMenu()" class="text-slate-300 hover:text-white text-sm font-medium py-1">Berita</a> <a href="#pendaftaran" onclick="closeMobileMenu()" class="text-slate-300 hover:text-white text-sm font-medium py-1">Pendaftaran</a> <a href="#feedback" onclick="closeMobileMenu()" class="text-slate-300 hover:text-white text-sm font-medium py-1">Feedback</a> <a href="#kontak" onclick="closeMobileMenu()" class="text-slate-300 hover:text-white text-sm font-medium py-1">Kontak</a> <a href="#admin" id="admin-link-mobile" onclick="closeMobileMenu()" style="display:none;" class="text-slate-300 hover:text-white text-sm font-medium py-1">Admin</a>
       </div>
      </div>
     </div>
@@ -411,6 +411,53 @@
     </div>
    </section>
 
+   <section id="admin" style="display:none;" class="py-16 sm:py-20" style="background: #f1f5f9;">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+     <div class="text-center mb-10"><span class="text-xs font-semibold tracking-widest uppercase" style="color: #0ea5e9;">Panel Admin</span>
+      <h2 class="section-title text-3xl sm:text-4xl font-bold mt-2" style="color: #0f172a;">Manajemen OSIS</h2>
+      <p class="text-slate-500 mt-2 text-sm">Kelola anggota, divisi, berita, dan visi misi.</p>
+     </div>
+     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="rounded-2xl p-6 border" style="background: white; border-color: #e2e8f0;">
+       <h3 class="font-bold text-lg" style="color: #0f172a;">Anggota</h3>
+       <p class="text-sm text-slate-500 mt-1">Kelola daftar anggota OSIS.</p>
+       <button onclick="manageMembers()" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">Kelola</button>
+      </div>
+      <div class="rounded-2xl p-6 border" style="background: white; border-color: #e2e8f0;">
+       <h3 class="font-bold text-lg" style="color: #0f172a;">Divisi</h3>
+       <p class="text-sm text-slate-500 mt-1">Atur divisi dan program kerja.</p>
+       <button onclick="manageDivisions()" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">Kelola</button>
+      </div>
+      <div class="rounded-2xl p-6 border" style="background: white; border-color: #e2e8f0;">
+       <h3 class="font-bold text-lg" style="color: #0f172a;">Berita</h3>
+       <p class="text-sm text-slate-500 mt-1">Tambah dan edit berita acara.</p>
+       <button onclick="manageNews()" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">Kelola</button>
+      </div>
+      <div class="rounded-2xl p-6 border" style="background: white; border-color: #e2e8f0;">
+       <h3 class="font-bold text-lg" style="color: #0f172a;">Visi Misi</h3>
+       <p class="text-sm text-slate-500 mt-1">Update visi dan misi OSIS.</p>
+       <button onclick="manageVision()" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">Kelola</button>
+      </div>
+      <div class="rounded-2xl p-6 border" style="background: white; border-color: #e2e8f0;">
+       <h3 class="font-bold text-lg" style="color: #0f172a;">Notifikasi Email</h3>
+       <p class="text-sm text-slate-500 mt-1">Set email untuk notifikasi.</p>
+       <input id="notification-email" type="email" placeholder="email@example.com" class="mt-2 px-3 py-1 border rounded w-full">
+       <button onclick="setNotificationEmail()" class="mt-2 px-4 py-2 bg-green-500 text-white rounded">Set</button>
+      </div>
+      <div class="rounded-2xl p-6 border" style="background: white; border-color: #e2e8f0;">
+       <h3 class="font-bold text-lg" style="color: #0f172a;">Set Role</h3>
+       <p class="text-sm text-slate-500 mt-1">Ubah role user (untuk demo).</p>
+       <select id="role-select" class="mt-2 px-3 py-1 border rounded w-full">
+        <option>siswa</option>
+        <option>admin</option>
+        <option>ketua</option>
+       </select>
+       <button onclick="setRole()" class="mt-2 px-4 py-2 bg-purple-500 text-white rounded">Set Role</button>
+      </div>
+     </div>
+    </div>
+   </section>
+
    <section id="arsip" class="py-20" style="background: #f8fafc;">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
      <h2 class="section-title text-3xl sm:text-4xl font-bold" style="color:#0f172a;">Arsip Foto</h2>
@@ -446,6 +493,7 @@
   };
 
   let selectedRating = 0;
+  let userRole = localStorage.getItem('userRole') || 'siswa';
 
   // Star rating
   document.querySelectorAll('#star-rating .star-btn').forEach(star => {
@@ -788,6 +836,30 @@
   });
 
   lucide.createIcons();
-</script>
+
+  // RBAC
+  if (userRole === 'ketua' || userRole === 'admin') {
+    document.getElementById('admin').style.display = 'block';
+    document.getElementById('admin-link').style.display = 'inline';
+    document.getElementById('admin-link-mobile').style.display = 'block';
+  }
+
+  function setRole() {
+    const role = document.getElementById('role-select').value;
+    localStorage.setItem('userRole', role);
+    userRole = role;
+    location.reload();
+  }
+
+  function setNotificationEmail() {
+    const email = document.getElementById('notification-email').value;
+    localStorage.setItem('notificationEmail', email);
+    showToast('Email notifikasi diset!', 'success');
+  }
+
+  function manageMembers() { alert('Fitur manage members belum diimplementasi.'); }
+  function manageDivisions() { alert('Fitur manage divisions belum diimplementasi.'); }
+  function manageNews() { alert('Fitur manage news belum diimplementasi.'); }
+  function manageVision() { alert('Fitur manage vision belum diimplementasi.'); }
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e5c9b608338051a',t:'MTc3NTA5OTA3NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
