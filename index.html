@@ -158,9 +158,9 @@
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
      <div class="flex items-center justify-between h-16">
       <div class="flex items-center gap-2">
-       <div class="w-9 h-9 rounded-lg flex items-center justify-center font-bold text-white text-sm" style="background: linear-gradient(135deg, #0ea5e9, #06b6d4);">
-        O
-       </div><span id="nav-brand" class="font-bold text-white text-lg">OSIS SMKN 1 Tarumajaya</span>
+      <div class="w-9 h-9 rounded-lg flex items-center justify-center font-bold text-white text-sm" style="background: linear-gradient(135deg, #0ea5e9, #06b6d4);">
+        O       
+      </div><span id="nav-brand" class="font-bold text-white text-lg">OSIS SMKN 1 Tarumajaya</span>
        <button id="notification-bell" class="ml-2 p-1 rounded-full hover:bg-white/10 transition-all duration-200 bell-shake" onclick="toggleNotification()" title="Notifikasi">
         <i data-lucide="bell" style="width:20px;height:20px; color: #38bdf8;"></i>
        </button>
@@ -367,6 +367,8 @@
       <div><label class="block text-sm font-semibold mb-2" style="color: #0f172a;">Rating</label>
        <div id="star-rating" class="flex gap-2"><span class="star-btn text-2xl text-slate-300" data-star="1">★</span> <span class="star-btn text-2xl text-slate-300" data-star="2">★</span> <span class="star-btn text-2xl text-slate-300" data-star="3">★</span> <span class="star-btn text-2xl text-slate-300" data-star="4">★</span> <span class="star-btn text-2xl text-slate-300" data-star="5">★</span>
        </div>
+      </div>
+      <div><label for="fb-category" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">Kategori Feedback</label> <select id="fb-category" required class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition" style="border-color: #e2e8f0;"> <option value="">Pilih kategori...</option> <option>Aspirasi</option> <option>Keluhan</option> <option>Saran</option> <option>Pertanyaan</option></select>
       </div>
       <div><label for="fb-message" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">Pesan Feedback</label> <textarea id="fb-message" rows="4" required class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition resize-none" style="border-color: #e2e8f0;" placeholder="Tulis saran, kritik, atau apresiasi kamu..."></textarea>
       </div><button type="submit" id="fb-submit" class="w-full py-3 rounded-xl font-semibold text-white text-sm transition-all hover:scale-[1.02]" style="background: linear-gradient(135deg, #0ea5e9, #06b6d4);"> Kirim Feedback </button>
@@ -656,6 +658,17 @@
   // Feedback form
   document.getElementById('feedback-form').addEventListener('submit', async (e) => {
     e.preventDefault();
+    const message = document.getElementById('fb-message').value;
+    const category = document.getElementById('fb-category').value;
+
+    // Profanity filter
+    const badWords = ['kasar1', 'kasar2', 'bego', 'tolol', 'anjing', 'bangsat']; // Tambah list kata kasar
+    const hasProfanity = badWords.some(word => message.toLowerCase().includes(word));
+    if (hasProfanity) {
+      showToast('Pesan mengandung kata tidak pantas. Harap perbaiki.', 'error');
+      return;
+    }
+
     const btn = document.getElementById('fb-submit');
     btn.disabled = true;
     btn.textContent = 'Mengirim...';
@@ -664,8 +677,9 @@
     const result = await window.dataSdk.create({
       type: 'feedback',
       feedback_name: document.getElementById('fb-name').value || 'Anonim',
-      feedback_message: document.getElementById('fb-message').value,
+      feedback_message: message,
       feedback_rating: selectedRating,
+      feedback_category: category,
       created_at: new Date().toISOString()
     });
 
