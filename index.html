@@ -326,6 +326,18 @@
         <p class="text-slate-400 text-sm mt-1">Pendaftaran anggota OSIS terbuka untuk seluruh siswa.</p>
         <div class="flex items-center gap-2 mt-3 text-xs text-slate-500"><i data-lucide="clock" style="width:14px;height:14px;"></i> <span>1-10 Maret 2026</span>
         </div>
+        <div class="mt-4 flex items-center gap-4">
+         <button onclick="voteCandidate()" class="px-3 py-1 bg-sky-500 text-white text-xs rounded">Vote Calon Ketua</button>
+         <div class="flex gap-2">
+          <span onclick="react('like')" class="cursor-pointer text-slate-400 hover:text-blue-400">👍</span>
+          <span onclick="react('love')" class="cursor-pointer text-slate-400 hover:text-red-400">❤️</span>
+          <span onclick="react('laugh')" class="cursor-pointer text-slate-400 hover:text-yellow-400">😂</span>
+         </div>
+        </div>
+        <div class="mt-3">
+         <input id="qa-input" type="text" placeholder="Tanya jawab..." class="w-full px-2 py-1 text-xs bg-slate-700 text-white rounded">
+         <button onclick="submitQA()" class="mt-1 px-2 py-1 bg-green-500 text-white text-xs rounded">Kirim</button>
+        </div>
        </div>
       </div>
      </div>
@@ -918,6 +930,29 @@
     panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
   }
   function exportReport(type) { alert(`Ekspor ${type.toUpperCase()} belum diimplementasi.`); }
+
+  // Engagement functions
+  function voteCandidate() {
+    const candidate = prompt('Pilih calon: Ahmad Rizky atau Siti Nurhaliza');
+    if (candidate) {
+      window.dataSdk.create({ type: 'vote', candidate: candidate, created_at: new Date().toISOString() });
+      showToast('Vote dikirim!', 'success');
+    }
+  }
+
+  function react(type) {
+    window.dataSdk.create({ type: 'reaction', reaction_type: type, created_at: new Date().toISOString() });
+    showToast(`Reaksi ${type} dikirim!`, 'success');
+  }
+
+  function submitQA() {
+    const question = document.getElementById('qa-input').value;
+    if (question) {
+      window.dataSdk.create({ type: 'qa', question: question, created_at: new Date().toISOString() });
+      showToast('Pertanyaan dikirim!', 'success');
+      document.getElementById('qa-input').value = '';
+    }
+  }
 
   document.getElementById('finance-form').addEventListener('submit', async (e) => {
     e.preventDefault();
