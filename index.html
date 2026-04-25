@@ -492,8 +492,31 @@
     contact_address: 'Jl. Pendidikan No. 1, Jakarta'
   };
 
-  let selectedRating = 0;
-  let userRole = localStorage.getItem('userRole') || 'siswa';
+  // NLP functions
+  const positiveWords = ['semangat', 'dedikasi', 'komitmen', 'kerja keras', 'tim', 'kolaborasi', 'inovasi', 'kreatif', 'tanggung jawab', 'motivasi'];
+  const negativeWords = ['malas', 'tidak suka', 'bosan', 'sulit', 'tidak mampu'];
+
+  function calculateScore(text) {
+    const words = text.toLowerCase().split(/\s+/);
+    let score = 0;
+    words.forEach(word => {
+      if (positiveWords.includes(word)) score += 1;
+      if (negativeWords.includes(word)) score -= 1;
+    });
+    return Math.max(0, Math.min(100, 50 + score * 10)); // Normalize to 0-100
+  }
+
+  function analyzeSentiment(text) {
+    const words = text.toLowerCase().split(/\s+/);
+    let pos = 0, neg = 0;
+    words.forEach(word => {
+      if (positiveWords.includes(word)) pos++;
+      if (negativeWords.includes(word)) neg++;
+    });
+    if (pos > neg) return 'Positif';
+    if (neg > pos) return 'Negatif';
+    return 'Netral';
+  }
 
   // Star rating
   document.querySelectorAll('#star-rating .star-btn').forEach(star => {
@@ -680,6 +703,9 @@
     btn.textContent = 'Mengirim...';
     btn.style.opacity = '0.6';
 
+    const motivasi = document.getElementById('reg-motivasi').value;
+    const skor = calculateScore(motivasi);
+
     const result = await window.dataSdk.create({
       type: 'registration',
       name: document.getElementById('reg-name').value,
@@ -687,7 +713,8 @@
       email: document.getElementById('reg-email').value,
       phone: document.getElementById('reg-phone').value,
       divisi: document.getElementById('reg-divisi').value,
-      motivasi: document.getElementById('reg-motivasi').value,
+      motivasi: motivasi,
+      skor_kelulusan: skor,
       created_at: new Date().toISOString()
     });
 
@@ -696,7 +723,7 @@
     btn.style.opacity = '1';
 
     if (result.isOk) {
-      showToast('Pendaftaran berhasil dikirim! ✅', 'success');
+      showToast(`Pendaftaran berhasil dikirim! Skor: ${skor}%`, 'success');
       e.target.reset();
     } else {
       showToast('Gagal mengirim. Coba lagi.', 'error');
@@ -728,6 +755,7 @@
       feedback_message: message,
       feedback_rating: selectedRating,
       feedback_category: category,
+      feedback_sentiment: analyzeSentiment(message),
       created_at: new Date().toISOString()
     });
 
