@@ -161,6 +161,10 @@
        <div class="w-9 h-9 rounded-lg flex items-center justify-center font-bold text-white text-sm" style="background: linear-gradient(135deg, #0ea5e9, #06b6d4);">
         O
        </div><span id="nav-brand" class="font-bold text-white text-lg">OSIS SMKN 1 Tarumajaya</span>
+       <div id="user-auth-bar" class="hidden md:flex items-center gap-2 ml-4">
+        <span id="user-role-label" class="text-slate-200 text-sm"></span>
+        <button id="auth-button" onclick="handleAuthButton()" class="px-3 py-1 text-xs font-semibold rounded-full bg-slate-100 text-slate-900 hover:bg-slate-200 transition">Login</button>
+       </div>
        <button id="notification-bell" class="ml-2 p-1 rounded-full hover:bg-white/10 transition-all duration-200 bell-shake" onclick="toggleNotification()" title="Notifikasi">
         <i data-lucide="bell" style="width:20px;height:20px; color: #38bdf8;"></i>
        </button>
@@ -184,7 +188,7 @@
      </div><!-- Stats -->
      <div class="grid grid-cols-3 gap-4 max-w-md mx-auto mt-12 fade-up stagger-5">
       <div class="text-center">
-       <div class="text-2xl font-bold text-white">
+       <div class="text-2xl font-bold text-white" id="stats-divisi">
         8
        </div>
        <div class="text-xs text-slate-400">
@@ -192,7 +196,7 @@
        </div>
       </div>
       <div class="text-center">
-       <div class="text-2xl font-bold text-white">
+       <div class="text-2xl font-bold text-white" id="stats-anggota">
         50+
        </div>
        <div class="text-xs text-slate-400">
@@ -200,7 +204,7 @@
        </div>
       </div>
       <div class="text-center">
-       <div class="text-2xl font-bold text-white">
+       <div class="text-2xl font-bold text-white" id="stats-program">
         20+
        </div>
        <div class="text-xs text-slate-400">
@@ -289,6 +293,10 @@
        <p class="font-semibold text-xs" style="color: #0f172a;">Kerohanian</p>
       </div>
      </div>
+     <div id="ketua-divisi-access" class="hidden mt-8 rounded-2xl p-6 border bg-slate-50" style="border-color: #cbd5e1;">
+      <h3 class="text-lg font-semibold mb-3" style="color: #0f172a;">Area Khusus Ketua Divisi</h3>
+      <p class="text-sm text-slate-600">Hanya ketua divisi yang dapat melihat informasi lengkap divisi, tugas khusus, dan pengumuman internal divisi.</p>
+     </div>
     </div>
    </section><!-- Berita Upcoming -->
    <section id="berita" class="py-16 sm:py-20" style="background: #0f172a;">
@@ -337,19 +345,19 @@
       <p class="text-slate-500 mt-2 text-sm">Isi formulir berikut untuk mendaftar menjadi anggota OSIS.</p>
      </div>
      <form id="register-form" class="rounded-2xl p-6 sm:p-8 border space-y-5" style="background: white; border-color: #e2e8f0;">
-      <div><label for="reg-name" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">Nama Lengkap</label> <input id="reg-name" type="text" required class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition" style="border-color: #e2e8f0;" placeholder="Masukkan nama lengkap">
+      <div><label for="reg-name" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">Nama Lengkap</label> <input id="reg-name" name="nama_lengkap" type="text" required class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition" style="border-color: #e2e8f0;" placeholder="Masukkan nama lengkap">
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-       <div><label for="reg-kelas" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">Kelas</label> <input id="reg-kelas" type="text" required class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition" style="border-color: #e2e8f0;" placeholder="Contoh: X RPL 1">
+       <div><label for="reg-kelas" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">Kelas</label> <input id="reg-kelas" name="kelas" type="text" required class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition" style="border-color: #e2e8f0;" placeholder="Contoh: X RPL 1">
        </div>
-       <div><label for="reg-email" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">Email</label> <input id="reg-email" type="email" required class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition" style="border-color: #e2e8f0;" placeholder="email@example.com">
+       <div><label for="reg-email" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">Email</label> <input id="reg-email" name="email" type="email" required class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition" style="border-color: #e2e8f0;" placeholder="email@example.com">
        </div>
       </div>
-      <div><label for="reg-phone" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">No. Telepon</label> <input id="reg-phone" type="tel" required class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition" style="border-color: #e2e8f0;" placeholder="08xxxxxxxxxx">
+      <div><label for="reg-phone" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">No. Telepon</label> <input id="reg-phone" name="no_telepon" type="tel" required class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition" style="border-color: #e2e8f0;" placeholder="08xxxxxxxxxx">
       </div>
-      <div><label for="reg-divisi" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">Divisi yang Diminati</label> <select id="reg-divisi" required class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition" style="border-color: #e2e8f0;"> <option value="">Pilih divisi...</option> <option>Humas</option> <option>Seni &amp; Budaya</option> <option>Olahraga</option> <option>Pendidikan</option> <option>Sosial</option> <option>Lingkungan</option> <option>Teknologi</option> <option>Kerohanian</option> <option>Ketua</option> <option>Wakil Ketua</option> <option>Sekretaris</option> <option>Bendahara</option></select>
+      <div><label for="reg-divisi" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">Divisi yang Diminati</label> <select id="reg-divisi" name="divisi_diminati" required class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition" style="border-color: #e2e8f0;"> <option value="">Pilih divisi...</option> <option>Humas</option> <option>Seni &amp; Budaya</option> <option>Olahraga</option> <option>Pendidikan</option> <option>Sosial</option> <option>Lingkungan</option> <option>Teknologi</option> <option>Kerohanian</option> <option>Ketua</option> <option>Wakil Ketua</option> <option>Sekretaris</option> <option>Bendahara</option></select>
       </div>
-      <div><label for="reg-motivasi" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">Motivasi</label> <textarea id="reg-motivasi" rows="3" required class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition resize-none" style="border-color: #e2e8f0;" placeholder="Ceritakan motivasi dan potensi diri kamu bergabung OSIS"></textarea>
+      <div><label for="reg-motivasi" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">Motivasi</label> <textarea id="reg-motivasi" name="motivasi" rows="3" required class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition resize-none" style="border-color: #e2e8f0;" placeholder="Ceritakan motivasi dan potensi diri kamu bergabung OSIS"></textarea>
       </div><button type="submit" id="reg-submit" class="w-full py-3 rounded-xl font-semibold text-white text-sm transition-all hover:scale-[1.02]" style="background: linear-gradient(135deg, #0ea5e9, #06b6d4);"> Kirim Pendaftaran </button>
       <div id="reg-message" class="hidden text-center text-sm font-medium py-2 rounded-xl"></div>
      </form>
@@ -362,18 +370,28 @@
       <p class="text-slate-500 mt-2 text-sm">Berikan masukan untuk membantu OSIS menjadi lebih baik.</p>
      </div>
      <form id="feedback-form" class="rounded-2xl p-6 sm:p-8 border space-y-5" style="background: white; border-color: #e2e8f0;">
-      <div><label for="fb-name" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">Nama (opsional)</label> <input id="fb-name" type="text" class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition" style="border-color: #e2e8f0;" placeholder="Boleh anonim">
+      <div><label for="fb-name" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">Nama (opsional)</label> <input id="fb-name" name="nama_pengirim" type="text" class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition" style="border-color: #e2e8f0;" placeholder="Boleh anonim">
       </div>
       <div><label class="block text-sm font-semibold mb-2" style="color: #0f172a;">Rating</label>
        <div id="star-rating" class="flex gap-2"><span class="star-btn text-2xl text-slate-300" data-star="1">★</span> <span class="star-btn text-2xl text-slate-300" data-star="2">★</span> <span class="star-btn text-2xl text-slate-300" data-star="3">★</span> <span class="star-btn text-2xl text-slate-300" data-star="4">★</span> <span class="star-btn text-2xl text-slate-300" data-star="5">★</span>
        </div>
       </div>
-      <div><label for="fb-category" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">Kategori Feedback</label> <select id="fb-category" required class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition" style="border-color: #e2e8f0;"> <option value="">Pilih kategori...</option> <option>Aspirasi</option> <option>Keluhan</option> <option>Saran</option> <option>Pertanyaan</option> <option>Apresiasi</option> <option>Laporan</option> </select>
+      <div><label for="fb-category" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">Kategori Feedback</label> <select id="fb-category" name="kategori" required class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition" style="border-color: #e2e8f0;"> <option value="">Pilih kategori...</option> <option>Aspirasi</option> <option>Keluhan</option> <option>Saran</option> <option>Pertanyaan</option> <option>Apresiasi</option> <option>Laporan</option> </select>
       </div>
-      <div><label for="fb-message" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">Pesan Feedback</label> <textarea id="fb-message" rows="4" required class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition resize-none" style="border-color: #e2e8f0;" placeholder="Tulis saran, kritik, atau apresiasi kamu..."></textarea>
+      <div><label for="fb-message" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">Pesan Feedback</label> <textarea id="fb-message" name="pesan" rows="4" required class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition resize-none" style="border-color: #e2e8f0;" placeholder="Tulis saran, kritik, atau apresiasi kamu..."></textarea>
+       <div id="fb-message-error" class="hidden text-red-500 text-xs mt-1">⚠️ Pesan mengandung kata tidak pantas.</div>
       </div><button type="submit" id="fb-submit" class="w-full py-3 rounded-xl font-semibold text-white text-sm transition-all hover:scale-[1.02]" style="background: linear-gradient(135deg, #0ea5e9, #06b6d4);"> Kirim Feedback </button>
       <div id="fb-message-status" class="hidden text-center text-sm font-medium py-2 rounded-xl"></div>
      </form>
+    </div>
+   </section>
+   <section id="role-panel" class="py-16 sm:py-20 hidden" style="background: #eef2ff;">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+     <div class="text-center mb-10"><span class="text-xs font-semibold tracking-widest uppercase" style="color: #0ea5e9;">Akses Pengguna</span>
+      <h2 class="section-title text-3xl sm:text-4xl font-bold mt-2" style="color: #0f172a;">Panel Role & Akses</h2>
+      <p class="text-slate-500 mt-2 text-sm">Login sebagai admin, ketua, wakil, atau anggota untuk melihat hak akses berbeda.</p>
+     </div>
+     <div id="role-panel-content" class="rounded-2xl p-6 border bg-white" style="border-color: #cbd5e1;"></div>
     </div>
    </section><!-- Kontak -->
    <section id="kontak" class="py-16 sm:py-20" style="background: #0f172a;">
@@ -423,6 +441,36 @@
    </footer>
   </div><!-- Toast container -->
   <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2"></div>
+  <div id="finance-review-modal" class="fixed inset-0 hidden flex items-center justify-center bg-black/50 p-4 z-50">
+   <div class="w-full max-w-4xl rounded-3xl bg-white p-6 shadow-2xl">
+    <div class="flex items-center justify-between mb-5">
+     <div>
+      <h3 class="text-xl font-bold" style="color: #0f172a;">Review Laporan Keuangan</h3>
+      <p class="text-sm text-slate-500">Pantau dan setujui pengeluaran divisi untuk transparansi keuangan.</p>
+     </div>
+     <button onclick="closeFinanceReview()" class="text-slate-500 hover:text-slate-900">✕</button>
+    </div>
+    <div class="overflow-x-auto">
+     <table class="w-full text-sm">
+      <thead class="bg-gray-50">
+       <tr>
+        <th class="px-3 py-2 text-left font-semibold">Tanggal</th>
+        <th class="px-3 py-2 text-left font-semibold">Keterangan</th>
+        <th class="px-3 py-2 text-left font-semibold">Nominal</th>
+        <th class="px-3 py-2 text-left font-semibold">Diajukan Oleh</th>
+        <th class="px-3 py-2 text-left font-semibold">Bukti</th>
+        <th class="px-3 py-2 text-left font-semibold">Status</th>
+       </tr>
+      </thead>
+      <tbody id="finance-review-table-body" class="divide-y divide-gray-200">
+       <tr>
+        <td colspan="6" class="px-3 py-4 text-center text-gray-500">Belum ada data pengeluaran</td>
+       </tr>
+      </tbody>
+     </table>
+    </div>
+   </div>
+  </div>
   <script>
   // Config & defaults
   const defaultConfig = {
@@ -442,10 +490,365 @@
     bendahara_name: 'Dewi Lestari',
     contact_email: 'osis@smkn1.sch.id',
     contact_phone: '(021) 1234-5678',
-    contact_address: 'Jl. Pendidikan No. 1, Jakarta'
+    contact_address: 'Jl. Pendidikan No. 1, Jakarta',
+    stats_divisi: '8',
+    stats_anggota: '50+',
+    stats_program: '20+'
   };
 
   let selectedRating = 0;
+  const osisUsers = [
+    { username: 'admin', password: 'admin123', display: 'Admin', role: 'admin' },
+    { username: 'ketua', password: 'ketua123', display: 'Ketua OSIS', role: 'ketua' },
+    { username: 'wakil', password: 'wakil123', display: 'Wakil Ketua', role: 'wakil' },
+    { username: 'ketuadivisi', password: 'divisi123', display: 'Ketua Divisi', role: 'ketua_divisi' },
+    { username: 'anggota', password: 'anggota123', display: 'Anggota OSIS', role: 'user' }
+  ];
+  let currentUser = null;
+
+  function getSavedUser() {
+    try {
+      return JSON.parse(localStorage.getItem('osisUser'));
+    } catch {
+      return null;
+    }
+  }
+
+  function saveUser(user) {
+    currentUser = user;
+    localStorage.setItem('osisUser', JSON.stringify(user));
+    updateRoleUI();
+  }
+
+  function clearUser() {
+    currentUser = null;
+    localStorage.removeItem('osisUser');
+    updateRoleUI();
+  }
+
+  function openAuthModal() {
+    document.getElementById('login-modal').classList.remove('hidden');
+  }
+
+  function closeAuthModal() {
+    document.getElementById('login-modal').classList.add('hidden');
+  }
+
+  function handleAuthButton() {
+    if (currentUser) {
+      clearUser();
+      showToast('Anda telah logout.', 'success');
+    } else {
+      openAuthModal();
+    }
+  }
+
+  function renderRolePanel() {
+    const panelContent = document.getElementById('role-panel-content');
+    if (!panelContent) return;
+    if (!currentUser) {
+      panelContent.innerHTML = '<p class="text-slate-600">Silakan login untuk melihat fitur akses role.</p>';
+      return;
+    }
+
+    if (currentUser.role === 'admin') {
+      panelContent.innerHTML = `
+        <h3 class="text-xl font-semibold mb-4">Dashboard Admin</h3>
+        <p class="text-slate-600 mb-4">Admin dapat melihat semua pengguna dan akses.</p>
+        <div class="space-y-3 text-sm text-slate-700">
+          <p><strong>Hak Akses:</strong> Kelola pengguna, lihat data feedback, dan kontrol sistem.</p>
+          <p><strong>Pengguna terdaftar:</strong> admin, ketua, wakil, anggota.</p>
+          <p>Contoh operasi: tampilkan semua user role dan akses berbeda.</p>
+        </div>
+        <div class="mt-6 space-y-4">
+          <div class="p-4 bg-blue-50 rounded-lg">
+            <h4 class="font-semibold text-blue-900 mb-2">Edit Statistik OSIS</h4>
+            <p class="text-sm text-blue-700 mb-3">Update jumlah divisi, anggota, dan program.</p>
+            <button onclick="openStatsEditor()" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">Edit Stats</button>
+          </div>
+          <div class="p-4 bg-green-50 rounded-lg">
+            <h4 class="font-semibold text-green-900 mb-2">Review Laporan Keuangan</h4>
+            <p class="text-sm text-green-700 mb-3">Lihat dan setujui laporan pengeluaran divisi.</p>
+            <div class="grid grid-cols-3 gap-4 mb-3 text-sm">
+              <div class="text-center">
+                <div class="text-lg font-bold text-green-600" id="total-approved">0</div>
+                <div class="text-xs text-green-700">Disetujui</div>
+              </div>
+              <div class="text-center">
+                <div class="text-lg font-bold text-yellow-600" id="total-pending">0</div>
+                <div class="text-xs text-yellow-700">Menunggu</div>
+              </div>
+              <div class="text-center">
+                <div class="text-lg font-bold text-red-600" id="total-rejected">0</div>
+                <div class="text-xs text-red-700">Ditolak</div>
+              </div>
+            </div>
+            <button onclick="openFinanceReview()" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">Review Keuangan</button>
+          </div>
+          <div class="p-4 bg-blue-50 rounded-lg">
+            <h4 class="font-semibold text-blue-900 mb-2">Analisis NLP Kelolosan Pendaftaran</h4>
+            <p class="text-sm text-blue-700 mb-3">Analisis otomatis data pendaftaran berdasarkan kata kunci motivasi.</p>
+            <button onclick="runNLP()" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">Jalankan Analisis</button>
+            <div id="nlp-results" class="mt-3 text-sm text-blue-800"></div>
+          </div>
+        </div>
+      `;
+      return;
+    }
+
+    if (currentUser.role === 'ketua') {
+      panelContent.innerHTML = `
+        <h3 class="text-xl font-semibold mb-4">Panel Ketua</h3>
+        <p class="text-slate-600 mb-4">Ketua OSIS dapat mengakses ringkasan feedback dan laporan.</p>
+        <div class="space-y-3 text-sm text-slate-700">
+          <p><strong>Hak Akses:</strong> Lihat feedback dan rekomendasi internal.</p>
+          <p><strong>Fitur:</strong> Pantau saran siswa dan tindak lanjut.</p>
+        </div>
+        <div class="mt-6 space-y-4">
+          <div class="p-4 bg-green-50 rounded-lg">
+            <h4 class="font-semibold text-green-900 mb-2">Edit Statistik OSIS</h4>
+            <p class="text-sm text-green-700 mb-3">Update jumlah divisi, anggota, dan program.</p>
+            <button onclick="openStatsEditor()" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">Edit Stats</button>
+          </div>
+          <div class="p-4 bg-green-50 rounded-lg">
+            <h4 class="font-semibold text-green-900 mb-2">Analisis NLP Kelolosan Pendaftaran</h4>
+            <p class="text-sm text-green-700 mb-3">Evaluasi kandidat berdasarkan analisis motivasi.</p>
+            <button onclick="runNLP()" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">Jalankan Analisis</button>
+            <div id="nlp-results" class="mt-3 text-sm text-green-800"></div>
+          </div>
+        </div>
+      `;
+      return;
+    }
+
+    if (currentUser.role === 'wakil') {
+      panelContent.innerHTML = `
+        <h3 class="text-xl font-semibold mb-4">Panel Wakil Ketua</h3>
+        <p class="text-slate-600 mb-4">Wakil Ketua dapat melihat data laporan internal dan mendukung Ketua.</p>
+        <div class="space-y-3 text-sm text-slate-700">
+          <p><strong>Hak Akses:</strong> Lihat ringkasan feedback dan data informasi divisi.</p>
+          <p><strong>Fitur:</strong> Bantu evaluasi program OSIS.</p>
+        </div>
+      `;
+      return;
+    }
+
+    if (currentUser.role === 'ketua_divisi') {
+      panelContent.innerHTML = `
+        <h3 class="text-xl font-semibold mb-4">Panel Ketua Divisi</h3>
+        <p class="text-slate-600 mb-4">Ketua divisi dapat mengakses informasi divisi dan mengelola pelaporan keuangan.</p>
+        <div class="space-y-4">
+          <div class="p-4 bg-purple-50 rounded-lg">
+            <h4 class="font-semibold text-purple-900 mb-2">Pelaporan Keuangan</h4>
+            <p class="text-sm text-purple-700 mb-3">Upload bukti kuitansi dan pantau pengeluaran divisi.</p>
+            <button onclick="openFinanceModal()" class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition">Upload Kuitansi</button>
+          </div>
+          <div class="p-4 bg-white border rounded-lg">
+            <h4 class="font-semibold text-gray-900 mb-3">Riwayat Pengeluaran</h4>
+            <div id="finance-table" class="overflow-x-auto">
+              <table class="w-full text-sm">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-3 py-2 text-left font-semibold">Tanggal</th>
+                    <th class="px-3 py-2 text-left font-semibold">Keterangan</th>
+                    <th class="px-3 py-2 text-left font-semibold">Nominal</th>
+                    <th class="px-3 py-2 text-left font-semibold">Bukti</th>
+                    <th class="px-3 py-2 text-left font-semibold">Status</th>
+                  </tr>
+                </thead>
+                <tbody id="finance-table-body" class="divide-y divide-gray-200">
+                  <tr>
+                    <td colspan="5" class="px-3 py-4 text-center text-gray-500">Belum ada data pengeluaran</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      `;
+      // Load finance data after rendering
+      setTimeout(() => loadFinanceData(), 100);
+      return;
+    }
+
+    panelContent.innerHTML = `
+      <h3 class="text-xl font-semibold mb-4">Akses Anggota</h3>
+      <p class="text-slate-600 mb-4">Anggota dapat menggunakan fitur umum seperti feedback dan pendaftaran.</p>
+      <div class="space-y-3 text-sm text-slate-700">
+        <p><strong>Hak Akses:</strong> Kirim feedback dan daftar program.</p>
+        <p><strong>Fitur:</strong> Akses form umum dan lihat informasi publik.</p>
+      </div>
+    `;
+  }
+
+  function updateRoleUI() {
+    const authBar = document.getElementById('user-auth-bar');
+    const authButton = document.getElementById('auth-button');
+    const roleLabel = document.getElementById('user-role-label');
+    const rolePanel = document.getElementById('role-panel');
+    const ketuaDivisiAccess = document.getElementById('ketua-divisi-access');
+    if (!authBar || !authButton || !roleLabel || !rolePanel) return;
+
+    if (ketuaDivisiAccess) {
+      ketuaDivisiAccess.classList.add('hidden');
+    }
+
+    authBar.classList.remove('hidden');
+    if (currentUser) {
+      roleLabel.textContent = `${currentUser.display} (${currentUser.role})`;
+      authButton.textContent = 'Logout';
+      rolePanel.classList.remove('hidden');
+      if (currentUser.role === 'ketua_divisi' && ketuaDivisiAccess) {
+        ketuaDivisiAccess.classList.remove('hidden');
+      }
+    } else {
+      roleLabel.textContent = 'Guest';
+      authButton.textContent = 'Login';
+      rolePanel.classList.add('hidden');
+    }
+    renderRolePanel();
+    // Update finance summary if admin or ketua
+    if (currentUser && (currentUser.role === 'admin' || currentUser.role === 'ketua')) {
+      updateFinanceSummary();
+    }
+  }
+
+  function openStatsEditor() {
+    if (!currentUser || (currentUser.role !== 'admin' && currentUser.role !== 'ketua')) return;
+    
+    document.getElementById('edit-stats-divisi').value = document.getElementById('stats-divisi').textContent;
+    document.getElementById('edit-stats-anggota').value = document.getElementById('stats-anggota').textContent;
+    document.getElementById('edit-stats-program').value = document.getElementById('stats-program').textContent;
+    
+    document.getElementById('stats-editor-modal').classList.remove('hidden');
+  }
+
+  function closeStatsEditor() {
+    document.getElementById('stats-editor-modal').classList.add('hidden');
+  }
+
+  function openFinanceModal() {
+    if (!currentUser || currentUser.role !== 'ketua_divisi') return;
+    
+    // Set default date to today
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('finance-date').value = today;
+    
+    document.getElementById('finance-modal').classList.remove('hidden');
+  }
+
+  function closeFinanceModal() {
+    document.getElementById('finance-modal').classList.add('hidden');
+    document.getElementById('finance-form').reset();
+  }
+
+  function loadFinanceData() {
+    const financeData = JSON.parse(localStorage.getItem('osisFinanceData') || '[]');
+    const tableBody = document.getElementById('finance-table-body');
+    
+    if (!tableBody) return;
+    
+    if (financeData.length === 0) {
+      tableBody.innerHTML = '<tr><td colspan="5" class="px-3 py-4 text-center text-gray-500">Belum ada data pengeluaran</td></tr>';
+      return;
+    }
+    
+    tableBody.innerHTML = financeData.map(item => `
+      <tr class="hover:bg-gray-50">
+        <td class="px-3 py-2 text-sm">${new Date(item.date).toLocaleDateString('id-ID')}</td>
+        <td class="px-3 py-2 text-sm">${item.description}</td>
+        <td class="px-3 py-2 text-sm font-semibold">Rp ${item.amount.toLocaleString('id-ID')}</td>
+        <td class="px-3 py-2 text-sm">
+          ${item.receipt ? `<a href="${item.receipt}" target="_blank" class="text-blue-600 hover:text-blue-800 underline">Lihat Bukti</a>` : '<span class="text-gray-400">Tidak ada</span>'}
+        </td>
+        <td class="px-3 py-2 text-sm">
+          <span class="px-2 py-1 rounded-full text-xs font-medium ${item.status === 'approved' ? 'bg-green-100 text-green-800' : item.status === 'pending' ? 'bg-yellow-100 text-yellow-800' : 'bg-red-100 text-red-800'}">
+            ${item.status === 'approved' ? '✅ Disetujui' : item.status === 'pending' ? '⏳ Menunggu' : '❌ Ditolak'}
+          </span>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  function openFinanceReview() {
+    if (!currentUser || (currentUser.role !== 'admin' && currentUser.role !== 'ketua')) return;
+    
+    document.getElementById('finance-review-modal').classList.remove('hidden');
+    loadFinanceReviewData();
+  }
+
+  function closeFinanceReview() {
+    document.getElementById('finance-review-modal').classList.add('hidden');
+  }
+
+  function loadFinanceReviewData() {
+    const financeData = JSON.parse(localStorage.getItem('osisFinanceData') || '[]');
+    const tableBody = document.getElementById('finance-review-table-body');
+    
+    if (!tableBody) return;
+    
+    if (financeData.length === 0) {
+      tableBody.innerHTML = '<tr><td colspan="6" class="px-3 py-4 text-center text-gray-500">Belum ada data pengeluaran</td></tr>';
+      return;
+    }
+    
+    tableBody.innerHTML = financeData.map(item => `
+      <tr class="hover:bg-gray-50">
+        <td class="px-3 py-2 text-sm">${new Date(item.date).toLocaleDateString('id-ID')}</td>
+        <td class="px-3 py-2 text-sm">${item.description}</td>
+        <td class="px-3 py-2 text-sm font-semibold">Rp ${item.amount.toLocaleString('id-ID')}</td>
+        <td class="px-3 py-2 text-sm">${item.submittedBy}</td>
+        <td class="px-3 py-2 text-sm">
+          ${item.receipt ? `<a href="${item.receipt}" target="_blank" class="text-blue-600 hover:text-blue-800">Lihat</a>` : 'Tidak ada'}
+        </td>
+        <td class="px-3 py-2 text-sm">
+          <span class="px-2 py-1 rounded-full text-xs ${item.status === 'approved' ? 'bg-green-100 text-green-800' : item.status === 'pending' ? 'bg-yellow-100 text-yellow-800' : 'bg-red-100 text-red-800'}">
+            ${item.status === 'approved' ? 'Disetujui' : item.status === 'pending' ? 'Menunggu' : 'Ditolak'}
+          </span>
+          ${item.status === 'pending' ? `
+            <div class="mt-1 space-x-1">
+              <button onclick="updateFinanceStatus(${item.id}, 'approved')" class="px-2 py-1 text-xs bg-green-600 text-white rounded hover:bg-green-700">Setujui</button>
+              <button onclick="updateFinanceStatus(${item.id}, 'rejected')" class="px-2 py-1 text-xs bg-red-600 text-white rounded hover:bg-red-700">Tolak</button>
+            </div>
+          ` : ''}
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  function updateFinanceSummary() {
+    const financeData = JSON.parse(localStorage.getItem('osisFinanceData') || '[]');
+    
+    const summary = financeData.reduce((acc, item) => {
+      acc[item.status] = (acc[item.status] || 0) + 1;
+      return acc;
+    }, { approved: 0, pending: 0, rejected: 0 });
+    
+    document.getElementById('total-approved').textContent = summary.approved;
+    document.getElementById('total-pending').textContent = summary.pending;
+    document.getElementById('total-rejected').textContent = summary.rejected;
+  }
+
+  function updateFinanceStatus(id, status) {
+    const financeData = JSON.parse(localStorage.getItem('osisFinanceData') || '[]');
+    const index = financeData.findIndex(item => item.id === id);
+    
+    if (index !== -1) {
+      financeData[index].status = status;
+      financeData[index].reviewedBy = currentUser.username;
+      financeData[index].reviewedAt = new Date().toISOString();
+      
+      localStorage.setItem('osisFinanceData', JSON.stringify(financeData));
+      loadFinanceReviewData();
+      loadFinanceData(); // Update tabel di panel ketua_divisi juga
+      updateFinanceSummary(); // Update summary counters
+      
+      showToast(`Laporan ${status === 'approved' ? 'disetujui' : 'ditolak'}!`, 'success');
+    }
+  }
+
+  currentUser = getSavedUser();
+  updateRoleUI();
 
   // Star rating
   document.querySelectorAll('#star-rating .star-btn').forEach(star => {
@@ -632,26 +1035,31 @@
     btn.textContent = 'Mengirim...';
     btn.style.opacity = '0.6';
 
-    const result = await window.dataSdk.create({
-      type: 'registration',
-      name: document.getElementById('reg-name').value,
-      kelas: document.getElementById('reg-kelas').value,
-      email: document.getElementById('reg-email').value,
-      phone: document.getElementById('reg-phone').value,
-      divisi: document.getElementById('reg-divisi').value,
-      motivasi: document.getElementById('reg-motivasi').value,
-      created_at: new Date().toISOString()
-    });
+    const formData = new FormData(document.getElementById('register-form'));
 
-    btn.disabled = false;
-    btn.textContent = 'Kirim Pendaftaran';
-    btn.style.opacity = '1';
+    try {
+      const response = await fetch('handle_forms.php?action=register', {
+        method: 'POST',
+        body: formData
+      });
 
-    if (result.isOk) {
-      showToast('Pendaftaran berhasil dikirim! ✅', 'success');
-      e.target.reset();
-    } else {
-      showToast('Gagal mengirim. Coba lagi.', 'error');
+      const result = await response.json();
+      
+      btn.disabled = false;
+      btn.textContent = 'Kirim Pendaftaran';
+      btn.style.opacity = '1';
+
+      if (result.status === 'success') {
+        showToast('✅ ' + result.message, 'success');
+        document.getElementById('register-form').reset();
+      } else {
+        showToast('❌ ' + result.message, 'error');
+      }
+    } catch (error) {
+      btn.disabled = false;
+      btn.textContent = 'Kirim Pendaftaran';
+      btn.style.opacity = '1';
+      showToast('❌ Terjadi kesalahan: ' + error.message, 'error');
     }
   });
 
@@ -661,11 +1069,15 @@
     const message = document.getElementById('fb-message').value;
     const category = document.getElementById('fb-category').value;
 
-    // Profanity filter - strict
-    const badWords = ['kasar1', 'kasar2', 'bego', 'tolol', 'anjing', 'bangsat', 'goblok', 'bodoh', 'idiot', 'setan', 'sampah', 'jelek', 'sial', 'sialan', 'kontol', 'memek', 'bitch', 'fuck', 'damn', 'ass'];
+    // Profanity filter
+    const badWords = ['kasar1', 'kasar2', 'bego', 'tolol', 'anjing', 'bangsat', 'goblok', 'bodoh', 'idiot', 'setan', 'sampah', 'jelek', 'sial', 'sialan', 'kontol', 'memek'];
     const hasProfanity = badWords.some(word => message.toLowerCase().includes(word));
     
     if (hasProfanity) {
+      const textarea = document.getElementById('fb-message');
+      textarea.style.borderColor = '#dc2626';
+      textarea.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.25)';
+      document.getElementById('fb-message-error').classList.remove('hidden');
       showToast('⚠️ Pesan mengandung kata tidak pantas. Harap perbaiki.', 'error');
       return;
     }
@@ -680,26 +1092,61 @@
     btn.textContent = 'Mengirim...';
     btn.style.opacity = '0.6';
 
-    const result = await window.dataSdk.create({
-      type: 'feedback',
-      feedback_name: document.getElementById('fb-name').value || 'Anonim',
-      feedback_message: message,
-      feedback_rating: selectedRating,
-      feedback_category: category,
-      created_at: new Date().toISOString()
-    });
+    const formData = new FormData(document.getElementById('feedback-form'));
+    formData.append('rating', selectedRating);
 
-    btn.disabled = false;
-    btn.textContent = 'Kirim Feedback';
-    btn.style.opacity = '1';
+    try {
+      const response = await fetch('handle_forms.php?action=feedback', {
+        method: 'POST',
+        body: formData
+      });
 
-    if (result.isOk) {
-      showToast('Terima kasih atas feedback-nya! 💙', 'success');
-      e.target.reset();
-      selectedRating = 0;
-      updateStars();
+      const result = await response.json();
+      
+      btn.disabled = false;
+      btn.textContent = 'Kirim Feedback';
+      btn.style.opacity = '1';
+
+      if (result.status === 'success') {
+        showToast('✅ ' + result.message, 'success');
+        document.getElementById('feedback-form').reset();
+        selectedRating = 0;
+        updateStars();
+        document.getElementById('fb-message-error').classList.add('hidden');
+        document.getElementById('fb-message').style.borderColor = '#e2e8f0';
+      } else {
+        showToast('❌ ' + result.message, 'error');
+      }
+    } catch (error) {
+      btn.disabled = false;
+      btn.textContent = 'Kirim Feedback';
+      btn.style.opacity = '1';
+      showToast('❌ Terjadi kesalahan: ' + error.message, 'error');
+    }
+  });
+
+  // Real-time profanity check
+  document.getElementById('fb-message').addEventListener('input', (e) => {
+    const message = e.target.value;
+    const badWords = ['kasar1', 'kasar2', 'bego', 'tolol', 'anjing', 'bangsat', 'goblok', 'bodoh', 'idiot', 'setan', 'sampah', 'jelek', 'sial', 'sialan', 'kontol', 'memek', 'bitch', 'fuck', 'damn', 'ass', 'dongo', 'tai', 'jancuk', 'asu', 'ngentot', 'kimak', 'peler', 'puki', 'tetek', 'pantat', 'monyet', 'babi', 'kambing', 'sapi', 'anjir', 'sialan', 'brengsek', 'kampret', 'bacot', 'ngomong', 'omong', 'bacod', 'bacok', 'bacot', 'bacotan', 'anjg', 'bngst', 'gblk', 'bgsd', 'tlol', 'bg', 'tl', 'ajg', 'bgst', 'goblog', 'bodo', 'idiot', 'stn', 'smph', 'jlk', 'sl', 'sln', 'ktl', 'mmk', 'btch', 'fck', 'dmn', 'ss', 'dngo', 'tay', 'jnck', 'as', 'ngntt', 'kmk', 'plr', 'pk', 'ttk', 'pntt', 'mnyt', 'bb', 'kmbng', 'sp', 'anjr', 'sln', 'brngsk', 'kmprt', 'bcot', 'ngmg', 'omg', 'bcd', 'bck', 'bcot', 'bctn'];
+    const hasProfanity = badWords.some(word => message.toLowerCase().includes(word));
+    console.log('Message:', message, 'Has profanity:', hasProfanity); // Debug log
+    const errorDiv = document.getElementById('fb-message-error');
+    const textarea = document.getElementById('fb-message');
+    const submitBtn = document.getElementById('fb-submit');
+
+    if (hasProfanity) {
+      errorDiv.classList.remove('hidden');
+      textarea.style.borderColor = '#dc2626'; // Red border
+      textarea.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.25)';
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = '0.5';
     } else {
-      showToast('Gagal mengirim. Coba lagi.', 'error');
+      errorDiv.classList.add('hidden');
+      textarea.style.borderColor = '#e2e8f0'; // Default border
+      textarea.style.boxShadow = '';
+      submitBtn.disabled = false;
+      submitBtn.style.opacity = '1';
     }
   });
 
@@ -723,6 +1170,11 @@
       document.getElementById('contact-email').textContent = c('contact_email');
       document.getElementById('contact-phone').textContent = c('contact_phone');
       document.getElementById('contact-address').textContent = c('contact_address');
+
+      // Update stats
+      document.getElementById('stats-divisi').textContent = c('stats_divisi');
+      document.getElementById('stats-anggota').textContent = c('stats_anggota');
+      document.getElementById('stats-program').textContent = c('stats_program');
 
       // Colors
       const bg = c('background_color');
@@ -788,9 +1240,70 @@
         ['bendahara_name', c('bendahara_name')],
         ['contact_email', c('contact_email')],
         ['contact_phone', c('contact_phone')],
-        ['contact_address', c('contact_address')]
+        ['contact_address', c('contact_address')],
+        ['stats_divisi', c('stats_divisi')],
+        ['stats_anggota', c('stats_anggota')],
+        ['stats_program', c('stats_program')]
       ]);
     }
+  }).catch(() => {
+    // Fallback: load from localStorage if elementSdk fails
+    const savedConfig = JSON.parse(localStorage.getItem('elementSdkConfig') || '{}');
+    const config = { ...defaultConfig, ...savedConfig };
+    
+    document.getElementById('stats-divisi').textContent = config.stats_divisi;
+    document.getElementById('stats-anggota').textContent = config.stats_anggota;
+    document.getElementById('stats-program').textContent = config.stats_program;
+  });
+
+  // Finance form handler
+  document.getElementById('finance-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const date = document.getElementById('finance-date').value;
+    const description = document.getElementById('finance-description').value.trim();
+    const amount = parseInt(document.getElementById('finance-amount').value);
+    const receiptFile = document.getElementById('finance-receipt').files[0];
+    
+    if (!date || !description || !amount || !receiptFile) {
+      alert('Semua field harus diisi.');
+      return;
+    }
+    
+    if (amount <= 0) {
+      alert('Nominal harus lebih dari 0.');
+      return;
+    }
+    
+    // Check file size (max 5MB)
+    if (receiptFile.size > 5 * 1024 * 1024) {
+      alert('Ukuran file maksimal 5MB.');
+      return;
+    }
+    
+    // Convert file to base64 for storage
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const receiptData = e.target.result;
+      
+      const financeEntry = {
+        id: Date.now(),
+        date: date,
+        description: description,
+        amount: amount,
+        receipt: receiptData,
+        receiptName: receiptFile.name,
+        status: 'pending', // pending, approved, rejected
+        submittedBy: currentUser.username,
+        submittedAt: new Date().toISOString()
+      };
+      
+      saveFinanceData(financeEntry);
+      closeFinanceModal();
+      showToast('Bukti kuitansi berhasil diupload!', 'success');
+    };
+    
+    reader.readAsDataURL(receiptFile);
   });
 
   lucide.createIcons();
