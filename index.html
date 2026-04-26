@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OSIS SMKN 1 Tarumajaya Portal</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
   <script src="/_sdk/element_sdk.js"></script>
   <script src="/_sdk/data_sdk.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;family=Playfair+Display:wght@700;800;900&amp;display=swap" rel="stylesheet">
@@ -157,17 +158,18 @@
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
      <div class="flex items-center justify-between h-16">
       <div class="flex items-center gap-2">
-      <img src="Aset Gambar/Logo_OSIS.svg.png" alt="Logo OSIS" class="w-9 h-9 rounded-lg">
-      <span id="nav-brand" class="font-bold text-white text-lg">OSIS SMKN 1 Tarumajaya</span>
+       <div class="w-9 h-9 rounded-lg flex items-center justify-center font-bold text-white text-sm" style="background: linear-gradient(135deg, #0ea5e9, #06b6d4);">
+        O
+       </div><span id="nav-brand" class="font-bold text-white text-lg">OSIS SMKN 1 Tarumajaya</span>
        <button id="notification-bell" class="ml-2 p-1 rounded-full hover:bg-white/10 transition-all duration-200 bell-shake" onclick="toggleNotification()" title="Notifikasi">
         <i data-lucide="bell" style="width:20px;height:20px; color: #38bdf8;"></i>
        </button>
       </div>
-      <div class="hidden md:flex items-center gap-6"><a href="#beranda" class="nav-link text-slate-300 hover:text-white text-sm font-medium">Beranda</a> <a href="#struktur" class="nav-link text-slate-300 hover:text-white text-sm font-medium">Struktur</a> <a href="#berita" class="nav-link text-slate-300 hover:text-white text-sm font-medium">Berita</a> <a href="#pendaftaran" class="nav-link text-slate-300 hover:text-white text-sm font-medium">Pendaftaran</a> <a href="#feedback" class="nav-link text-slate-300 hover:text-white text-sm font-medium">Feedback</a> <a href="#kontak" class="nav-link text-slate-300 hover:text-white text-sm font-medium">Kontak</a> <a href="#admin" id="admin-link" style="display:none;" class="nav-link text-slate-300 hover:text-white text-sm font-medium">Admin</a>
+      <div class="hidden md:flex items-center gap-6"><a href="#beranda" class="nav-link text-slate-300 hover:text-white text-sm font-medium">Beranda</a> <a href="#struktur" class="nav-link text-slate-300 hover:text-white text-sm font-medium">Struktur</a> <a href="#berita" class="nav-link text-slate-300 hover:text-white text-sm font-medium">Berita</a> <a href="#pendaftaran" class="nav-link text-slate-300 hover:text-white text-sm font-medium">Pendaftaran</a> <a href="#feedback" class="nav-link text-slate-300 hover:text-white text-sm font-medium">Feedback</a> <a href="#kontak" class="nav-link text-slate-300 hover:text-white text-sm font-medium">Kontak</a>
       </div><button id="mobile-toggle" class="md:hidden text-white" onclick="toggleMobileMenu()"> <i data-lucide="menu" style="width:24px;height:24px;"></i> </button>
      </div>
      <div id="mobile-menu" class="mobile-menu md:hidden">
-      <div class="flex flex-col gap-3 pb-4"><a href="#beranda" onclick="closeMobileMenu()" class="text-slate-300 hover:text-white text-sm font-medium py-1">Beranda</a> <a href="#struktur" onclick="closeMobileMenu()" class="text-slate-300 hover:text-white text-sm font-medium py-1">Struktur</a> <a href="#berita" onclick="closeMobileMenu()" class="text-slate-300 hover:text-white text-sm font-medium py-1">Berita</a> <a href="#pendaftaran" onclick="closeMobileMenu()" class="text-slate-300 hover:text-white text-sm font-medium py-1">Pendaftaran</a> <a href="#feedback" onclick="closeMobileMenu()" class="text-slate-300 hover:text-white text-sm font-medium py-1">Feedback</a> <a href="#kontak" onclick="closeMobileMenu()" class="text-slate-300 hover:text-white text-sm font-medium py-1">Kontak</a> <a href="#admin" id="admin-link-mobile" onclick="closeMobileMenu()" style="display:none;" class="text-slate-300 hover:text-white text-sm font-medium py-1">Admin</a>
+      <div class="flex flex-col gap-3 pb-4"><a href="#beranda" onclick="closeMobileMenu()" class="text-slate-300 hover:text-white text-sm font-medium py-1">Beranda</a> <a href="#struktur" onclick="closeMobileMenu()" class="text-slate-300 hover:text-white text-sm font-medium py-1">Struktur</a> <a href="#berita" onclick="closeMobileMenu()" class="text-slate-300 hover:text-white text-sm font-medium py-1">Berita</a> <a href="#pendaftaran" onclick="closeMobileMenu()" class="text-slate-300 hover:text-white text-sm font-medium py-1">Pendaftaran</a> <a href="#feedback" onclick="closeMobileMenu()" class="text-slate-300 hover:text-white text-sm font-medium py-1">Feedback</a> <a href="#kontak" onclick="closeMobileMenu()" class="text-slate-300 hover:text-white text-sm font-medium py-1">Kontak</a>
       </div>
      </div>
     </div>
@@ -204,31 +206,6 @@
        <div class="text-xs text-slate-400">
         Program
        </div>
-      </div>
-     </div>
-    </div>
-   </section><!-- Kalender Proker -->
-   <section id="kalender" class="py-16 sm:py-20" style="background: #f8fafc;">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
-     <div class="text-center mb-10"><span class="text-xs font-semibold tracking-widest uppercase" style="color: #0ea5e9;">Jadwal</span>
-      <h2 class="section-title text-3xl sm:text-4xl font-bold mt-2" style="color: #0f172a;">Kalender Program Kerja</h2>
-      <p class="text-slate-500 mt-2 text-sm">Jadwal acara dan deadline penting OSIS.</p>
-     </div>
-     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="rounded-2xl p-6 border" style="background: white; border-color: #e2e8f0;">
-       <h3 class="font-bold text-lg" style="color: #0f172a;">15 Januari 2026</h3>
-       <p class="text-sm text-slate-500 mt-1">Pelantikan OSIS 2026</p>
-       <button onclick="markAttendance('Pelantikan')" class="mt-4 px-4 py-2 bg-green-500 text-white rounded">Absen</button>
-      </div>
-      <div class="rounded-2xl p-6 border" style="background: white; border-color: #e2e8f0;">
-       <h3 class="font-bold text-lg" style="color: #0f172a;">20-22 Februari 2026</h3>
-       <p class="text-sm text-slate-500 mt-1">Lomba Antar Kelas</p>
-       <button onclick="markAttendance('Lomba')" class="mt-4 px-4 py-2 bg-green-500 text-white rounded">Absen</button>
-      </div>
-      <div class="rounded-2xl p-6 border" style="background: white; border-color: #e2e8f0;">
-       <h3 class="font-bold text-lg" style="color: #0f172a;">1-10 Maret 2026</h3>
-       <p class="text-sm text-slate-500 mt-1">Rekrutmen Anggota Baru</p>
-       <button onclick="markAttendance('Rekrutmen')" class="mt-4 px-4 py-2 bg-green-500 text-white rounded">Absen</button>
       </div>
      </div>
     </div>
@@ -295,7 +272,6 @@
        <div class="w-10 h-10 rounded-lg mx-auto mb-2 flex items-center justify-center" style="background: #f0f9ff; color: #0ea5e9;"><i data-lucide="heart" style="width:20px;height:20px;"></i>
        </div>
        <p class="font-semibold text-xs" style="color: #0f172a;">Sosial</p>
-       <p class="text-xs text-slate-500 mt-1">Termasuk Takjiah Dana Sosial</p>
       </div>
       <div class="card-hover rounded-xl p-4 text-center border" style="background: white; border-color: #e2e8f0;">
        <div class="w-10 h-10 rounded-lg mx-auto mb-2 flex items-center justify-center" style="background: #f0f9ff; color: #0ea5e9;"><i data-lucide="leaf" style="width:20px;height:20px;"></i>
@@ -349,18 +325,6 @@
         <p class="text-slate-400 text-sm mt-1">Pendaftaran anggota OSIS terbuka untuk seluruh siswa.</p>
         <div class="flex items-center gap-2 mt-3 text-xs text-slate-500"><i data-lucide="clock" style="width:14px;height:14px;"></i> <span>1-10 Maret 2026</span>
         </div>
-        <div class="mt-4 flex items-center gap-4">
-         <button onclick="voteCandidate()" class="px-3 py-1 bg-sky-500 text-white text-xs rounded">Vote Calon Ketua</button>
-         <div class="flex gap-2">
-          <span onclick="react('like')" class="cursor-pointer text-slate-400 hover:text-blue-400">👍</span>
-          <span onclick="react('love')" class="cursor-pointer text-slate-400 hover:text-red-400">❤️</span>
-          <span onclick="react('laugh')" class="cursor-pointer text-slate-400 hover:text-yellow-400">😂</span>
-         </div>
-        </div>
-        <div class="mt-3">
-         <input id="qa-input" type="text" placeholder="Tanya jawab..." class="w-full px-2 py-1 text-xs bg-slate-700 text-white rounded">
-         <button onclick="submitQA()" class="mt-1 px-2 py-1 bg-green-500 text-white text-xs rounded">Kirim</button>
-        </div>
        </div>
       </div>
      </div>
@@ -404,8 +368,6 @@
        <div id="star-rating" class="flex gap-2"><span class="star-btn text-2xl text-slate-300" data-star="1">★</span> <span class="star-btn text-2xl text-slate-300" data-star="2">★</span> <span class="star-btn text-2xl text-slate-300" data-star="3">★</span> <span class="star-btn text-2xl text-slate-300" data-star="4">★</span> <span class="star-btn text-2xl text-slate-300" data-star="5">★</span>
        </div>
       </div>
-      <div><label for="fb-category" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">Kategori Feedback</label> <select id="fb-category" required class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition" style="border-color: #e2e8f0;"> <option value="">Pilih kategori...</option> <option>Aspirasi</option> <option>Keluhan</option> <option>Saran</option> <option>Pertanyaan</option></select>
-      </div>
       <div><label for="fb-message" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">Pesan Feedback</label> <textarea id="fb-message" rows="4" required class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition resize-none" style="border-color: #e2e8f0;" placeholder="Tulis saran, kritik, atau apresiasi kamu..."></textarea>
       </div><button type="submit" id="fb-submit" class="w-full py-3 rounded-xl font-semibold text-white text-sm transition-all hover:scale-[1.02]" style="background: linear-gradient(135deg, #0ea5e9, #06b6d4);"> Kirim Feedback </button>
       <div id="fb-message-status" class="hidden text-center text-sm font-medium py-2 rounded-xl"></div>
@@ -447,84 +409,6 @@
     </div>
    </section>
 
-   <section id="admin" style="display:none;" class="py-16 sm:py-20" style="background: #f1f5f9;">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
-     <div class="text-center mb-10"><span class="text-xs font-semibold tracking-widest uppercase" style="color: #0ea5e9;">Panel Admin</span>
-      <h2 class="section-title text-3xl sm:text-4xl font-bold mt-2" style="color: #0f172a;">Manajemen OSIS</h2>
-      <p class="text-slate-500 mt-2 text-sm">Kelola anggota, divisi, berita, dan visi misi.</p>
-     </div>
-     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="rounded-2xl p-6 border" style="background: white; border-color: #e2e8f0;">
-       <h3 class="font-bold text-lg" style="color: #0f172a;">Anggota</h3>
-       <p class="text-sm text-slate-500 mt-1">Kelola daftar anggota OSIS.</p>
-       <button onclick="manageMembers()" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">Kelola</button>
-      </div>
-      <div class="rounded-2xl p-6 border" style="background: white; border-color: #e2e8f0;">
-       <h3 class="font-bold text-lg" style="color: #0f172a;">Divisi</h3>
-       <p class="text-sm text-slate-500 mt-1">Atur divisi dan program kerja.</p>
-       <button onclick="manageDivisions()" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">Kelola</button>
-      </div>
-      <div class="rounded-2xl p-6 border" style="background: white; border-color: #e2e8f0;">
-       <h3 class="font-bold text-lg" style="color: #0f172a;">Berita</h3>
-       <p class="text-sm text-slate-500 mt-1">Tambah dan edit berita acara.</p>
-       <button onclick="manageNews()" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">Kelola</button>
-      </div>
-      <div class="rounded-2xl p-6 border" style="background: white; border-color: #e2e8f0;">
-       <h3 class="font-bold text-lg" style="color: #0f172a;">Keuangan</h3>
-       <p class="text-sm text-slate-500 mt-1">Kelola laporan keuangan dan takjiah.</p>
-       <button onclick="manageFinance()" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">Kelola</button>
-      </div>
-      <div class="rounded-2xl p-6 border" style="background: white; border-color: #e2e8f0;">
-       <h3 class="font-bold text-lg" style="color: #0f172a;">Kustomisasi Warna</h3>
-       <p class="text-sm text-slate-500 mt-1">Pilih warna tema website.</p>
-       <input id="primary-color" type="color" value="#0ea5e9" class="mt-2">
-       <input id="secondary-color" type="color" value="#06b6d4" class="mt-2 ml-2">
-       <input id="text-color" type="color" value="#0f172a" class="mt-2 ml-2">
-       <button onclick="applyColors()" class="mt-2 px-4 py-2 bg-purple-500 text-white rounded">Terapkan</button>
-      </div>
-      <div class="rounded-2xl p-6 border" style="background: white; border-color: #e2e8f0;">
-       <h3 class="font-bold text-lg" style="color: #0f172a;">Notifikasi Email</h3>
-       <p class="text-sm text-slate-500 mt-1">Set email untuk notifikasi.</p>
-       <input id="notification-email" type="email" placeholder="email@example.com" class="mt-2 px-3 py-1 border rounded w-full">
-       <button onclick="setNotificationEmail()" class="mt-2 px-4 py-2 bg-green-500 text-white rounded">Set</button>
-      </div>
-      <div class="rounded-2xl p-6 border" style="background: white; border-color: #e2e8f0;">
-       <h3 class="font-bold text-lg" style="color: #0f172a;">Statistik Acara</h3>
-       <p class="text-sm text-slate-500 mt-1">Pie chart komposisi kategori acara.</p>
-       <canvas id="eventChart" width="200" height="200"></canvas>
-      </div>
-      <div class="rounded-2xl p-6 border" style="background: white; border-color: #e2e8f0;">
-       <h3 class="font-bold text-lg" style="color: #0f172a;">Presensi</h3>
-       <p class="text-sm text-slate-500 mt-1">Generate QR untuk absensi event.</p>
-       <button onclick="generateQR()" class="mt-4 px-4 py-2 bg-orange-500 text-white rounded">Generate QR</button>
-      </div>
-     </div>
-     <div id="finance-panel" style="display:none; margin-top: 20px;" class="rounded-2xl p-6 border" style="background: white; border-color: #e2e8f0;">
-      <h3 class="font-bold text-lg mb-4" style="color: #0f172a;">Laporan Keuangan</h3>
-      <form id="finance-form">
-       <div class="mb-4">
-        <label class="block text-sm font-semibold mb-1">Jenis Laporan</label>
-        <select id="finance-type" class="w-full px-3 py-2 border rounded">
-         <option>Takjiah Dana Sosial</option>
-         <option>Laporan Umum</option>
-        </select>
-       </div>
-       <div class="mb-4">
-        <label class="block text-sm font-semibold mb-1">Deskripsi</label>
-        <textarea id="finance-desc" rows="3" class="w-full px-3 py-2 border rounded"></textarea>
-       </div>
-       <div class="mb-4">
-        <label class="block text-sm font-semibold mb-1">Bukti Kuitansi (URL)</label>
-        <input id="finance-evidence" type="url" class="w-full px-3 py-2 border rounded" placeholder="https://example.com/kuitansi.jpg">
-       </div>
-       <button type="submit" class="px-4 py-2 bg-green-500 text-white rounded">Simpan</button>
-       <button type="button" onclick="exportReport('pdf')" class="ml-2 px-4 py-2 bg-blue-500 text-white rounded">Ekspor PDF</button>
-       <button type="button" onclick="exportReport('csv')" class="ml-2 px-4 py-2 bg-blue-500 text-white rounded">Ekspor CSV</button>
-      </form>
-     </div>
-    </div>
-   </section>
-
    <section id="arsip" class="py-20" style="background: #f8fafc;">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
      <h2 class="section-title text-3xl sm:text-4xl font-bold" style="color:#0f172a;">Arsip Foto</h2>
@@ -535,9 +419,6 @@
    <footer class="py-6 text-center" style="background: #020617;">
     <p class="text-xs text-slate-500">© 2026 OSIS SMKN 1 Tarumajaya. Dibuat oleh Mahasiswa Universitas Nusa Mandiri.</p>
    </footer>
-  </div><!-- Chatbot -->
-  <div id="chatbot" class="fixed bottom-6 left-6 w-14 h-14 bg-blue-500 rounded-full flex items-center justify-center cursor-pointer shadow-lg z-40" onclick="openChatbot()">
-    <i data-lucide="message-circle" class="text-white w-6 h-6"></i>
   </div><!-- Toast container -->
   <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2"></div>
   <script>
@@ -562,31 +443,7 @@
     contact_address: 'Jl. Pendidikan No. 1, Jakarta'
   };
 
-  // NLP functions
-  const positiveWords = ['semangat', 'dedikasi', 'komitmen', 'kerja keras', 'tim', 'kolaborasi', 'inovasi', 'kreatif', 'tanggung jawab', 'motivasi'];
-  const negativeWords = ['malas', 'tidak suka', 'bosan', 'sulit', 'tidak mampu'];
-
-  function calculateScore(text) {
-    const words = text.toLowerCase().split(/\s+/);
-    let score = 0;
-    words.forEach(word => {
-      if (positiveWords.includes(word)) score += 1;
-      if (negativeWords.includes(word)) score -= 1;
-    });
-    return Math.max(0, Math.min(100, 50 + score * 10)); // Normalize to 0-100
-  }
-
-  function analyzeSentiment(text) {
-    const words = text.toLowerCase().split(/\s+/);
-    let pos = 0, neg = 0;
-    words.forEach(word => {
-      if (positiveWords.includes(word)) pos++;
-      if (negativeWords.includes(word)) neg++;
-    });
-    if (pos > neg) return 'Positif';
-    if (neg > pos) return 'Negatif';
-    return 'Netral';
-  }
+  let selectedRating = 0;
 
   // Star rating
   document.querySelectorAll('#star-rating .star-btn').forEach(star => {
@@ -773,9 +630,6 @@
     btn.textContent = 'Mengirim...';
     btn.style.opacity = '0.6';
 
-    const motivasi = document.getElementById('reg-motivasi').value;
-    const skor = calculateScore(motivasi);
-
     const result = await window.dataSdk.create({
       type: 'registration',
       name: document.getElementById('reg-name').value,
@@ -783,8 +637,7 @@
       email: document.getElementById('reg-email').value,
       phone: document.getElementById('reg-phone').value,
       divisi: document.getElementById('reg-divisi').value,
-      motivasi: motivasi,
-      skor_kelulusan: skor,
+      motivasi: document.getElementById('reg-motivasi').value,
       created_at: new Date().toISOString()
     });
 
@@ -793,7 +646,7 @@
     btn.style.opacity = '1';
 
     if (result.isOk) {
-      showToast(`Pendaftaran berhasil dikirim! Skor: ${skor}%`, 'success');
+      showToast('Pendaftaran berhasil dikirim! ✅', 'success');
       e.target.reset();
     } else {
       showToast('Gagal mengirim. Coba lagi.', 'error');
@@ -803,17 +656,6 @@
   // Feedback form
   document.getElementById('feedback-form').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const message = document.getElementById('fb-message').value;
-    const category = document.getElementById('fb-category').value;
-
-    // Profanity filter
-    const badWords = ['kasar1', 'kasar2', 'bego', 'tolol', 'anjing', 'bangsat']; // Tambah list kata kasar
-    const hasProfanity = badWords.some(word => message.toLowerCase().includes(word));
-    if (hasProfanity) {
-      showToast('Pesan mengandung kata tidak pantas. Harap perbaiki.', 'error');
-      return;
-    }
-
     const btn = document.getElementById('fb-submit');
     btn.disabled = true;
     btn.textContent = 'Mengirim...';
@@ -822,10 +664,8 @@
     const result = await window.dataSdk.create({
       type: 'feedback',
       feedback_name: document.getElementById('fb-name').value || 'Anonim',
-      feedback_message: message,
+      feedback_message: document.getElementById('fb-message').value,
       feedback_rating: selectedRating,
-      feedback_category: category,
-      feedback_sentiment: analyzeSentiment(message),
       created_at: new Date().toISOString()
     });
 
@@ -934,122 +774,6 @@
   });
 
   lucide.createIcons();
-
-  // Pie chart
-  if (document.getElementById('eventChart')) {
-    const ctx = document.getElementById('eventChart').getContext('2d');
-    new Chart(ctx, {
-      type: 'pie',
-      data: {
-        labels: ['Keagamaan', 'Olahraga', 'Seni', 'Sosial', 'Pendidikan'],
-        datasets: [{
-          data: [90, 5, 2, 2, 1],
-          backgroundColor: ['#ff6384', '#36a2eb', '#cc65fe', '#ffce56', '#4bc0c0']
-        }]
-      }
-    });
-  }
-
-  // RBAC
-  if (userRole === 'ketua' || userRole === 'admin') {
-    document.getElementById('admin').style.display = 'block';
-    document.getElementById('admin-link').style.display = 'inline';
-    document.getElementById('admin-link-mobile').style.display = 'block';
-  }
-
-  function setRole() {
-    const role = document.getElementById('role-select').value;
-    localStorage.setItem('userRole', role);
-    userRole = role;
-    location.reload();
-  }
-
-  function setNotificationEmail() {
-    const email = document.getElementById('notification-email').value;
-    localStorage.setItem('notificationEmail', email);
-    showToast('Email notifikasi diset!', 'success');
-  }
-
-  function manageMembers() { alert('Fitur manage members belum diimplementasi.'); }
-  function manageDivisions() { alert('Fitur manage divisions belum diimplementasi.'); }
-  function manageNews() { alert('Fitur manage news belum diimplementasi.'); }
-  function manageVision() { alert('Fitur manage vision belum diimplementasi.'); }
-  function manageFinance() { 
-    const panel = document.getElementById('finance-panel');
-    panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
-  }
-  function exportReport(type) { alert(`Ekspor ${type.toUpperCase()} belum diimplementasi.`); }
-
-  // Engagement functions
-  function voteCandidate() {
-    const candidate = prompt('Pilih calon: Ahmad Rizky atau Siti Nurhaliza');
-    if (candidate) {
-      window.dataSdk.create({ type: 'vote', candidate: candidate, created_at: new Date().toISOString() });
-      showToast('Vote dikirim!', 'success');
-    }
-  }
-
-  function react(type) {
-    window.dataSdk.create({ type: 'reaction', reaction_type: type, created_at: new Date().toISOString() });
-    showToast(`Reaksi ${type} dikirim!`, 'success');
-  }
-
-  function submitQA() {
-    const question = document.getElementById('qa-input').value;
-    if (question) {
-      window.dataSdk.create({ type: 'qa', question: question, created_at: new Date().toISOString() });
-      showToast('Pertanyaan dikirim!', 'success');
-      document.getElementById('qa-input').value = '';
-    }
-  }
-
-  function applyColors() {
-    const primary = document.getElementById('primary-color').value;
-    const secondary = document.getElementById('secondary-color').value;
-    const text = document.getElementById('text-color').value;
-    window.elementSdk.setConfig({
-      primary_action_color: primary,
-      secondary_action_color: secondary,
-      text_color: text
-    });
-    showToast('Warna diterapkan!', 'success');
-  }
-
-  function openChatbot() {
-    alert('Chatbot: Halo! Ada yang bisa saya bantu?');
-  }
-
-  function markAttendance(event) {
-    // Simulate QR scan
-    const qr = prompt('Scan QR code:');
-    if (qr) {
-      window.dataSdk.create({ type: 'attendance', event: event, qr_code: qr, created_at: new Date().toISOString() });
-      showToast('Absensi berhasil!', 'success');
-    }
-  }
-
-  function generateQR() {
-    alert('QR Code generated: https://example.com/qr/123');
-  }
-
-  document.getElementById('finance-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const type = document.getElementById('finance-type').value;
-    const desc = document.getElementById('finance-desc').value;
-    const evidence = document.getElementById('finance-evidence').value;
-    const result = await window.dataSdk.create({
-      type: 'finance',
-      finance_type: type,
-      description: desc,
-      evidence_url: evidence,
-      created_at: new Date().toISOString()
-    });
-    if (result.isOk) {
-      showToast('Laporan keuangan disimpan!', 'success');
-      e.target.reset();
-    } else {
-      showToast('Gagal menyimpan.', 'error');
-    }
-  });
+</script>
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e5c9b608338051a',t:'MTc3NTA5OTA3NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
