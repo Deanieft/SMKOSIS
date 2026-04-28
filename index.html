@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="id" class="h-full">
- <head>
+
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OSIS SMKN 1 Tarumajaya Portal</title>
@@ -8,17 +9,32 @@
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
   <script src="/_sdk/element_sdk.js"></script>
   <script src="/_sdk/data_sdk.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;family=Playfair+Display:wght@700;800;900&amp;display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;family=Playfair+Display:wght@700;800;900&amp;display=swap"
+    rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { height: 100%; }
-    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      box-sizing: border-box;
+    }
 
     .hero-bg {
       background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 40%, #0c4a6e 70%, #164e63 100%);
       position: relative;
       overflow: hidden;
     }
+
     .hero-bg::before {
       content: '';
       position: absolute;
@@ -27,27 +43,36 @@
       width: 200%;
       height: 200%;
       background: radial-gradient(circle at 30% 50%, rgba(56, 189, 248, 0.08) 0%, transparent 50%),
-                  radial-gradient(circle at 70% 30%, rgba(14, 165, 233, 0.06) 0%, transparent 40%);
+        radial-gradient(circle at 70% 30%, rgba(14, 165, 233, 0.06) 0%, transparent 40%);
       animation: slowDrift 20s ease-in-out infinite;
     }
+
     @keyframes slowDrift {
-      0%, 100% { transform: translate(0, 0) rotate(0deg); }
-      50% { transform: translate(2%, 1%) rotate(1deg); }
+
+      0%,
+      100% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+
+      50% {
+        transform: translate(2%, 1%) rotate(1deg);
+      }
     }
 
     .grid-pattern {
       background-image:
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
       background-size: 60px 60px;
     }
 
     .card-hover {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+
     .card-hover:hover {
       transform: translateY(-6px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
     }
 
     .fade-up {
@@ -55,21 +80,43 @@
       transform: translateY(30px);
       animation: fadeUp 0.7s ease forwards;
     }
+
     @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    .stagger-1 { animation-delay: 0.1s; }
-    .stagger-2 { animation-delay: 0.2s; }
-    .stagger-3 { animation-delay: 0.3s; }
-    .stagger-4 { animation-delay: 0.4s; }
-    .stagger-5 { animation-delay: 0.5s; }
-    .stagger-6 { animation-delay: 0.6s; }
+    .stagger-1 {
+      animation-delay: 0.1s;
+    }
+
+    .stagger-2 {
+      animation-delay: 0.2s;
+    }
+
+    .stagger-3 {
+      animation-delay: 0.3s;
+    }
+
+    .stagger-4 {
+      animation-delay: 0.4s;
+    }
+
+    .stagger-5 {
+      animation-delay: 0.5s;
+    }
+
+    .stagger-6 {
+      animation-delay: 0.6s;
+    }
 
     .nav-link {
       position: relative;
       transition: color 0.2s;
     }
+
     .nav-link::after {
       content: '';
       position: absolute;
@@ -80,7 +127,10 @@
       background: #38bdf8;
       transition: width 0.3s;
     }
-    .nav-link:hover::after { width: 100%; }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
 
     .section-title {
       font-family: 'Playfair Display', serif;
@@ -89,23 +139,78 @@
     .toast-enter {
       animation: toastIn 0.4s ease forwards;
     }
+
     @keyframes toastIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    .star-btn { cursor: pointer; transition: transform 0.15s; }
-    .star-btn:hover { transform: scale(1.2); }
+    .star-btn {
+      cursor: pointer;
+      transition: transform 0.15s;
+    }
 
-    .arsip-rail { position: relative; }
-    .arsip-rail::before { content: ''; position: absolute; top: 28px; left: 10px; right: 10px; height: 3px; background: linear-gradient(90deg, #94a3b8 5%, #0f172a 50%, #94a3b8 95%); opacity: 0.5; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .star-btn:hover {
+      transform: scale(1.2);
+    }
 
-    .polaroid { position: relative; min-width: 220px; background: #fff; padding: 14px; border: 8px solid #fff; box-shadow: 0 10px 20px rgba(0,0,0,0.18); border-radius: 12px; cursor: grab; transition: transform 0.25s ease, box-shadow 0.25s ease; }
-    .polaroid:active { cursor: grabbing; }
-    .polaroid:hover { transform: translateY(-8px) rotate(-2deg); box-shadow: 0 14px 24px rgba(0,0,0,0.26); }
-    .polaroid.selected { transform: translateY(-14px) rotate(0deg); box-shadow: 0 18px 28px rgba(0,0,0,0.3); }
+    .arsip-rail {
+      position: relative;
+    }
+
+    .arsip-rail::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: 10px;
+      right: 10px;
+      height: 3px;
+      background: linear-gradient(90deg, #94a3b8 5%, #0f172a 50%, #94a3b8 95%);
+      opacity: 0.5;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .polaroid {
+      position: relative;
+      min-width: 220px;
+      background: #fff;
+      padding: 14px;
+      border: 8px solid #fff;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.18);
+      border-radius: 12px;
+      cursor: grab;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .polaroid:active {
+      cursor: grabbing;
+    }
+
+    .polaroid:hover {
+      transform: translateY(-8px) rotate(-2deg);
+      box-shadow: 0 14px 24px rgba(0, 0, 0, 0.26);
+    }
+
+    .polaroid.selected {
+      transform: translateY(-14px) rotate(0deg);
+      box-shadow: 0 18px 28px rgba(0, 0, 0, 0.3);
+    }
+
     .polaroid::before {
       content: '';
       position: absolute;
@@ -116,19 +221,46 @@
       height: 18px;
       background: #64748b;
     }
-    .polaroid img { width: 100%; height: 160px; object-fit: cover; border-radius: 8px; }
-    .polaroid .caption { margin-top: 8px; font-weight: 600; color: #0f172a; }
-    .polaroid .meta { font-size: 12px; color: #64748b; }
 
-    .notification-dot { position: absolute; top: -6px; right: -6px; width: 12px; height: 12px; background: #22c55e; border-radius: 50%; border: 2px solid white; }
+    .polaroid img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
 
-    .scroll-smooth { scroll-behavior: smooth; }
+    .polaroid .caption {
+      margin-top: 8px;
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .polaroid .meta {
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    .notification-dot {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      width: 12px;
+      height: 12px;
+      background: #22c55e;
+      border-radius: 50%;
+      border: 2px solid white;
+    }
+
+    .scroll-smooth {
+      scroll-behavior: smooth;
+    }
 
     .mobile-menu {
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.3s ease;
     }
+
     .mobile-menu.open {
       max-height: 400px;
     }
@@ -136,423 +268,670 @@
     .badge-pulse {
       animation: pulse 2s ease-in-out infinite;
     }
+
     @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.4); }
-      50% { box-shadow: 0 0 0 8px rgba(56, 189, 248, 0); }
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.4);
+      }
+
+      50% {
+        box-shadow: 0 0 0 8px rgba(56, 189, 248, 0);
+      }
     }
 
     .bell-shake {
       animation: bellShake 0.5s ease-in-out;
     }
+
     @keyframes bellShake {
-      0%, 100% { transform: rotate(0deg); }
-      25% { transform: rotate(-10deg); }
-      75% { transform: rotate(10deg); }
+
+      0%,
+      100% {
+        transform: rotate(0deg);
+      }
+
+      25% {
+        transform: rotate(-10deg);
+      }
+
+      75% {
+        transform: rotate(10deg);
+      }
     }
   </style>
-  <style>body { box-sizing: border-box; }</style>
- </head>
- <body class="h-full">
-  <div id="app" class="w-full h-full overflow-auto scroll-smooth" style="background-color: #f8fafc;"><!-- Navbar -->
-   <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300" style="background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px);">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
-     <div class="flex items-center justify-between h-16">
-      <div class="flex items-center gap-2">
-       <div class="w-9 h-9 rounded-lg flex items-center justify-center font-bold text-white text-sm" style="background: linear-gradient(135deg, #0ea5e9, #06b6d4);">
-        O
-       </div><span id="nav-brand" class="font-bold text-white text-lg">OSIS SMKN 1 Tarumajaya</span>
-       <div id="user-auth-bar" class="hidden md:flex items-center gap-2 ml-4">
-        <span id="user-role-label" class="text-slate-200 text-sm"></span>
-        <button id="auth-button" onclick="handleAuthButton()" class="px-3 py-1 text-xs font-semibold rounded-full bg-slate-100 text-slate-900 hover:bg-slate-200 transition">Login</button>
-       </div>
-       <button id="notification-bell" class="ml-2 p-1 rounded-full hover:bg-white/10 transition-all duration-200 bell-shake" onclick="toggleNotification()" title="Notifikasi">
-        <i data-lucide="bell" style="width:20px;height:20px; color: #38bdf8;"></i>
-       </button>
-      </div>
-      <div class="hidden md:flex items-center gap-6"><a href="#beranda" class="nav-link text-slate-300 hover:text-white text-sm font-medium">Beranda</a> <a href="#struktur" class="nav-link text-slate-300 hover:text-white text-sm font-medium">Struktur</a> <a href="#berita" class="nav-link text-slate-300 hover:text-white text-sm font-medium">Berita</a> <a href="#pendaftaran" class="nav-link text-slate-300 hover:text-white text-sm font-medium">Pendaftaran</a> <a href="#feedback" class="nav-link text-slate-300 hover:text-white text-sm font-medium">Feedback</a> <a href="#kontak" class="nav-link text-slate-300 hover:text-white text-sm font-medium">Kontak</a>
-      </div><button id="mobile-toggle" class="md:hidden text-white" onclick="toggleMobileMenu()"> <i data-lucide="menu" style="width:24px;height:24px;"></i> </button>
-     </div>
-     <div id="mobile-menu" class="mobile-menu md:hidden">
-      <div class="flex flex-col gap-3 pb-4"><a href="#beranda" onclick="closeMobileMenu()" class="text-slate-300 hover:text-white text-sm font-medium py-1">Beranda</a> <a href="#struktur" onclick="closeMobileMenu()" class="text-slate-300 hover:text-white text-sm font-medium py-1">Struktur</a> <a href="#berita" onclick="closeMobileMenu()" class="text-slate-300 hover:text-white text-sm font-medium py-1">Berita</a> <a href="#pendaftaran" onclick="closeMobileMenu()" class="text-slate-300 hover:text-white text-sm font-medium py-1">Pendaftaran</a> <a href="#feedback" onclick="closeMobileMenu()" class="text-slate-300 hover:text-white text-sm font-medium py-1">Feedback</a> <a href="#kontak" onclick="closeMobileMenu()" class="text-slate-300 hover:text-white text-sm font-medium py-1">Kontak</a>
-      </div>
-     </div>
-    </div>
-   </nav><!-- Hero -->
-   <section id="beranda" class="hero-bg grid-pattern relative" style="padding-top: 100px; padding-bottom: 80px;">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 text-center">
-     <div class="fade-up stagger-1"><span class="inline-block px-4 py-1.5 rounded-full text-xs font-semibold text-sky-300 border border-sky-500/30 mb-6" style="background: rgba(14, 165, 233, 0.1);"> Periode 2026 </span>
-     </div>
-     <h1 id="hero-title" class="section-title text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-4 fade-up stagger-2">OSIS SMKN 1 Tarumajaya</h1>
-     <p id="hero-subtitle" class="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto mb-8 fade-up stagger-3">Membangun Generasi Pemimpin Masa Depan</p>
-     <div class="flex flex-wrap justify-center gap-4 fade-up stagger-4"><a href="#pendaftaran" class="px-6 py-3 rounded-xl font-semibold text-white text-sm transition-all hover:scale-105" style="background: linear-gradient(135deg, #0ea5e9, #06b6d4);"> Daftar Sekarang </a> <a href="#struktur" class="px-6 py-3 rounded-xl font-semibold text-slate-300 text-sm border border-slate-600 hover:border-sky-400 hover:text-white transition-all"> Lihat Struktur </a>
-     </div><!-- Stats -->
-     <div class="grid grid-cols-3 gap-4 max-w-md mx-auto mt-12 fade-up stagger-5">
-      <div class="text-center">
-       <div class="text-2xl font-bold text-white" id="stats-divisi">
-        8
-       </div>
-       <div class="text-xs text-slate-400">
-        Divisi
-       </div>
-      </div>
-      <div class="text-center">
-       <div class="text-2xl font-bold text-white" id="stats-anggota">
-        50+
-       </div>
-       <div class="text-xs text-slate-400">
-        Anggota
-       </div>
-      </div>
-      <div class="text-center">
-       <div class="text-2xl font-bold text-white" id="stats-program">
-        20+
-       </div>
-       <div class="text-xs text-slate-400">
-        Program
-       </div>
-      </div>
-     </div>
-    </div>
-   </section><!-- Struktur Organisasi -->
-   <section id="struktur" class="py-16 sm:py-20">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
-     <div class="text-center mb-12"><span class="text-xs font-semibold tracking-widest uppercase" style="color: #0ea5e9;">Organisasi</span>
-      <h2 class="section-title text-3xl sm:text-4xl font-bold mt-2" style="color: #0f172a;">Struktur OSIS</h2>
-      <p class="text-slate-500 mt-2 max-w-lg mx-auto text-sm">Pengurus inti yang memimpin dan menggerakkan setiap program kerja OSIS.</p>
-     </div><!-- Ketua & Wakil -->
-     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto mb-8">
-      <div class="card-hover rounded-2xl p-6 text-center border" style="background: white; border-color: #e2e8f0;">
-       <div class="w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold" style="background: linear-gradient(135deg, #0ea5e9, #0369a1);"><i data-lucide="crown" style="width:32px;height:32px;"></i>
-       </div>
-       <h3 id="ketua-name" class="font-bold text-lg" style="color: #0f172a;">Ahmad Rizky</h3>
-       <p class="text-sm font-semibold mt-1" style="color: #0ea5e9;">Ketua OSIS</p>
-       <p class="text-xs text-slate-400 mt-1">XII RPL 1</p>
-      </div>
-      <div class="card-hover rounded-2xl p-6 text-center border" style="background: white; border-color: #e2e8f0;">
-       <div class="w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold" style="background: linear-gradient(135deg, #06b6d4, #0891b2);"><i data-lucide="star" style="width:32px;height:32px;"></i>
-       </div>
-       <h3 id="wakil-name" class="font-bold text-lg" style="color: #0f172a;">Siti Nurhaliza</h3>
-       <p class="text-sm font-semibold mt-1" style="color: #06b6d4;">Wakil Ketua</p>
-       <p class="text-xs text-slate-400 mt-1">XII TKJ 2</p>
-      </div>
-     </div><!-- Sekretaris & Bendahara -->
-     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto mb-10">
-      <div class="card-hover rounded-2xl p-5 text-center border" style="background: white; border-color: #e2e8f0;">
-       <div class="w-14 h-14 rounded-full mx-auto mb-3 flex items-center justify-center text-white" style="background: linear-gradient(135deg, #0284c7, #0369a1);"><i data-lucide="file-text" style="width:24px;height:24px;"></i>
-       </div>
-       <h3 id="sekretaris-name" class="font-bold" style="color: #0f172a;">Budi Santoso</h3>
-       <p class="text-xs font-semibold mt-1" style="color: #0284c7;">Sekretaris</p>
-      </div>
-      <div class="card-hover rounded-2xl p-5 text-center border" style="background: white; border-color: #e2e8f0;">
-       <div class="w-14 h-14 rounded-full mx-auto mb-3 flex items-center justify-center text-white" style="background: linear-gradient(135deg, #0891b2, #0e7490);"><i data-lucide="wallet" style="width:24px;height:24px;"></i>
-       </div>
-       <h3 id="bendahara-name" class="font-bold" style="color: #0f172a;">Dewi Lestari</h3>
-       <p class="text-xs font-semibold mt-1" style="color: #0891b2;">Bendahara</p>
-      </div>
-     </div><!-- Divisi -->
-     <h3 class="text-center font-bold text-lg mb-6" style="color: #0f172a;">Divisi-Divisi</h3>
-     <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-      <div class="card-hover rounded-xl p-4 text-center border" style="background: white; border-color: #e2e8f0;">
-       <div class="w-10 h-10 rounded-lg mx-auto mb-2 flex items-center justify-center" style="background: #f0f9ff; color: #0ea5e9;"><i data-lucide="megaphone" style="width:20px;height:20px;"></i>
-       </div>
-       <p class="font-semibold text-xs" style="color: #0f172a;">Humas</p>
-      </div>
-      <div class="card-hover rounded-xl p-4 text-center border" style="background: white; border-color: #e2e8f0;">
-       <div class="w-10 h-10 rounded-lg mx-auto mb-2 flex items-center justify-center" style="background: #f0f9ff; color: #0ea5e9;"><i data-lucide="palette" style="width:20px;height:20px;"></i>
-       </div>
-       <p class="font-semibold text-xs" style="color: #0f172a;">Seni &amp; Budaya</p>
-      </div>
-      <div class="card-hover rounded-xl p-4 text-center border" style="background: white; border-color: #e2e8f0;">
-       <div class="w-10 h-10 rounded-lg mx-auto mb-2 flex items-center justify-center" style="background: #f0f9ff; color: #0ea5e9;"><i data-lucide="trophy" style="width:20px;height:20px;"></i>
-       </div>
-       <p class="font-semibold text-xs" style="color: #0f172a;">Olahraga</p>
-      </div>
-      <div class="card-hover rounded-xl p-4 text-center border" style="background: white; border-color: #e2e8f0;">
-       <div class="w-10 h-10 rounded-lg mx-auto mb-2 flex items-center justify-center" style="background: #f0f9ff; color: #0ea5e9;"><i data-lucide="book-open" style="width:20px;height:20px;"></i>
-       </div>
-       <p class="font-semibold text-xs" style="color: #0f172a;">Pendidikan</p>
-      </div>
-      <div class="card-hover rounded-xl p-4 text-center border" style="background: white; border-color: #e2e8f0;">
-       <div class="w-10 h-10 rounded-lg mx-auto mb-2 flex items-center justify-center" style="background: #f0f9ff; color: #0ea5e9;"><i data-lucide="heart" style="width:20px;height:20px;"></i>
-       </div>
-       <p class="font-semibold text-xs" style="color: #0f172a;">Sosial</p>
-      </div>
-      <div class="card-hover rounded-xl p-4 text-center border" style="background: white; border-color: #e2e8f0;">
-       <div class="w-10 h-10 rounded-lg mx-auto mb-2 flex items-center justify-center" style="background: #f0f9ff; color: #0ea5e9;"><i data-lucide="leaf" style="width:20px;height:20px;"></i>
-       </div>
-       <p class="font-semibold text-xs" style="color: #0f172a;">Lingkungan</p>
-      </div>
-      <div class="card-hover rounded-xl p-4 text-center border" style="background: white; border-color: #e2e8f0;">
-       <div class="w-10 h-10 rounded-lg mx-auto mb-2 flex items-center justify-center" style="background: #f0f9ff; color: #0ea5e9;"><i data-lucide="monitor" style="width:20px;height:20px;"></i>
-       </div>
-       <p class="font-semibold text-xs" style="color: #0f172a;">Teknologi</p>
-      </div>
-      <div class="card-hover rounded-xl p-4 text-center border" style="background: white; border-color: #e2e8f0;">
-       <div class="w-10 h-10 rounded-lg mx-auto mb-2 flex items-center justify-center" style="background: #f0f9ff; color: #0ea5e9;"><i data-lucide="flag" style="width:20px;height:20px;"></i>
-       </div>
-       <p class="font-semibold text-xs" style="color: #0f172a;">Kerohanian</p>
-      </div>
-     </div>
-     <div id="ketua-divisi-access" class="hidden mt-8 rounded-2xl p-6 border bg-slate-50" style="border-color: #cbd5e1;">
-      <h3 class="text-lg font-semibold mb-3" style="color: #0f172a;">Area Khusus Ketua Divisi</h3>
-      <p class="text-sm text-slate-600">Hanya ketua divisi yang dapat melihat informasi lengkap divisi, tugas khusus, dan pengumuman internal divisi.</p>
-     </div>
-    </div>
-   </section><!-- Berita Upcoming -->
-   <section id="berita" class="py-16 sm:py-20" style="background: #0f172a;">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
-     <div class="text-center mb-12"><span class="text-xs font-semibold tracking-widest uppercase" style="color: #38bdf8;">Agenda</span>
-      <h2 class="section-title text-3xl sm:text-4xl font-bold text-white mt-2">Berita &amp; Kegiatan</h2>
-     </div>
-     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="card-hover rounded-2xl overflow-hidden border" style="background: #1e293b; border-color: #334155;">
-       <div class="h-36 flex items-center justify-center" style="background: linear-gradient(135deg, #0ea5e9, #06b6d4);"><i data-lucide="calendar" style="width:48px;height:48px;color:white;opacity:0.8;"></i>
-       </div>
-       <div class="p-5"><span class="inline-block px-2 py-0.5 rounded text-xs font-semibold badge-pulse" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8;">Upcoming</span>
-        <h3 class="font-bold text-white mt-2">Pelantikan OSIS 2026</h3>
-        <p class="text-slate-400 text-sm mt-1">Upacara pelantikan pengurus baru periode 2026.</p>
-        <div class="flex items-center gap-2 mt-3 text-xs text-slate-500"><i data-lucide="clock" style="width:14px;height:14px;"></i> <span>15 Januari 2026</span>
-        </div>
-       </div>
-      </div>
-      <div class="card-hover rounded-2xl overflow-hidden border" style="background: #1e293b; border-color: #334155;">
-       <div class="h-36 flex items-center justify-center" style="background: linear-gradient(135deg, #0891b2, #0e7490);"><i data-lucide="trophy" style="width:48px;height:48px;color:white;opacity:0.8;"></i>
-       </div>
-       <div class="p-5"><span class="inline-block px-2 py-0.5 rounded text-xs font-semibold" style="background: rgba(250, 204, 21, 0.15); color: #facc15;">Event</span>
-        <h3 class="font-bold text-white mt-2">Lomba Antar Kelas</h3>
-        <p class="text-slate-400 text-sm mt-1">Kompetisi olahraga dan seni antar kelas seluruh jurusan.</p>
-        <div class="flex items-center gap-2 mt-3 text-xs text-slate-500"><i data-lucide="clock" style="width:14px;height:14px;"></i> <span>20-22 Februari 2026</span>
-        </div>
-       </div>
-      </div>
-      <div class="card-hover rounded-2xl overflow-hidden border" style="background: #1e293b; border-color: #334155;">
-       <div class="h-36 flex items-center justify-center" style="background: linear-gradient(135deg, #0284c7, #075985);"><i data-lucide="users" style="width:48px;height:48px;color:white;opacity:0.8;"></i>
-       </div>
-       <div class="p-5"><span class="inline-block px-2 py-0.5 rounded text-xs font-semibold" style="background: rgba(74, 222, 128, 0.15); color: #4ade80;">Open</span>
-        <h3 class="font-bold text-white mt-2">Rekrutmen Anggota Baru</h3>
-        <p class="text-slate-400 text-sm mt-1">Pendaftaran anggota OSIS terbuka untuk seluruh siswa.</p>
-        <div class="flex items-center gap-2 mt-3 text-xs text-slate-500"><i data-lucide="clock" style="width:14px;height:14px;"></i> <span>1-10 Maret 2026</span>
-        </div>
-       </div>
-      </div>
-     </div>
-    </div>
-   </section><!-- Pendaftaran -->
-   <section id="pendaftaran" class="py-16 sm:py-20">
-    <div class="max-w-2xl mx-auto px-4 sm:px-6">
-     <div class="text-center mb-10"><span class="text-xs font-semibold tracking-widest uppercase" style="color: #0ea5e9;">Gabung Bersama Kami</span>
-      <h2 class="section-title text-3xl sm:text-4xl font-bold mt-2" style="color: #0f172a;">Pendaftaran OSIS</h2>
-      <p class="text-slate-500 mt-2 text-sm">Isi formulir berikut untuk mendaftar menjadi anggota OSIS.</p>
-     </div>
-     <form id="register-form" class="rounded-2xl p-6 sm:p-8 border space-y-5" style="background: white; border-color: #e2e8f0;">
-      <div><label for="reg-name" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">Nama Lengkap</label> <input id="reg-name" name="nama_lengkap" type="text" required class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition" style="border-color: #e2e8f0;" placeholder="Masukkan nama lengkap">
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-       <div><label for="reg-kelas" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">Kelas</label> <input id="reg-kelas" name="kelas" type="text" required class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition" style="border-color: #e2e8f0;" placeholder="Contoh: X RPL 1">
-       </div>
-       <div><label for="reg-email" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">Email</label> <input id="reg-email" name="email" type="email" required class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition" style="border-color: #e2e8f0;" placeholder="email@example.com">
-       </div>
-      </div>
-      <div><label for="reg-phone" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">No. Telepon</label> <input id="reg-phone" name="no_telepon" type="tel" required class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition" style="border-color: #e2e8f0;" placeholder="08xxxxxxxxxx">
-      </div>
-      <div><label for="reg-divisi" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">Divisi yang Diminati</label> <select id="reg-divisi" name="divisi_diminati" required class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition" style="border-color: #e2e8f0;"> <option value="">Pilih divisi...</option> <option>Humas</option> <option>Seni &amp; Budaya</option> <option>Olahraga</option> <option>Pendidikan</option> <option>Sosial</option> <option>Lingkungan</option> <option>Teknologi</option> <option>Kerohanian</option> <option>Ketua</option> <option>Wakil Ketua</option> <option>Sekretaris</option> <option>Bendahara</option></select>
-      </div>
-      <div><label for="reg-motivasi" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">Motivasi</label> <textarea id="reg-motivasi" name="motivasi" rows="3" required class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition resize-none" style="border-color: #e2e8f0;" placeholder="Ceritakan motivasi dan potensi diri kamu bergabung OSIS"></textarea>
-      </div><button type="submit" id="reg-submit" class="w-full py-3 rounded-xl font-semibold text-white text-sm transition-all hover:scale-[1.02]" style="background: linear-gradient(135deg, #0ea5e9, #06b6d4);"> Kirim Pendaftaran </button>
-      <div id="reg-message" class="hidden text-center text-sm font-medium py-2 rounded-xl"></div>
-     </form>
-    </div>
-   </section><!-- Feedback -->
-   <section id="feedback" class="py-16 sm:py-20" style="background: #f1f5f9;">
-    <div class="max-w-2xl mx-auto px-4 sm:px-6">
-     <div class="text-center mb-10"><span class="text-xs font-semibold tracking-widest uppercase" style="color: #0ea5e9;">Suaramu Penting</span>
-      <h2 class="section-title text-3xl sm:text-4xl font-bold mt-2" style="color: #0f172a;">Feedback</h2>
-      <p class="text-slate-500 mt-2 text-sm">Berikan masukan untuk membantu OSIS menjadi lebih baik.</p>
-     </div>
-     <form id="feedback-form" class="rounded-2xl p-6 sm:p-8 border space-y-5" style="background: white; border-color: #e2e8f0;">
-      <div><label for="fb-name" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">Nama (opsional)</label> <input id="fb-name" name="nama_pengirim" type="text" class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition" style="border-color: #e2e8f0;" placeholder="Boleh anonim">
-      </div>
-      <div><label class="block text-sm font-semibold mb-2" style="color: #0f172a;">Rating</label>
-       <div id="star-rating" class="flex gap-2"><span class="star-btn text-2xl text-slate-300" data-star="1">★</span> <span class="star-btn text-2xl text-slate-300" data-star="2">★</span> <span class="star-btn text-2xl text-slate-300" data-star="3">★</span> <span class="star-btn text-2xl text-slate-300" data-star="4">★</span> <span class="star-btn text-2xl text-slate-300" data-star="5">★</span>
-       </div>
-      </div>
-      <div><label for="fb-category" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">Kategori Feedback</label> <select id="fb-category" name="kategori" required class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition" style="border-color: #e2e8f0;"> <option value="">Pilih kategori...</option> <option>Aspirasi</option> <option>Keluhan</option> <option>Saran</option> <option>Pertanyaan</option> <option>Apresiasi</option> <option>Laporan</option> </select>
-      </div>
-      <div><label for="fb-message" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">Pesan Feedback</label> <textarea id="fb-message" name="pesan" rows="4" required class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition resize-none" style="border-color: #e2e8f0;" placeholder="Tulis saran, kritik, atau apresiasi kamu..."></textarea>
-       <div id="fb-message-error" class="hidden text-red-500 text-xs mt-1">⚠️ Pesan mengandung kata tidak pantas.</div>
-      </div><button type="submit" id="fb-submit" class="w-full py-3 rounded-xl font-semibold text-white text-sm transition-all hover:scale-[1.02]" style="background: linear-gradient(135deg, #0ea5e9, #06b6d4);"> Kirim Feedback </button>
-      <div id="fb-message-status" class="hidden text-center text-sm font-medium py-2 rounded-xl"></div>
-     </form>
-    </div>
-   </section>
-   <section id="role-panel" class="py-16 sm:py-20 hidden" style="background: #eef2ff;">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6">
-     <div class="text-center mb-10"><span class="text-xs font-semibold tracking-widest uppercase" style="color: #0ea5e9;">Akses Pengguna</span>
-      <h2 class="section-title text-3xl sm:text-4xl font-bold mt-2" style="color: #0f172a;">Panel Role & Akses</h2>
-      <p class="text-slate-500 mt-2 text-sm">Login sebagai admin, ketua, wakil, atau anggota untuk melihat hak akses berbeda.</p>
-     </div>
-     <div id="role-panel-content" class="rounded-2xl p-6 border bg-white" style="border-color: #cbd5e1;"></div>
-    </div>
-   </section><!-- Kontak -->
-   <section id="kontak" class="py-16 sm:py-20" style="background: #0f172a;">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6">
-     <div class="text-center mb-12"><span class="text-xs font-semibold tracking-widest uppercase" style="color: #38bdf8;">Hubungi Kami</span>
-      <h2 class="section-title text-3xl sm:text-4xl font-bold text-white mt-2">Kontak</h2>
-     </div>
-     <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-      <div class="rounded-2xl p-6 text-center border" style="background: #1e293b; border-color: #334155;">
-       <div class="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center" style="background: rgba(14, 165, 233, 0.15); color: #38bdf8;"><i data-lucide="mail" style="width:24px;height:24px;"></i>
-       </div>
-       <p class="text-sm font-semibold text-white">Email</p>
-       <p id="contact-email" class="text-xs text-slate-400 mt-1">osis@smkn1.sch.id</p>
-      </div>
-      <div class="rounded-2xl p-6 text-center border" style="background: #1e293b; border-color: #334155;">
-       <div class="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center" style="background: rgba(14, 165, 233, 0.15); color: #38bdf8;"><i data-lucide="phone" style="width:24px;height:24px;"></i>
-       </div>
-       <p class="text-sm font-semibold text-white">Telepon</p>
-       <p id="contact-phone" class="text-xs text-slate-400 mt-1">(021) 1234-5678</p>
-      </div>
-      <div class="rounded-2xl p-6 text-center border" style="background: #1e293b; border-color: #334155;">
-       <div class="w-16 h-16 rounded-xl mx-auto mb-3 flex items-center justify-center transform rotate-12 hover:rotate-0 transition-transform duration-300" style="background: linear-gradient(135deg, #0ea5e9, #06b6d4); box-shadow: 0 8px 16px rgba(14, 165, 233, 0.3);">
-        <i data-lucide="map-pin" style="width:32px;height:32px; color: white; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));"></i>
-       </div>
-       <p class="text-sm font-semibold text-white">Lokasi Sekolah</p>
-       <p id="contact-address" class="text-xs text-slate-400 mt-1">Jl. Raya Tarumajaya No.1, Tarumajaya, Kec. Tarumajaya, Kabupaten Bekasi, Jawa Barat 17212</p>
-      </div>
-     </div>
-     <!-- Google Maps Embed -->
-     <div class="mt-8 rounded-2xl overflow-hidden border shadow-lg" style="border-color: #334155;">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.5!2d106.987729!3d-6.1585382!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6a20c558a1c7df%3A0xc9b612f870551fca!2sSMKN%201%20Tarumajaya!5e0!3m2!1sen!2sid!4v1700000000!5m2!1sen!2sid" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-     </div>
-     <div class="flex justify-center gap-4 mt-8"><a href="https://www.instagram.com/osis_smkn1tarumajaya/" class="w-10 h-10 rounded-full flex items-center justify-center border transition-all hover:scale-110" style="border-color: #334155; color: #94a3b8;"> <i data-lucide="instagram" style="width:18px;height:18px;"></i> </a> <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center border transition-all hover:scale-110" style="border-color: #334155; color: #94a3b8;"> <i data-lucide="youtube" style="width:18px;height:18px;"></i> </a> <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center border transition-all hover:scale-110" style="border-color: #334155; color: #b1c3f5;"> <i data-lucide="twitter" style="width:18px;height:18px;"></i> </a>
-     </div>
-    </div>
-   </section>
+</head>
 
-   <section id="arsip" class="py-20" style="background: #f8fafc;">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-     <h2 class="section-title text-3xl sm:text-4xl font-bold" style="color:#0f172a;">Arsip Foto</h2>
-     <p class="text-slate-600 mt-2 mb-6">Klik tombol di bawah untuk melihat arsip lengkap di halaman terpisah.</p>
-     <a href="arsip.html" class="inline-block px-8 py-3 bg-blue-500 text-white font-semibold rounded-xl shadow-lg hover:bg-blue-600 transition">Buka Arsip</a>
-    </div>
-   </section><!-- Footer -->
-   <footer class="py-6 text-center" style="background: #020617;">
-    <p class="text-xs text-slate-500">© 2026 OSIS SMKN 1 Tarumajaya. Dibuat oleh Mahasiswa Universitas Nusa Mandiri.</p>
-   </footer>
+<body class="h-full">
+  <div id="app" class="w-full h-full overflow-auto scroll-smooth" style="background-color: #f8fafc;"><!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300"
+      style="background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px);">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="flex items-center justify-between h-16">
+          <div class="flex items-center gap-2">
+            <div class="w-9 h-9 rounded-lg flex items-center justify-center font-bold text-white text-sm"
+              style="background: linear-gradient(135deg, #0ea5e9, #06b6d4);">
+              O
+            </div><span id="nav-brand" class="font-bold text-white text-lg">OSIS SMKN 1 Tarumajaya</span>
+            <div id="user-auth-bar" class="hidden md:flex items-center gap-2 ml-4">
+              <span id="user-role-label" class="text-slate-200 text-sm"></span>
+              <button id="auth-button" onclick="handleAuthButton()"
+                class="px-3 py-1 text-xs font-semibold rounded-full bg-slate-100 text-slate-900 hover:bg-slate-200 transition">Login</button>
+            </div>
+            <button id="notification-bell"
+              class="ml-2 p-1 rounded-full hover:bg-white/10 transition-all duration-200 bell-shake"
+              onclick="toggleNotification()" title="Notifikasi">
+              <i data-lucide="bell" style="width:20px;height:20px; color: #38bdf8;"></i>
+            </button>
+          </div>
+          <div class="hidden md:flex items-center gap-6"><a href="#beranda"
+              class="nav-link text-slate-300 hover:text-white text-sm font-medium">Beranda</a> <a href="#struktur"
+              class="nav-link text-slate-300 hover:text-white text-sm font-medium">Struktur</a> <a href="#berita"
+              class="nav-link text-slate-300 hover:text-white text-sm font-medium">Berita</a> <a href="#pendaftaran"
+              class="nav-link text-slate-300 hover:text-white text-sm font-medium">Pendaftaran</a> <a href="#feedback"
+              class="nav-link text-slate-300 hover:text-white text-sm font-medium">Feedback</a> <a href="#kontak"
+              class="nav-link text-slate-300 hover:text-white text-sm font-medium">Kontak</a>
+          </div><button id="mobile-toggle" class="md:hidden text-white" onclick="toggleMobileMenu()"> <i
+              data-lucide="menu" style="width:24px;height:24px;"></i> </button>
+        </div>
+        <div id="mobile-menu" class="mobile-menu md:hidden">
+          <div class="flex flex-col gap-3 pb-4"><a href="#beranda" onclick="closeMobileMenu()"
+              class="text-slate-300 hover:text-white text-sm font-medium py-1">Beranda</a> <a href="#struktur"
+              onclick="closeMobileMenu()" class="text-slate-300 hover:text-white text-sm font-medium py-1">Struktur</a>
+            <a href="#berita" onclick="closeMobileMenu()"
+              class="text-slate-300 hover:text-white text-sm font-medium py-1">Berita</a> <a href="#pendaftaran"
+              onclick="closeMobileMenu()"
+              class="text-slate-300 hover:text-white text-sm font-medium py-1">Pendaftaran</a> <a href="#feedback"
+              onclick="closeMobileMenu()" class="text-slate-300 hover:text-white text-sm font-medium py-1">Feedback</a>
+            <a href="#kontak" onclick="closeMobileMenu()"
+              class="text-slate-300 hover:text-white text-sm font-medium py-1">Kontak</a>
+          </div>
+        </div>
+      </div>
+    </nav><!-- Hero -->
+    <section id="beranda" class="hero-bg grid-pattern relative" style="padding-top: 100px; padding-bottom: 80px;">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 text-center">
+        <div class="fade-up stagger-1"><span
+            class="inline-block px-4 py-1.5 rounded-full text-xs font-semibold text-sky-300 border border-sky-500/30 mb-6"
+            style="background: rgba(14, 165, 233, 0.1);"> Periode 2026 </span>
+        </div>
+        <h1 id="hero-title"
+          class="section-title text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-4 fade-up stagger-2">OSIS SMKN
+          1 Tarumajaya</h1>
+        <p id="hero-subtitle" class="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto mb-8 fade-up stagger-3">
+          Membangun Generasi Pemimpin Masa Depan</p>
+        <div class="flex flex-wrap justify-center gap-4 fade-up stagger-4"><a href="#pendaftaran"
+            class="px-6 py-3 rounded-xl font-semibold text-white text-sm transition-all hover:scale-105"
+            style="background: linear-gradient(135deg, #0ea5e9, #06b6d4);"> Daftar Sekarang </a> <a href="#struktur"
+            class="px-6 py-3 rounded-xl font-semibold text-slate-300 text-sm border border-slate-600 hover:border-sky-400 hover:text-white transition-all">
+            Lihat Struktur </a>
+        </div><!-- Stats -->
+        <div class="grid grid-cols-3 gap-4 max-w-md mx-auto mt-12 fade-up stagger-5">
+          <div class="text-center">
+            <div class="text-2xl font-bold text-white" id="stats-divisi">
+              8
+            </div>
+            <div class="text-xs text-slate-400">
+              Divisi
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold text-white" id="stats-anggota">
+              50+
+            </div>
+            <div class="text-xs text-slate-400">
+              Anggota
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold text-white" id="stats-program">
+              20+
+            </div>
+            <div class="text-xs text-slate-400">
+              Program
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- Struktur Organisasi -->
+    <section id="struktur" class="py-16 sm:py-20">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-12"><span class="text-xs font-semibold tracking-widest uppercase"
+            style="color: #0ea5e9;">Organisasi</span>
+          <h2 class="section-title text-3xl sm:text-4xl font-bold mt-2" style="color: #0f172a;">Struktur OSIS</h2>
+          <p class="text-slate-500 mt-2 max-w-lg mx-auto text-sm">Pengurus inti yang memimpin dan menggerakkan setiap
+            program kerja OSIS.</p>
+        </div><!-- Ketua & Wakil -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto mb-8">
+          <div class="card-hover rounded-2xl p-6 text-center border" style="background: white; border-color: #e2e8f0;">
+            <div
+              class="w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold"
+              style="background: linear-gradient(135deg, #0ea5e9, #0369a1);"><i data-lucide="crown"
+                style="width:32px;height:32px;"></i>
+            </div>
+            <h3 id="ketua-name" class="font-bold text-lg" style="color: #0f172a;">Ahmad Rizky</h3>
+            <p class="text-sm font-semibold mt-1" style="color: #0ea5e9;">Ketua OSIS</p>
+            <p class="text-xs text-slate-400 mt-1">XII RPL 1</p>
+          </div>
+          <div class="card-hover rounded-2xl p-6 text-center border" style="background: white; border-color: #e2e8f0;">
+            <div
+              class="w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold"
+              style="background: linear-gradient(135deg, #06b6d4, #0891b2);"><i data-lucide="star"
+                style="width:32px;height:32px;"></i>
+            </div>
+            <h3 id="wakil-name" class="font-bold text-lg" style="color: #0f172a;">Siti Nurhaliza</h3>
+            <p class="text-sm font-semibold mt-1" style="color: #06b6d4;">Wakil Ketua</p>
+            <p class="text-xs text-slate-400 mt-1">XII TKJ 2</p>
+          </div>
+        </div><!-- Sekretaris & Bendahara -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto mb-10">
+          <div class="card-hover rounded-2xl p-5 text-center border" style="background: white; border-color: #e2e8f0;">
+            <div class="w-14 h-14 rounded-full mx-auto mb-3 flex items-center justify-center text-white"
+              style="background: linear-gradient(135deg, #0284c7, #0369a1);"><i data-lucide="file-text"
+                style="width:24px;height:24px;"></i>
+            </div>
+            <h3 id="sekretaris-name" class="font-bold" style="color: #0f172a;">Budi Santoso</h3>
+            <p class="text-xs font-semibold mt-1" style="color: #0284c7;">Sekretaris</p>
+          </div>
+          <div class="card-hover rounded-2xl p-5 text-center border" style="background: white; border-color: #e2e8f0;">
+            <div class="w-14 h-14 rounded-full mx-auto mb-3 flex items-center justify-center text-white"
+              style="background: linear-gradient(135deg, #0891b2, #0e7490);"><i data-lucide="wallet"
+                style="width:24px;height:24px;"></i>
+            </div>
+            <h3 id="bendahara-name" class="font-bold" style="color: #0f172a;">Dewi Lestari</h3>
+            <p class="text-xs font-semibold mt-1" style="color: #0891b2;">Bendahara</p>
+          </div>
+        </div><!-- Divisi -->
+        <h3 class="text-center font-bold text-lg mb-6" style="color: #0f172a;">Divisi-Divisi</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div class="card-hover rounded-xl p-4 text-center border" style="background: white; border-color: #e2e8f0;">
+            <div class="w-10 h-10 rounded-lg mx-auto mb-2 flex items-center justify-center"
+              style="background: #f0f9ff; color: #0ea5e9;"><i data-lucide="megaphone"
+                style="width:20px;height:20px;"></i>
+            </div>
+            <p class="font-semibold text-xs" style="color: #0f172a;">Humas</p>
+          </div>
+          <div class="card-hover rounded-xl p-4 text-center border" style="background: white; border-color: #e2e8f0;">
+            <div class="w-10 h-10 rounded-lg mx-auto mb-2 flex items-center justify-center"
+              style="background: #f0f9ff; color: #0ea5e9;"><i data-lucide="palette" style="width:20px;height:20px;"></i>
+            </div>
+            <p class="font-semibold text-xs" style="color: #0f172a;">Seni &amp; Budaya</p>
+          </div>
+          <div class="card-hover rounded-xl p-4 text-center border" style="background: white; border-color: #e2e8f0;">
+            <div class="w-10 h-10 rounded-lg mx-auto mb-2 flex items-center justify-center"
+              style="background: #f0f9ff; color: #0ea5e9;"><i data-lucide="trophy" style="width:20px;height:20px;"></i>
+            </div>
+            <p class="font-semibold text-xs" style="color: #0f172a;">Olahraga</p>
+          </div>
+          <div class="card-hover rounded-xl p-4 text-center border" style="background: white; border-color: #e2e8f0;">
+            <div class="w-10 h-10 rounded-lg mx-auto mb-2 flex items-center justify-center"
+              style="background: #f0f9ff; color: #0ea5e9;"><i data-lucide="book-open"
+                style="width:20px;height:20px;"></i>
+            </div>
+            <p class="font-semibold text-xs" style="color: #0f172a;">Pendidikan</p>
+          </div>
+          <div class="card-hover rounded-xl p-4 text-center border" style="background: white; border-color: #e2e8f0;">
+            <div class="w-10 h-10 rounded-lg mx-auto mb-2 flex items-center justify-center"
+              style="background: #f0f9ff; color: #0ea5e9;"><i data-lucide="heart" style="width:20px;height:20px;"></i>
+            </div>
+            <p class="font-semibold text-xs" style="color: #0f172a;">Sosial</p>
+          </div>
+          <div class="card-hover rounded-xl p-4 text-center border" style="background: white; border-color: #e2e8f0;">
+            <div class="w-10 h-10 rounded-lg mx-auto mb-2 flex items-center justify-center"
+              style="background: #f0f9ff; color: #0ea5e9;"><i data-lucide="leaf" style="width:20px;height:20px;"></i>
+            </div>
+            <p class="font-semibold text-xs" style="color: #0f172a;">Lingkungan</p>
+          </div>
+          <div class="card-hover rounded-xl p-4 text-center border" style="background: white; border-color: #e2e8f0;">
+            <div class="w-10 h-10 rounded-lg mx-auto mb-2 flex items-center justify-center"
+              style="background: #f0f9ff; color: #0ea5e9;"><i data-lucide="monitor" style="width:20px;height:20px;"></i>
+            </div>
+            <p class="font-semibold text-xs" style="color: #0f172a;">Teknologi</p>
+          </div>
+          <div class="card-hover rounded-xl p-4 text-center border" style="background: white; border-color: #e2e8f0;">
+            <div class="w-10 h-10 rounded-lg mx-auto mb-2 flex items-center justify-center"
+              style="background: #f0f9ff; color: #0ea5e9;"><i data-lucide="flag" style="width:20px;height:20px;"></i>
+            </div>
+            <p class="font-semibold text-xs" style="color: #0f172a;">Kerohanian</p>
+          </div>
+        </div>
+        <div id="ketua-divisi-access" class="hidden mt-8 rounded-2xl p-6 border bg-slate-50"
+          style="border-color: #cbd5e1;">
+          <h3 class="text-lg font-semibold mb-3" style="color: #0f172a;">Area Khusus Ketua Divisi</h3>
+          <p class="text-sm text-slate-600">Hanya ketua divisi yang dapat melihat informasi lengkap divisi, tugas
+            khusus, dan pengumuman internal divisi.</p>
+        </div>
+      </div>
+    </section><!-- Berita Upcoming -->
+    <section id="berita" class="py-16 sm:py-20" style="background: #0f172a;">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-12"><span class="text-xs font-semibold tracking-widest uppercase"
+            style="color: #38bdf8;">Agenda</span>
+          <h2 class="section-title text-3xl sm:text-4xl font-bold text-white mt-2">Berita &amp; Kegiatan</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="card-hover rounded-2xl overflow-hidden border"
+            style="background: #1e293b; border-color: #334155;">
+            <div class="h-36 flex items-center justify-center"
+              style="background: linear-gradient(135deg, #0ea5e9, #06b6d4);"><i data-lucide="calendar"
+                style="width:48px;height:48px;color:white;opacity:0.8;"></i>
+            </div>
+            <div class="p-5"><span class="inline-block px-2 py-0.5 rounded text-xs font-semibold badge-pulse"
+                style="background: rgba(56, 189, 248, 0.15); color: #38bdf8;">Upcoming</span>
+              <h3 class="font-bold text-white mt-2">Pelantikan OSIS 2026</h3>
+              <p class="text-slate-400 text-sm mt-1">Upacara pelantikan pengurus baru periode 2026.</p>
+              <div class="flex items-center gap-2 mt-3 text-xs text-slate-500"><i data-lucide="clock"
+                  style="width:14px;height:14px;"></i> <span>15 Januari 2026</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-hover rounded-2xl overflow-hidden border"
+            style="background: #1e293b; border-color: #334155;">
+            <div class="h-36 flex items-center justify-center"
+              style="background: linear-gradient(135deg, #0891b2, #0e7490);"><i data-lucide="trophy"
+                style="width:48px;height:48px;color:white;opacity:0.8;"></i>
+            </div>
+            <div class="p-5"><span class="inline-block px-2 py-0.5 rounded text-xs font-semibold"
+                style="background: rgba(250, 204, 21, 0.15); color: #facc15;">Event</span>
+              <h3 class="font-bold text-white mt-2">Lomba Antar Kelas</h3>
+              <p class="text-slate-400 text-sm mt-1">Kompetisi olahraga dan seni antar kelas seluruh jurusan.</p>
+              <div class="flex items-center gap-2 mt-3 text-xs text-slate-500"><i data-lucide="clock"
+                  style="width:14px;height:14px;"></i> <span>20-22 Februari 2026</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-hover rounded-2xl overflow-hidden border"
+            style="background: #1e293b; border-color: #334155;">
+            <div class="h-36 flex items-center justify-center"
+              style="background: linear-gradient(135deg, #0284c7, #075985);"><i data-lucide="users"
+                style="width:48px;height:48px;color:white;opacity:0.8;"></i>
+            </div>
+            <div class="p-5"><span class="inline-block px-2 py-0.5 rounded text-xs font-semibold"
+                style="background: rgba(74, 222, 128, 0.15); color: #4ade80;">Open</span>
+              <h3 class="font-bold text-white mt-2">Rekrutmen Anggota Baru</h3>
+              <p class="text-slate-400 text-sm mt-1">Pendaftaran anggota OSIS terbuka untuk seluruh siswa.</p>
+              <div class="flex items-center gap-2 mt-3 text-xs text-slate-500"><i data-lucide="clock"
+                  style="width:14px;height:14px;"></i> <span>1-10 Maret 2026</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- Pendaftaran -->
+    <section id="pendaftaran" class="py-16 sm:py-20">
+      <div class="max-w-2xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-10"><span class="text-xs font-semibold tracking-widest uppercase"
+            style="color: #0ea5e9;">Gabung Bersama Kami</span>
+          <h2 class="section-title text-3xl sm:text-4xl font-bold mt-2" style="color: #0f172a;">Pendaftaran OSIS</h2>
+          <p class="text-slate-500 mt-2 text-sm">Isi formulir berikut untuk mendaftar menjadi anggota OSIS.</p>
+        </div>
+        <form id="register-form" class="rounded-2xl p-6 sm:p-8 border space-y-5"
+          style="background: white; border-color: #e2e8f0;">
+          <div><label for="reg-name" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">Nama
+              Lengkap</label> <input id="reg-name" name="nama_lengkap" type="text" required
+              class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition"
+              style="border-color: #e2e8f0;" placeholder="Masukkan nama lengkap">
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div><label for="reg-kelas" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">Kelas</label>
+              <input id="reg-kelas" name="kelas" type="text" required
+                class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition"
+                style="border-color: #e2e8f0;" placeholder="Contoh: X RPL 1">
+            </div>
+            <div><label for="reg-email" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">Email</label>
+              <input id="reg-email" name="email" type="email" required
+                class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition"
+                style="border-color: #e2e8f0;" placeholder="email@example.com">
+            </div>
+          </div>
+          <div><label for="reg-phone" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">No.
+              Telepon</label> <input id="reg-phone" name="no_telepon" type="tel" required
+              class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition"
+              style="border-color: #e2e8f0;" placeholder="08xxxxxxxxxx">
+          </div>
+          <div><label for="reg-divisi" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">Divisi yang
+              Diminati</label> <select id="reg-divisi" name="divisi_diminati" required
+              class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition"
+              style="border-color: #e2e8f0;">
+              <option value="">Pilih divisi...</option>
+              <option>Humas</option>
+              <option>Seni &amp; Budaya</option>
+              <option>Olahraga</option>
+              <option>Pendidikan</option>
+              <option>Sosial</option>
+              <option>Lingkungan</option>
+              <option>Teknologi</option>
+              <option>Kerohanian</option>
+              <option>Ketua</option>
+              <option>Wakil Ketua</option>
+              <option>Sekretaris</option>
+              <option>Bendahara</option>
+            </select>
+          </div>
+          <div><label for="reg-motivasi" class="block text-sm font-semibold mb-1.5"
+              style="color: #0f172a;">Motivasi</label> <textarea id="reg-motivasi" name="motivasi" rows="3" required
+              class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition resize-none"
+              style="border-color: #e2e8f0;"
+              placeholder="Ceritakan motivasi dan potensi diri kamu bergabung OSIS"></textarea>
+          </div><button type="submit" id="reg-submit"
+            class="w-full py-3 rounded-xl font-semibold text-white text-sm transition-all hover:scale-[1.02]"
+            style="background: linear-gradient(135deg, #0ea5e9, #06b6d4);"> Kirim Pendaftaran </button>
+          <div id="reg-message" class="hidden text-center text-sm font-medium py-2 rounded-xl"></div>
+        </form>
+      </div>
+    </section><!-- Feedback -->
+    <section id="feedback" class="py-16 sm:py-20" style="background: #f1f5f9;">
+      <div class="max-w-2xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-10"><span class="text-xs font-semibold tracking-widest uppercase"
+            style="color: #0ea5e9;">Suaramu Penting</span>
+          <h2 class="section-title text-3xl sm:text-4xl font-bold mt-2" style="color: #0f172a;">Feedback</h2>
+          <p class="text-slate-500 mt-2 text-sm">Berikan masukan untuk membantu OSIS menjadi lebih baik.</p>
+        </div>
+        <form id="feedback-form" class="rounded-2xl p-6 sm:p-8 border space-y-5"
+          style="background: white; border-color: #e2e8f0;">
+          <div><label for="fb-name" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">Nama
+              (opsional)</label> <input id="fb-name" name="nama_pengirim" type="text"
+              class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition"
+              style="border-color: #e2e8f0;" placeholder="Boleh anonim">
+          </div>
+          <div><label class="block text-sm font-semibold mb-2" style="color: #0f172a;">Rating</label>
+            <div id="star-rating" class="flex gap-2"><span class="star-btn text-2xl text-slate-300"
+                data-star="1">★</span> <span class="star-btn text-2xl text-slate-300" data-star="2">★</span> <span
+                class="star-btn text-2xl text-slate-300" data-star="3">★</span> <span
+                class="star-btn text-2xl text-slate-300" data-star="4">★</span> <span
+                class="star-btn text-2xl text-slate-300" data-star="5">★</span>
+            </div>
+          </div>
+          <div><label for="fb-category" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">Kategori
+              Feedback</label> <select id="fb-category" name="kategori" required
+              class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition"
+              style="border-color: #e2e8f0;">
+              <option value="">Pilih kategori...</option>
+              <option>Aspirasi</option>
+              <option>Keluhan</option>
+              <option>Saran</option>
+              <option>Pertanyaan</option>
+              <option>Apresiasi</option>
+              <option>Laporan</option>
+            </select>
+          </div>
+          <div><label for="fb-message" class="block text-sm font-semibold mb-1.5" style="color: #0f172a;">Pesan
+              Feedback</label> <textarea id="fb-message" name="pesan" rows="4" required
+              class="w-full px-4 py-2.5 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-sky-300 transition resize-none"
+              style="border-color: #e2e8f0;" placeholder="Tulis saran, kritik, atau apresiasi kamu..."></textarea>
+            <div id="fb-message-error" class="hidden text-red-500 text-xs mt-1">⚠️ Pesan mengandung kata tidak pantas.
+            </div>
+          </div><button type="submit" id="fb-submit"
+            class="w-full py-3 rounded-xl font-semibold text-white text-sm transition-all hover:scale-[1.02]"
+            style="background: linear-gradient(135deg, #0ea5e9, #06b6d4);"> Kirim Feedback </button>
+          <div id="fb-message-status" class="hidden text-center text-sm font-medium py-2 rounded-xl"></div>
+        </form>
+      </div>
+    </section>
+    <section id="role-panel" class="py-16 sm:py-20 hidden" style="background: #eef2ff;">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-10"><span class="text-xs font-semibold tracking-widest uppercase"
+            style="color: #0ea5e9;">Akses Pengguna</span>
+          <h2 class="section-title text-3xl sm:text-4xl font-bold mt-2" style="color: #0f172a;">Panel Role & Akses</h2>
+          <p class="text-slate-500 mt-2 text-sm">Login sebagai admin, ketua, wakil, atau anggota untuk melihat hak akses
+            berbeda.</p>
+        </div>
+        <div id="role-panel-content" class="rounded-2xl p-6 border bg-white" style="border-color: #cbd5e1;"></div>
+      </div>
+    </section><!-- Kontak -->
+    <section id="kontak" class="py-16 sm:py-20" style="background: #0f172a;">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-12"><span class="text-xs font-semibold tracking-widest uppercase"
+            style="color: #38bdf8;">Hubungi Kami</span>
+          <h2 class="section-title text-3xl sm:text-4xl font-bold text-white mt-2">Kontak</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div class="rounded-2xl p-6 text-center border" style="background: #1e293b; border-color: #334155;">
+            <div class="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center"
+              style="background: rgba(14, 165, 233, 0.15); color: #38bdf8;"><i data-lucide="mail"
+                style="width:24px;height:24px;"></i>
+            </div>
+            <p class="text-sm font-semibold text-white">Email</p>
+            <p id="contact-email" class="text-xs text-slate-400 mt-1">osis@smkn1.sch.id</p>
+          </div>
+          <div class="rounded-2xl p-6 text-center border" style="background: #1e293b; border-color: #334155;">
+            <div class="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center"
+              style="background: rgba(14, 165, 233, 0.15); color: #38bdf8;"><i data-lucide="phone"
+                style="width:24px;height:24px;"></i>
+            </div>
+            <p class="text-sm font-semibold text-white">Telepon</p>
+            <p id="contact-phone" class="text-xs text-slate-400 mt-1">(021) 1234-5678</p>
+          </div>
+          <div class="rounded-2xl p-6 text-center border" style="background: #1e293b; border-color: #334155;">
+            <div
+              class="w-16 h-16 rounded-xl mx-auto mb-3 flex items-center justify-center transform rotate-12 hover:rotate-0 transition-transform duration-300"
+              style="background: linear-gradient(135deg, #0ea5e9, #06b6d4); box-shadow: 0 8px 16px rgba(14, 165, 233, 0.3);">
+              <i data-lucide="map-pin"
+                style="width:32px;height:32px; color: white; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));"></i>
+            </div>
+            <p class="text-sm font-semibold text-white">Lokasi Sekolah</p>
+            <p id="contact-address" class="text-xs text-slate-400 mt-1">Jl. Raya Tarumajaya No.1, Tarumajaya, Kec.
+              Tarumajaya, Kabupaten Bekasi, Jawa Barat 17212</p>
+          </div>
+        </div>
+        <!-- Google Maps Embed -->
+        <div class="mt-8 rounded-2xl overflow-hidden border shadow-lg" style="border-color: #334155;">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.5!2d106.987729!3d-6.1585382!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6a20c558a1c7df%3A0xc9b612f870551fca!2sSMKN%201%20Tarumajaya!5e0!3m2!1sen!2sid!4v1700000000!5m2!1sen!2sid"
+            width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="flex justify-center gap-4 mt-8"><a href="https://www.instagram.com/osis_smkn1tarumajaya/"
+            class="w-10 h-10 rounded-full flex items-center justify-center border transition-all hover:scale-110"
+            style="border-color: #334155; color: #94a3b8;"> <i data-lucide="instagram"
+              style="width:18px;height:18px;"></i> </a> <a href="#"
+            class="w-10 h-10 rounded-full flex items-center justify-center border transition-all hover:scale-110"
+            style="border-color: #334155; color: #94a3b8;"> <i data-lucide="youtube"
+              style="width:18px;height:18px;"></i> </a> <a href="#"
+            class="w-10 h-10 rounded-full flex items-center justify-center border transition-all hover:scale-110"
+            style="border-color: #334155; color: #b1c3f5;"> <i data-lucide="twitter"
+              style="width:18px;height:18px;"></i> </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="arsip" class="py-20" style="background: #f8fafc;">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+        <h2 class="section-title text-3xl sm:text-4xl font-bold" style="color:#0f172a;">Arsip Foto</h2>
+        <p class="text-slate-600 mt-2 mb-6">Klik tombol di bawah untuk melihat arsip lengkap di halaman terpisah.</p>
+        <a href="arsip.html"
+          class="inline-block px-8 py-3 bg-blue-500 text-white font-semibold rounded-xl shadow-lg hover:bg-blue-600 transition">Buka
+          Arsip</a>
+      </div>
+    </section><!-- Footer -->
+    <footer class="py-6 text-center" style="background: #020617;">
+      <p class="text-xs text-slate-500">© 2026 OSIS SMKN 1 Tarumajaya. Dibuat oleh Mahasiswa Universitas Nusa Mandiri.
+      </p>
+    </footer>
   </div><!-- Toast container -->
   <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2"></div>
   <div id="finance-review-modal" class="fixed inset-0 hidden flex items-center justify-center bg-black/50 p-4 z-50">
-   <div class="w-full max-w-4xl rounded-3xl bg-white p-6 shadow-2xl">
-    <div class="flex items-center justify-between mb-5">
-     <div>
-      <h3 class="text-xl font-bold" style="color: #0f172a;">Review Laporan Keuangan</h3>
-      <p class="text-sm text-slate-500">Pantau dan setujui pengeluaran divisi untuk transparansi keuangan.</p>
-     </div>
-     <button onclick="closeFinanceReview()" class="text-slate-500 hover:text-slate-900">✕</button>
+    <div class="w-full max-w-4xl rounded-3xl bg-white p-6 shadow-2xl">
+      <div class="flex items-center justify-between mb-5">
+        <div>
+          <h3 class="text-xl font-bold" style="color: #0f172a;">Review Laporan Keuangan</h3>
+          <p class="text-sm text-slate-500">Pantau dan setujui pengeluaran divisi untuk transparansi keuangan.</p>
+        </div>
+        <button onclick="closeFinanceReview()" class="text-slate-500 hover:text-slate-900">✕</button>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-3 py-2 text-left font-semibold">Tanggal</th>
+              <th class="px-3 py-2 text-left font-semibold">Keterangan</th>
+              <th class="px-3 py-2 text-left font-semibold">Nominal</th>
+              <th class="px-3 py-2 text-left font-semibold">Diajukan Oleh</th>
+              <th class="px-3 py-2 text-left font-semibold">Bukti</th>
+              <th class="px-3 py-2 text-left font-semibold">Status</th>
+            </tr>
+          </thead>
+          <tbody id="finance-review-table-body" class="divide-y divide-gray-200">
+            <tr>
+              <td colspan="6" class="px-3 py-4 text-center text-gray-500">Belum ada data pengeluaran</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-    <div class="overflow-x-auto">
-     <table class="w-full text-sm">
-      <thead class="bg-gray-50">
-       <tr>
-        <th class="px-3 py-2 text-left font-semibold">Tanggal</th>
-        <th class="px-3 py-2 text-left font-semibold">Keterangan</th>
-        <th class="px-3 py-2 text-left font-semibold">Nominal</th>
-        <th class="px-3 py-2 text-left font-semibold">Diajukan Oleh</th>
-        <th class="px-3 py-2 text-left font-semibold">Bukti</th>
-        <th class="px-3 py-2 text-left font-semibold">Status</th>
-       </tr>
-      </thead>
-      <tbody id="finance-review-table-body" class="divide-y divide-gray-200">
-       <tr>
-        <td colspan="6" class="px-3 py-4 text-center text-gray-500">Belum ada data pengeluaran</td>
-       </tr>
-      </tbody>
-     </table>
+  </div>
+
+  <!-- Login Modal -->
+  <div id="login-modal" class="fixed inset-0 hidden flex items-center justify-center bg-black/50 p-4 z-50">
+    <div class="w-full max-w-md rounded-3xl bg-white p-6 shadow-2xl">
+      <div class="flex items-center justify-between mb-6">
+        <h3 class="text-xl font-bold text-gray-900">Login OSIS</h3>
+        <button onclick="closeAuthModal()" class="text-gray-400 hover:text-gray-600">
+          <i data-lucide="x" style="width:24px;height:24px;"></i>
+        </button>
+      </div>
+
+      <form id="login-form" class="space-y-4">
+        <div>
+          <label for="login-username" class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+          <input type="text" id="login-username" required
+            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition"
+            placeholder="Masukkan username">
+        </div>
+
+        <div>
+          <label for="login-password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+          <input type="password" id="login-password" required
+            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition"
+            placeholder="Masukkan password">
+        </div>
+
+        <button type="submit"
+          class="w-full py-3 bg-gradient-to-r from-sky-500 to-cyan-500 text-white font-semibold rounded-xl hover:from-sky-600 hover:to-cyan-600 transition-all duration-200">
+          Login
+        </button>
+      </form>
+
+      <div class="mt-6 p-4 bg-gray-50 rounded-xl">
+        <h4 class="text-sm font-semibold text-gray-900 mb-2">Test Accounts:</h4>
+        <div class="text-xs text-gray-600 space-y-1">
+          <div><strong>Admin:</strong> admin / admin123</div>
+          <div><strong>Ketua:</strong> ketua / ketua123</div>
+          <div><strong>Wakil:</strong> wakil / wakil123</div>
+          <div><strong>Ketua Divisi:</strong> ketuadivisi / divisi123</div>
+          <div><strong>Anggota:</strong> anggota / anggota123</div>
+        </div>
+      </div>
     </div>
-   </div>
   </div>
   <script>
-  // Config & defaults
-  const defaultConfig = {
-    background_color: '#f8fafc',
-    surface_color: '#ffffff',
-    text_color: '#0f172a',
-    primary_action_color: '#0ea5e9',
-    secondary_action_color: '#06b6d4',
-    font_family: 'Plus Jakarta Sans',
-    font_size: 16,
-    school_name: 'OSIS SMK',
-    hero_title: 'OSIS SMK Negeri 1',
-    hero_subtitle: 'Membangun Generasi Pemimpin Masa Depan',
-    ketua_name: 'Ahmad Rizky',
-    wakil_name: 'Siti Nurhaliza',
-    sekretaris_name: 'Budi Santoso',
-    bendahara_name: 'Dewi Lestari',
-    contact_email: 'osis@smkn1.sch.id',
-    contact_phone: '(021) 1234-5678',
-    contact_address: 'Jl. Pendidikan No. 1, Jakarta',
-    stats_divisi: '8',
-    stats_anggota: '50+',
-    stats_program: '20+'
-  };
+    // Config & defaults
+    const defaultConfig = {
+      background_color: '#f8fafc',
+      surface_color: '#ffffff',
+      text_color: '#0f172a',
+      primary_action_color: '#0ea5e9',
+      secondary_action_color: '#06b6d4',
+      font_family: 'Plus Jakarta Sans',
+      font_size: 16,
+      school_name: 'OSIS SMK',
+      hero_title: 'OSIS SMK Negeri 1',
+      hero_subtitle: 'Membangun Generasi Pemimpin Masa Depan',
+      ketua_name: 'Ahmad Rizky',
+      wakil_name: 'Siti Nurhaliza',
+      sekretaris_name: 'Budi Santoso',
+      bendahara_name: 'Dewi Lestari',
+      contact_email: 'osis@smkn1.sch.id',
+      contact_phone: '(021) 1234-5678',
+      contact_address: 'Jl. Pendidikan No. 1, Jakarta',
+      stats_divisi: '8',
+      stats_anggota: '50+',
+      stats_program: '20+'
+    };
 
-  let selectedRating = 0;
-  const osisUsers = [
-    { username: 'admin', password: 'admin123', display: 'Admin', role: 'admin' },
-    { username: 'ketua', password: 'ketua123', display: 'Ketua OSIS', role: 'ketua' },
-    { username: 'wakil', password: 'wakil123', display: 'Wakil Ketua', role: 'wakil' },
-    { username: 'ketuadivisi', password: 'divisi123', display: 'Ketua Divisi', role: 'ketua_divisi' },
-    { username: 'anggota', password: 'anggota123', display: 'Anggota OSIS', role: 'user' }
-  ];
-  let currentUser = null;
+    let selectedRating = 0;
+    const osisUsers = [
+      { username: 'admin', password: 'admin123', display: 'Admin', role: 'admin' },
+      { username: 'ketua', password: 'ketua123', display: 'Ketua OSIS', role: 'ketua' },
+      { username: 'wakil', password: 'wakil123', display: 'Wakil Ketua', role: 'wakil' },
+      { username: 'ketuadivisi', password: 'divisi123', display: 'Ketua Divisi', role: 'ketua_divisi' },
+      { username: 'anggota', password: 'anggota123', display: 'Anggota OSIS', role: 'user' }
+    ];
+    let currentUser = null;
 
-  function getSavedUser() {
-    try {
-      return JSON.parse(localStorage.getItem('osisUser'));
-    } catch {
-      return null;
-    }
-  }
-
-  function saveUser(user) {
-    currentUser = user;
-    localStorage.setItem('osisUser', JSON.stringify(user));
-    updateRoleUI();
-  }
-
-  function clearUser() {
-    currentUser = null;
-    localStorage.removeItem('osisUser');
-    updateRoleUI();
-  }
-
-  function openAuthModal() {
-    document.getElementById('login-modal').classList.remove('hidden');
-  }
-
-  function closeAuthModal() {
-    document.getElementById('login-modal').classList.add('hidden');
-  }
-
-  function handleAuthButton() {
-    if (currentUser) {
-      clearUser();
-      showToast('Anda telah logout.', 'success');
-    } else {
-      openAuthModal();
-    }
-  }
-
-  function renderRolePanel() {
-    const panelContent = document.getElementById('role-panel-content');
-    if (!panelContent) return;
-    if (!currentUser) {
-      panelContent.innerHTML = '<p class="text-slate-600">Silakan login untuk melihat fitur akses role.</p>';
-      return;
+    function getSavedUser() {
+      try {
+        return JSON.parse(localStorage.getItem('osisUser'));
+      } catch {
+        return null;
+      }
     }
 
-    if (currentUser.role === 'admin') {
-      panelContent.innerHTML = `
+    function saveUser(user) {
+      currentUser = user;
+      localStorage.setItem('osisUser', JSON.stringify(user));
+      updateRoleUI();
+    }
+
+    function clearUser() {
+      currentUser = null;
+      localStorage.removeItem('osisUser');
+      updateRoleUI();
+    }
+
+    function openAuthModal() {
+      document.getElementById('login-modal').classList.remove('hidden');
+    }
+
+    function closeAuthModal() {
+      document.getElementById('login-modal').classList.add('hidden');
+    }
+
+    function handleAuthButton() {
+      if (currentUser) {
+        clearUser();
+        showToast('Anda telah logout.', 'success');
+      } else {
+        openAuthModal();
+      }
+    }
+
+    // Login form handler
+    document.getElementById('login-form')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      console.log('Login form submitted');
+
+      const username = document.getElementById('login-username').value.trim();
+      const password = document.getElementById('login-password').value;
+
+      console.log('Username:', username, 'Password:', password);
+
+      // Find user
+      const user = osisUsers.find(u => u.username === username && u.password === password);
+      console.log('Found user:', user);
+
+      if (user) {
+        saveUser(user);
+        closeAuthModal();
+        showToast(`Selamat datang, ${user.display}!`, 'success');
+        console.log('Login successful');
+      } else {
+        showToast('Username atau password salah!', 'error');
+        console.log('Login failed');
+      }
+    });
+
+    function renderRolePanel() {
+      const panelContent = document.getElementById('role-panel-content');
+      if (!panelContent) return;
+      if (!currentUser) {
+        panelContent.innerHTML = '<p class="text-slate-600">Silakan login untuk melihat fitur akses role.</p>';
+        return;
+      }
+
+      if (currentUser.role === 'admin') {
+        panelContent.innerHTML = `
         <h3 class="text-xl font-semibold mb-4">Dashboard Admin</h3>
         <p class="text-slate-600 mb-4">Admin dapat melihat semua pengguna dan akses.</p>
         <div class="space-y-3 text-sm text-slate-700">
@@ -593,11 +972,11 @@
           </div>
         </div>
       `;
-      return;
-    }
+        return;
+      }
 
-    if (currentUser.role === 'ketua') {
-      panelContent.innerHTML = `
+      if (currentUser.role === 'ketua') {
+        panelContent.innerHTML = `
         <h3 class="text-xl font-semibold mb-4">Panel Ketua</h3>
         <p class="text-slate-600 mb-4">Ketua OSIS dapat mengakses ringkasan feedback dan laporan.</p>
         <div class="space-y-3 text-sm text-slate-700">
@@ -618,11 +997,11 @@
           </div>
         </div>
       `;
-      return;
-    }
+        return;
+      }
 
-    if (currentUser.role === 'wakil') {
-      panelContent.innerHTML = `
+      if (currentUser.role === 'wakil') {
+        panelContent.innerHTML = `
         <h3 class="text-xl font-semibold mb-4">Panel Wakil Ketua</h3>
         <p class="text-slate-600 mb-4">Wakil Ketua dapat melihat data laporan internal dan mendukung Ketua.</p>
         <div class="space-y-3 text-sm text-slate-700">
@@ -630,11 +1009,11 @@
           <p><strong>Fitur:</strong> Bantu evaluasi program OSIS.</p>
         </div>
       `;
-      return;
-    }
+        return;
+      }
 
-    if (currentUser.role === 'ketua_divisi') {
-      panelContent.innerHTML = `
+      if (currentUser.role === 'ketua_divisi') {
+        panelContent.innerHTML = `
         <h3 class="text-xl font-semibold mb-4">Panel Ketua Divisi</h3>
         <p class="text-slate-600 mb-4">Ketua divisi dapat mengakses informasi divisi dan mengelola pelaporan keuangan.</p>
         <div class="space-y-4">
@@ -666,12 +1045,12 @@
           </div>
         </div>
       `;
-      // Load finance data after rendering
-      setTimeout(() => loadFinanceData(), 100);
-      return;
-    }
+        // Load finance data after rendering
+        setTimeout(() => loadFinanceData(), 100);
+        return;
+      }
 
-    panelContent.innerHTML = `
+      panelContent.innerHTML = `
       <h3 class="text-xl font-semibold mb-4">Akses Anggota</h3>
       <p class="text-slate-600 mb-4">Anggota dapat menggunakan fitur umum seperti feedback dan pendaftaran.</p>
       <div class="space-y-3 text-sm text-slate-700">
@@ -679,81 +1058,81 @@
         <p><strong>Fitur:</strong> Akses form umum dan lihat informasi publik.</p>
       </div>
     `;
-  }
-
-  function updateRoleUI() {
-    const authBar = document.getElementById('user-auth-bar');
-    const authButton = document.getElementById('auth-button');
-    const roleLabel = document.getElementById('user-role-label');
-    const rolePanel = document.getElementById('role-panel');
-    const ketuaDivisiAccess = document.getElementById('ketua-divisi-access');
-    if (!authBar || !authButton || !roleLabel || !rolePanel) return;
-
-    if (ketuaDivisiAccess) {
-      ketuaDivisiAccess.classList.add('hidden');
     }
 
-    authBar.classList.remove('hidden');
-    if (currentUser) {
-      roleLabel.textContent = `${currentUser.display} (${currentUser.role})`;
-      authButton.textContent = 'Logout';
-      rolePanel.classList.remove('hidden');
-      if (currentUser.role === 'ketua_divisi' && ketuaDivisiAccess) {
-        ketuaDivisiAccess.classList.remove('hidden');
+    function updateRoleUI() {
+      const authBar = document.getElementById('user-auth-bar');
+      const authButton = document.getElementById('auth-button');
+      const roleLabel = document.getElementById('user-role-label');
+      const rolePanel = document.getElementById('role-panel');
+      const ketuaDivisiAccess = document.getElementById('ketua-divisi-access');
+      if (!authBar || !authButton || !roleLabel || !rolePanel) return;
+
+      if (ketuaDivisiAccess) {
+        ketuaDivisiAccess.classList.add('hidden');
       }
-    } else {
-      roleLabel.textContent = 'Guest';
-      authButton.textContent = 'Login';
-      rolePanel.classList.add('hidden');
+
+      authBar.classList.remove('hidden');
+      if (currentUser) {
+        roleLabel.textContent = `${currentUser.display} (${currentUser.role})`;
+        authButton.textContent = 'Logout';
+        rolePanel.classList.remove('hidden');
+        if (currentUser.role === 'ketua_divisi' && ketuaDivisiAccess) {
+          ketuaDivisiAccess.classList.remove('hidden');
+        }
+      } else {
+        roleLabel.textContent = 'Guest';
+        authButton.textContent = 'Login';
+        rolePanel.classList.add('hidden');
+      }
+      renderRolePanel();
+      // Update finance summary if admin or ketua
+      if (currentUser && (currentUser.role === 'admin' || currentUser.role === 'ketua')) {
+        updateFinanceSummary();
+      }
     }
-    renderRolePanel();
-    // Update finance summary if admin or ketua
-    if (currentUser && (currentUser.role === 'admin' || currentUser.role === 'ketua')) {
-      updateFinanceSummary();
+
+    function openStatsEditor() {
+      if (!currentUser || (currentUser.role !== 'admin' && currentUser.role !== 'ketua')) return;
+
+      document.getElementById('edit-stats-divisi').value = document.getElementById('stats-divisi').textContent;
+      document.getElementById('edit-stats-anggota').value = document.getElementById('stats-anggota').textContent;
+      document.getElementById('edit-stats-program').value = document.getElementById('stats-program').textContent;
+
+      document.getElementById('stats-editor-modal').classList.remove('hidden');
     }
-  }
 
-  function openStatsEditor() {
-    if (!currentUser || (currentUser.role !== 'admin' && currentUser.role !== 'ketua')) return;
-    
-    document.getElementById('edit-stats-divisi').value = document.getElementById('stats-divisi').textContent;
-    document.getElementById('edit-stats-anggota').value = document.getElementById('stats-anggota').textContent;
-    document.getElementById('edit-stats-program').value = document.getElementById('stats-program').textContent;
-    
-    document.getElementById('stats-editor-modal').classList.remove('hidden');
-  }
-
-  function closeStatsEditor() {
-    document.getElementById('stats-editor-modal').classList.add('hidden');
-  }
-
-  function openFinanceModal() {
-    if (!currentUser || currentUser.role !== 'ketua_divisi') return;
-    
-    // Set default date to today
-    const today = new Date().toISOString().split('T')[0];
-    document.getElementById('finance-date').value = today;
-    
-    document.getElementById('finance-modal').classList.remove('hidden');
-  }
-
-  function closeFinanceModal() {
-    document.getElementById('finance-modal').classList.add('hidden');
-    document.getElementById('finance-form').reset();
-  }
-
-  function loadFinanceData() {
-    const financeData = JSON.parse(localStorage.getItem('osisFinanceData') || '[]');
-    const tableBody = document.getElementById('finance-table-body');
-    
-    if (!tableBody) return;
-    
-    if (financeData.length === 0) {
-      tableBody.innerHTML = '<tr><td colspan="5" class="px-3 py-4 text-center text-gray-500">Belum ada data pengeluaran</td></tr>';
-      return;
+    function closeStatsEditor() {
+      document.getElementById('stats-editor-modal').classList.add('hidden');
     }
-    
-    tableBody.innerHTML = financeData.map(item => `
+
+    function openFinanceModal() {
+      if (!currentUser || currentUser.role !== 'ketua_divisi') return;
+
+      // Set default date to today
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('finance-date').value = today;
+
+      document.getElementById('finance-modal').classList.remove('hidden');
+    }
+
+    function closeFinanceModal() {
+      document.getElementById('finance-modal').classList.add('hidden');
+      document.getElementById('finance-form').reset();
+    }
+
+    function loadFinanceData() {
+      const financeData = JSON.parse(localStorage.getItem('osisFinanceData') || '[]');
+      const tableBody = document.getElementById('finance-table-body');
+
+      if (!tableBody) return;
+
+      if (financeData.length === 0) {
+        tableBody.innerHTML = '<tr><td colspan="5" class="px-3 py-4 text-center text-gray-500">Belum ada data pengeluaran</td></tr>';
+        return;
+      }
+
+      tableBody.innerHTML = financeData.map(item => `
       <tr class="hover:bg-gray-50">
         <td class="px-3 py-2 text-sm">${new Date(item.date).toLocaleDateString('id-ID')}</td>
         <td class="px-3 py-2 text-sm">${item.description}</td>
@@ -768,31 +1147,31 @@
         </td>
       </tr>
     `).join('');
-  }
-
-  function openFinanceReview() {
-    if (!currentUser || (currentUser.role !== 'admin' && currentUser.role !== 'ketua')) return;
-    
-    document.getElementById('finance-review-modal').classList.remove('hidden');
-    loadFinanceReviewData();
-  }
-
-  function closeFinanceReview() {
-    document.getElementById('finance-review-modal').classList.add('hidden');
-  }
-
-  function loadFinanceReviewData() {
-    const financeData = JSON.parse(localStorage.getItem('osisFinanceData') || '[]');
-    const tableBody = document.getElementById('finance-review-table-body');
-    
-    if (!tableBody) return;
-    
-    if (financeData.length === 0) {
-      tableBody.innerHTML = '<tr><td colspan="6" class="px-3 py-4 text-center text-gray-500">Belum ada data pengeluaran</td></tr>';
-      return;
     }
-    
-    tableBody.innerHTML = financeData.map(item => `
+
+    function openFinanceReview() {
+      if (!currentUser || (currentUser.role !== 'admin' && currentUser.role !== 'ketua')) return;
+
+      document.getElementById('finance-review-modal').classList.remove('hidden');
+      loadFinanceReviewData();
+    }
+
+    function closeFinanceReview() {
+      document.getElementById('finance-review-modal').classList.add('hidden');
+    }
+
+    function loadFinanceReviewData() {
+      const financeData = JSON.parse(localStorage.getItem('osisFinanceData') || '[]');
+      const tableBody = document.getElementById('finance-review-table-body');
+
+      if (!tableBody) return;
+
+      if (financeData.length === 0) {
+        tableBody.innerHTML = '<tr><td colspan="6" class="px-3 py-4 text-center text-gray-500">Belum ada data pengeluaran</td></tr>';
+        return;
+      }
+
+      tableBody.innerHTML = financeData.map(item => `
       <tr class="hover:bg-gray-50">
         <td class="px-3 py-2 text-sm">${new Date(item.date).toLocaleDateString('id-ID')}</td>
         <td class="px-3 py-2 text-sm">${item.description}</td>
@@ -814,499 +1193,502 @@
         </td>
       </tr>
     `).join('');
-  }
-
-  function updateFinanceSummary() {
-    const financeData = JSON.parse(localStorage.getItem('osisFinanceData') || '[]');
-    
-    const summary = financeData.reduce((acc, item) => {
-      acc[item.status] = (acc[item.status] || 0) + 1;
-      return acc;
-    }, { approved: 0, pending: 0, rejected: 0 });
-    
-    document.getElementById('total-approved').textContent = summary.approved;
-    document.getElementById('total-pending').textContent = summary.pending;
-    document.getElementById('total-rejected').textContent = summary.rejected;
-  }
-
-  function updateFinanceStatus(id, status) {
-    const financeData = JSON.parse(localStorage.getItem('osisFinanceData') || '[]');
-    const index = financeData.findIndex(item => item.id === id);
-    
-    if (index !== -1) {
-      financeData[index].status = status;
-      financeData[index].reviewedBy = currentUser.username;
-      financeData[index].reviewedAt = new Date().toISOString();
-      
-      localStorage.setItem('osisFinanceData', JSON.stringify(financeData));
-      loadFinanceReviewData();
-      loadFinanceData(); // Update tabel di panel ketua_divisi juga
-      updateFinanceSummary(); // Update summary counters
-      
-      showToast(`Laporan ${status === 'approved' ? 'disetujui' : 'ditolak'}!`, 'success');
     }
-  }
 
-  currentUser = getSavedUser();
-  updateRoleUI();
+    function updateFinanceSummary() {
+      const financeData = JSON.parse(localStorage.getItem('osisFinanceData') || '[]');
 
-  // Star rating
-  document.querySelectorAll('#star-rating .star-btn').forEach(star => {
-    star.addEventListener('click', () => {
-      selectedRating = parseInt(star.dataset.star);
-      updateStars();
-    });
-  });
+      const summary = financeData.reduce((acc, item) => {
+        acc[item.status] = (acc[item.status] || 0) + 1;
+        return acc;
+      }, { approved: 0, pending: 0, rejected: 0 });
 
-  function updateStars() {
-    document.querySelectorAll('#star-rating .star-btn').forEach(s => {
-      const v = parseInt(s.dataset.star);
-      s.style.color = v <= selectedRating ? '#facc15' : '#cbd5e1';
-    });
-  }
-
-  // Toast
-  function showToast(msg, type) {
-    const t = document.createElement('div');
-    t.className = 'toast-enter px-5 py-3 rounded-xl text-sm font-medium shadow-lg';
-    t.style.background = type === 'success' ? '#059669' : '#dc2626';
-    t.style.color = 'white';
-    t.textContent = msg;
-    document.getElementById('toast-container').appendChild(t);
-    setTimeout(() => t.remove(), 3500);
-  }
-
-  // Mobile menu
-  function toggleMobileMenu() {
-    document.getElementById('mobile-menu').classList.toggle('open');
-  }
-  function closeMobileMenu() {
-    document.getElementById('mobile-menu').classList.remove('open');
-  }
-
-  let isSubscribed = localStorage.getItem('subscribed') === 'true';
-
-  // Update bell icon
-  function updateBellIcon() {
-    const bellIcon = document.querySelector('#notification-bell i');
-    if (isSubscribed) {
-      bellIcon.setAttribute('data-lucide', 'bell-check');
-    } else {
-      bellIcon.setAttribute('data-lucide', 'bell');
+      document.getElementById('total-approved').textContent = summary.approved;
+      document.getElementById('total-pending').textContent = summary.pending;
+      document.getElementById('total-rejected').textContent = summary.rejected;
     }
-    lucide.createIcons();
-  }
-  updateBellIcon();
 
-  // Notification bell
-  function toggleNotification() {
-    document.getElementById('notification-bell').classList.add('bell-shake');
-    setTimeout(() => {
-      document.getElementById('notification-bell').classList.remove('bell-shake');
-    }, 500);
-    if (!isSubscribed) {
-      const email = prompt('Masukkan email untuk subscribe notifikasi:');
-      if (email) {
-        // Simulate subscribe
-        isSubscribed = true;
-        localStorage.setItem('subscribed', 'true');
-        updateBellIcon();
-        showToast('Berhasil subscribe! ✅', 'success');
+    function updateFinanceStatus(id, status) {
+      const financeData = JSON.parse(localStorage.getItem('osisFinanceData') || '[]');
+      const index = financeData.findIndex(item => item.id === id);
+
+      if (index !== -1) {
+        financeData[index].status = status;
+        financeData[index].reviewedBy = currentUser.username;
+        financeData[index].reviewedAt = new Date().toISOString();
+
+        localStorage.setItem('osisFinanceData', JSON.stringify(financeData));
+        loadFinanceReviewData();
+        loadFinanceData(); // Update tabel di panel ketua_divisi juga
+        updateFinanceSummary(); // Update summary counters
+
+        showToast(`Laporan ${status === 'approved' ? 'disetujui' : 'ditolak'}!`, 'success');
       }
-    } else {
-      showToast('Anda sudah subscribe! 🔔', 'success');
-    }
-  }
-
-  // Set up arsip data (tanpa filter per tahun)
-  const arsipData = [
-    { year: 2022, title: 'Kegiatan Seni', img: 'https://via.placeholder.com/420x280?text=Seni+2022' },
-    { year: 2022, title: 'Olahraga', img: 'https://via.placeholder.com/420x280?text=Olahraga+2022' },
-    { year: 2023, title: 'Bakti Sosial', img: 'https://via.placeholder.com/420x280?text=Bakti+Sosial+2023' },
-    { year: 2023, title: 'Expo Inovasi', img: 'https://via.placeholder.com/420x280?text=Expo+2023' },
-    { year: 2024, title: 'Pentas Musik', img: 'https://via.placeholder.com/420x280?text=Pentas+Musik+2024' },
-    { year: 2024, title: 'Pendakian', img: 'https://via.placeholder.com/420x280?text=Pendakian+2024' }
-  ];
-
-  function renderArsip() {
-    const container = document.getElementById('polaroid-container');
-    container.innerHTML = '';
-
-    if (!arsipData.length) {
-      container.innerHTML = '<p class="text-slate-500">Belum ada arsip.</p>';
-      return;
     }
 
-    arsipData.forEach((item, index) => {
-      const card = document.createElement('div');
-      card.className = 'polaroid';
-      card.style.transform = `rotate(${(index % 2 === 0 ? -2 : 2)}deg)`;
-      card.innerHTML = `
+    currentUser = getSavedUser();
+    updateRoleUI();
+
+    // Star rating
+    document.querySelectorAll('#star-rating .star-btn').forEach(star => {
+      star.addEventListener('click', () => {
+        selectedRating = parseInt(star.dataset.star);
+        updateStars();
+      });
+    });
+
+    function updateStars() {
+      document.querySelectorAll('#star-rating .star-btn').forEach(s => {
+        const v = parseInt(s.dataset.star);
+        s.style.color = v <= selectedRating ? '#facc15' : '#cbd5e1';
+      });
+    }
+
+    // Toast
+    function showToast(msg, type) {
+      const t = document.createElement('div');
+      t.className = 'toast-enter px-5 py-3 rounded-xl text-sm font-medium shadow-lg';
+      t.style.background = type === 'success' ? '#059669' : '#dc2626';
+      t.style.color = 'white';
+      t.textContent = msg;
+      document.getElementById('toast-container').appendChild(t);
+      setTimeout(() => t.remove(), 3500);
+    }
+
+    // Mobile menu
+    function toggleMobileMenu() {
+      document.getElementById('mobile-menu').classList.toggle('open');
+    }
+    function closeMobileMenu() {
+      document.getElementById('mobile-menu').classList.remove('open');
+    }
+
+    let isSubscribed = localStorage.getItem('subscribed') === 'true';
+
+    // Update bell icon
+    function updateBellIcon() {
+      const bellIcon = document.querySelector('#notification-bell i');
+      if (isSubscribed) {
+        bellIcon.setAttribute('data-lucide', 'bell-check');
+      } else {
+        bellIcon.setAttribute('data-lucide', 'bell');
+      }
+      lucide.createIcons();
+    }
+    updateBellIcon();
+
+    // Notification bell
+    function toggleNotification() {
+      document.getElementById('notification-bell').classList.add('bell-shake');
+      setTimeout(() => {
+        document.getElementById('notification-bell').classList.remove('bell-shake');
+      }, 500);
+      if (!isSubscribed) {
+        const email = prompt('Masukkan email untuk subscribe notifikasi:');
+        if (email) {
+          // Simulate subscribe
+          isSubscribed = true;
+          localStorage.setItem('subscribed', 'true');
+          updateBellIcon();
+          showToast('Berhasil subscribe! ✅', 'success');
+        }
+      } else {
+        showToast('Anda sudah subscribe! 🔔', 'success');
+      }
+    }
+
+    // Set up arsip data (tanpa filter per tahun)
+    const arsipData = [
+      { year: 2022, title: 'Kegiatan Seni', img: 'https://via.placeholder.com/420x280?text=Seni+2022' },
+      { year: 2022, title: 'Olahraga', img: 'https://via.placeholder.com/420x280?text=Olahraga+2022' },
+      { year: 2023, title: 'Bakti Sosial', img: 'https://via.placeholder.com/420x280?text=Bakti+Sosial+2023' },
+      { year: 2023, title: 'Expo Inovasi', img: 'https://via.placeholder.com/420x280?text=Expo+2023' },
+      { year: 2024, title: 'Pentas Musik', img: 'https://via.placeholder.com/420x280?text=Pentas+Musik+2024' },
+      { year: 2024, title: 'Pendakian', img: 'https://via.placeholder.com/420x280?text=Pendakian+2024' }
+    ];
+
+    function renderArsip() {
+      const container = document.getElementById('polaroid-container');
+      container.innerHTML = '';
+
+      if (!arsipData.length) {
+        container.innerHTML = '<p class="text-slate-500">Belum ada arsip.</p>';
+        return;
+      }
+
+      arsipData.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = 'polaroid';
+        card.style.transform = `rotate(${(index % 2 === 0 ? -2 : 2)}deg)`;
+        card.innerHTML = `
         <img src="${item.img}" alt="${item.title}">
         <div class="caption">${item.title}</div>
         <div class="meta">Tahun ${item.year}</div>
       `;
 
-      card.addEventListener('click', () => {
-        const detail = `Judul: ${item.title}\nTahun: ${item.year}`;
-        alert(detail);
-        card.classList.add('selected');
-        setTimeout(() => card.classList.remove('selected'), 500);
+        card.addEventListener('click', () => {
+          const detail = `Judul: ${item.title}\nTahun: ${item.year}`;
+          alert(detail);
+          card.classList.add('selected');
+          setTimeout(() => card.classList.remove('selected'), 500);
+        });
+
+        container.appendChild(card);
+      });
+    }
+
+    function enableSwipeScroll() {
+      const slider = document.getElementById('polaroid-container');
+      let isDragging = false;
+      let startX, scrollLeft;
+
+      slider.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+        slider.style.cursor = 'grabbing';
       });
 
-      container.appendChild(card);
-    });
-  }
+      slider.addEventListener('mouseleave', () => { isDragging = false; slider.style.cursor = 'grab'; });
+      slider.addEventListener('mouseup', () => { isDragging = false; slider.style.cursor = 'grab'; });
+      slider.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        const walk = (x - startX) * 1.2;
+        slider.scrollLeft = scrollLeft - walk;
+      });
 
-  function enableSwipeScroll() {
-    const slider = document.getElementById('polaroid-container');
-    let isDragging = false;
-    let startX, scrollLeft;
+      slider.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        startX = e.touches[0].pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+      });
+      slider.addEventListener('touchend', () => { isDragging = false; });
+      slider.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        const x = e.touches[0].pageX - slider.offsetLeft;
+        const walk = (x - startX) * 1.2;
+        slider.scrollLeft = scrollLeft - walk;
+      });
+    }
 
-    slider.addEventListener('mousedown', (e) => {
-      isDragging = true;
-      startX = e.pageX - slider.offsetLeft;
-      scrollLeft = slider.scrollLeft;
-      slider.style.cursor = 'grabbing';
-    });
-
-    slider.addEventListener('mouseleave', () => { isDragging = false; slider.style.cursor = 'grab'; });
-    slider.addEventListener('mouseup', () => { isDragging = false; slider.style.cursor = 'grab'; });
-    slider.addEventListener('mousemove', (e) => {
-      if (!isDragging) return;
+    document.getElementById('arsip-form').addEventListener('submit', (e) => {
       e.preventDefault();
-      const x = e.pageX - slider.offsetLeft;
-      const walk = (x - startX) * 1.2;
-      slider.scrollLeft = scrollLeft - walk;
+      const title = document.getElementById('arsip-title').value.trim();
+      const img = document.getElementById('arsip-img').value.trim();
+      const year = Number(document.getElementById('arsip-year').value) || new Date().getFullYear();
+
+      if (!title || !img) {
+        alert('Lengkapi judul dan URL foto.');
+        return;
+      }
+
+      arsipData.push({ year, title, img });
+      renderArsip();
+
+      const feedback = document.getElementById('arsip-feedback');
+      feedback.classList.remove('hidden');
+      setTimeout(() => feedback.classList.add('hidden'), 3000);
+
+      e.target.reset();
     });
 
-    slider.addEventListener('touchstart', (e) => {
-      isDragging = true;
-      startX = e.touches[0].pageX - slider.offsetLeft;
-      scrollLeft = slider.scrollLeft;
-    });
-    slider.addEventListener('touchend', () => { isDragging = false; });
-    slider.addEventListener('touchmove', (e) => {
-      if (!isDragging) return;
-      const x = e.touches[0].pageX - slider.offsetLeft;
-      const walk = (x - startX) * 1.2;
-      slider.scrollLeft = scrollLeft - walk;
-    });
-  }
-
-  document.getElementById('arsip-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const title = document.getElementById('arsip-title').value.trim();
-    const img = document.getElementById('arsip-img').value.trim();
-    const year = Number(document.getElementById('arsip-year').value) || new Date().getFullYear();
-
-    if (!title || !img) {
-      alert('Lengkapi judul dan URL foto.');
-      return;
-    }
-
-    arsipData.push({ year, title, img });
     renderArsip();
+    enableSwipeScroll();
 
-    const feedback = document.getElementById('arsip-feedback');
-    feedback.classList.remove('hidden');
-    setTimeout(() => feedback.classList.add('hidden'), 3000);
-
-    e.target.reset();
-  });
-
-  renderArsip();
-  enableSwipeScroll();
-
-  // Data SDK init
-  async function initDataSdk() {
-    const result = await window.dataSdk.init({
-      onDataChanged(data) { /* write-only app */ }
-    });
-    if (!result.isOk) console.error('Data SDK init failed');
-  }
-  initDataSdk();
-
-  // Register form
-  document.getElementById('register-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const btn = document.getElementById('reg-submit');
-    btn.disabled = true;
-    btn.textContent = 'Mengirim...';
-    btn.style.opacity = '0.6';
-
-    const formData = new FormData(document.getElementById('register-form'));
-
-    try {
-      const response = await fetch('handle_forms.php?action=register', {
-        method: 'POST',
-        body: formData
+    // Data SDK init
+    async function initDataSdk() {
+      const result = await window.dataSdk.init({
+        onDataChanged(data) { /* write-only app */ }
       });
-
-      const result = await response.json();
-      
-      btn.disabled = false;
-      btn.textContent = 'Kirim Pendaftaran';
-      btn.style.opacity = '1';
-
-      if (result.status === 'success') {
-        showToast('✅ ' + result.message, 'success');
-        document.getElementById('register-form').reset();
-      } else {
-        showToast('❌ ' + result.message, 'error');
-      }
-    } catch (error) {
-      btn.disabled = false;
-      btn.textContent = 'Kirim Pendaftaran';
-      btn.style.opacity = '1';
-      showToast('❌ Terjadi kesalahan: ' + error.message, 'error');
+      if (!result.isOk) console.error('Data SDK init failed');
     }
-  });
+    initDataSdk();
 
-  // Feedback form
-  document.getElementById('feedback-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const message = document.getElementById('fb-message').value;
-    const category = document.getElementById('fb-category').value;
+    // Register form
+    document.getElementById('register-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('reg-submit');
+      btn.disabled = true;
+      btn.textContent = 'Mengirim...';
+      btn.style.opacity = '0.6';
 
-    // Profanity filter
-    const badWords = ['kasar1', 'kasar2', 'bego', 'tolol', 'anjing', 'bangsat', 'goblok', 'bodoh', 'idiot', 'setan', 'sampah', 'jelek', 'sial', 'sialan', 'kontol', 'memek'];
-    const hasProfanity = badWords.some(word => message.toLowerCase().includes(word));
-    
-    if (hasProfanity) {
-      const textarea = document.getElementById('fb-message');
-      textarea.style.borderColor = '#dc2626';
-      textarea.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.25)';
-      document.getElementById('fb-message-error').classList.remove('hidden');
-      showToast('⚠️ Pesan mengandung kata tidak pantas. Harap perbaiki.', 'error');
-      return;
-    }
+      const formData = new FormData(document.getElementById('register-form'));
 
-    if (!category) {
-      showToast('Pilih kategori feedback terlebih dahulu.', 'error');
-      return;
-    }
+      try {
+        const response = await fetch('handle_forms.php?action=register', {
+          method: 'POST',
+          body: formData
+        });
 
-    const btn = document.getElementById('fb-submit');
-    btn.disabled = true;
-    btn.textContent = 'Mengirim...';
-    btn.style.opacity = '0.6';
+        const result = await response.json();
 
-    const formData = new FormData(document.getElementById('feedback-form'));
-    formData.append('rating', selectedRating);
+        btn.disabled = false;
+        btn.textContent = 'Kirim Pendaftaran';
+        btn.style.opacity = '1';
 
-    try {
-      const response = await fetch('handle_forms.php?action=feedback', {
-        method: 'POST',
-        body: formData
-      });
-
-      const result = await response.json();
-      
-      btn.disabled = false;
-      btn.textContent = 'Kirim Feedback';
-      btn.style.opacity = '1';
-
-      if (result.status === 'success') {
-        showToast('✅ ' + result.message, 'success');
-        document.getElementById('feedback-form').reset();
-        selectedRating = 0;
-        updateStars();
-        document.getElementById('fb-message-error').classList.add('hidden');
-        document.getElementById('fb-message').style.borderColor = '#e2e8f0';
-      } else {
-        showToast('❌ ' + result.message, 'error');
-      }
-    } catch (error) {
-      btn.disabled = false;
-      btn.textContent = 'Kirim Feedback';
-      btn.style.opacity = '1';
-      showToast('❌ Terjadi kesalahan: ' + error.message, 'error');
-    }
-  });
-
-  // Real-time profanity check
-  document.getElementById('fb-message').addEventListener('input', (e) => {
-    const message = e.target.value;
-    const badWords = ['kasar1', 'kasar2', 'bego', 'tolol', 'anjing', 'bangsat', 'goblok', 'bodoh', 'idiot', 'setan', 'sampah', 'jelek', 'sial', 'sialan', 'kontol', 'memek', 'bitch', 'fuck', 'damn', 'ass', 'dongo', 'tai', 'jancuk', 'asu', 'ngentot', 'kimak', 'peler', 'puki', 'tetek', 'pantat', 'monyet', 'babi', 'kambing', 'sapi', 'anjir', 'sialan', 'brengsek', 'kampret', 'bacot', 'ngomong', 'omong', 'bacod', 'bacok', 'bacot', 'bacotan', 'anjg', 'bngst', 'gblk', 'bgsd', 'tlol', 'bg', 'tl', 'ajg', 'bgst', 'goblog', 'bodo', 'idiot', 'stn', 'smph', 'jlk', 'sl', 'sln', 'ktl', 'mmk', 'btch', 'fck', 'dmn', 'ss', 'dngo', 'tay', 'jnck', 'as', 'ngntt', 'kmk', 'plr', 'pk', 'ttk', 'pntt', 'mnyt', 'bb', 'kmbng', 'sp', 'anjr', 'sln', 'brngsk', 'kmprt', 'bcot', 'ngmg', 'omg', 'bcd', 'bck', 'bcot', 'bctn'];
-    const hasProfanity = badWords.some(word => message.toLowerCase().includes(word));
-    console.log('Message:', message, 'Has profanity:', hasProfanity); // Debug log
-    const errorDiv = document.getElementById('fb-message-error');
-    const textarea = document.getElementById('fb-message');
-    const submitBtn = document.getElementById('fb-submit');
-
-    if (hasProfanity) {
-      errorDiv.classList.remove('hidden');
-      textarea.style.borderColor = '#dc2626'; // Red border
-      textarea.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.25)';
-      submitBtn.disabled = true;
-      submitBtn.style.opacity = '0.5';
-    } else {
-      errorDiv.classList.add('hidden');
-      textarea.style.borderColor = '#e2e8f0'; // Default border
-      textarea.style.boxShadow = '';
-      submitBtn.disabled = false;
-      submitBtn.style.opacity = '1';
-    }
-  });
-
-  // Element SDK
-  window.elementSdk.init({
-    defaultConfig,
-    async onConfigChange(config) {
-      const c = key => config[key] || defaultConfig[key];
-      const font = c('font_family');
-      const baseSize = c('font_size');
-
-      document.body.style.fontFamily = `${font}, Plus Jakarta Sans, sans-serif`;
-
-      document.getElementById('nav-brand').textContent = c('school_name');
-      document.getElementById('hero-title').textContent = c('hero_title');
-      document.getElementById('hero-subtitle').textContent = c('hero_subtitle');
-      document.getElementById('ketua-name').textContent = c('ketua_name');
-      document.getElementById('wakil-name').textContent = c('wakil_name');
-      document.getElementById('sekretaris-name').textContent = c('sekretaris_name');
-      document.getElementById('bendahara-name').textContent = c('bendahara_name');
-      document.getElementById('contact-email').textContent = c('contact_email');
-      document.getElementById('contact-phone').textContent = c('contact_phone');
-      document.getElementById('contact-address').textContent = c('contact_address');
-
-      // Update stats
-      document.getElementById('stats-divisi').textContent = c('stats_divisi');
-      document.getElementById('stats-anggota').textContent = c('stats_anggota');
-      document.getElementById('stats-program').textContent = c('stats_program');
-
-      // Colors
-      const bg = c('background_color');
-      const surface = c('surface_color');
-      const text = c('text_color');
-      const primary = c('primary_action_color');
-      const secondary = c('secondary_action_color');
-
-      document.getElementById('app').style.backgroundColor = bg;
-
-      document.querySelectorAll('[style*="color: #0f172a"], h2, h3, label').forEach(el => {
-        if (el.closest('#berita') || el.closest('#kontak') || el.closest('footer')) return;
-        el.style.color = text;
-      });
-
-      document.querySelectorAll('.card-hover[style*="background: white"]').forEach(el => {
-        el.style.background = surface;
-      });
-      document.querySelectorAll('form').forEach(el => { el.style.background = surface; });
-
-      document.querySelectorAll('button[type="submit"]').forEach(el => {
-        el.style.background = `linear-gradient(135deg, ${primary}, ${secondary})`;
-      });
-
-      // Font size
-      document.getElementById('hero-title').style.fontSize = `${baseSize * 2.8}px`;
-      document.getElementById('hero-subtitle').style.fontSize = `${baseSize * 1.15}px`;
-    },
-    mapToCapabilities(config) {
-      const c = key => config[key] || defaultConfig[key];
-      const makeColor = (key) => ({
-        get: () => c(key),
-        set: (v) => { config[key] = v; window.elementSdk.setConfig({ [key]: v }); }
-      });
-      return {
-        recolorables: [
-          makeColor('background_color'),
-          makeColor('surface_color'),
-          makeColor('text_color'),
-          makeColor('primary_action_color'),
-          makeColor('secondary_action_color')
-        ],
-        borderables: [],
-        fontEditable: {
-          get: () => c('font_family'),
-          set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
-        },
-        fontSizeable: {
-          get: () => c('font_size'),
-          set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
+        if (result.status === 'success') {
+          showToast('✅ ' + result.message, 'success');
+          document.getElementById('register-form').reset();
+        } else {
+          showToast('❌ ' + result.message, 'error');
         }
-      };
-    },
-    mapToEditPanelValues(config) {
-      const c = key => config[key] || defaultConfig[key];
-      return new Map([
-        ['school_name', c('school_name')],
-        ['hero_title', c('hero_title')],
-        ['hero_subtitle', c('hero_subtitle')],
-        ['ketua_name', c('ketua_name')],
-        ['wakil_name', c('wakil_name')],
-        ['sekretaris_name', c('sekretaris_name')],
-        ['bendahara_name', c('bendahara_name')],
-        ['contact_email', c('contact_email')],
-        ['contact_phone', c('contact_phone')],
-        ['contact_address', c('contact_address')],
-        ['stats_divisi', c('stats_divisi')],
-        ['stats_anggota', c('stats_anggota')],
-        ['stats_program', c('stats_program')]
-      ]);
-    }
-  }).catch(() => {
-    // Fallback: load from localStorage if elementSdk fails
-    const savedConfig = JSON.parse(localStorage.getItem('elementSdkConfig') || '{}');
-    const config = { ...defaultConfig, ...savedConfig };
-    
-    document.getElementById('stats-divisi').textContent = config.stats_divisi;
-    document.getElementById('stats-anggota').textContent = config.stats_anggota;
-    document.getElementById('stats-program').textContent = config.stats_program;
-  });
+      } catch (error) {
+        btn.disabled = false;
+        btn.textContent = 'Kirim Pendaftaran';
+        btn.style.opacity = '1';
+        showToast('❌ Terjadi kesalahan: ' + error.message, 'error');
+      }
+    });
 
-  // Finance form handler
-  document.getElementById('finance-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const date = document.getElementById('finance-date').value;
-    const description = document.getElementById('finance-description').value.trim();
-    const amount = parseInt(document.getElementById('finance-amount').value);
-    const receiptFile = document.getElementById('finance-receipt').files[0];
-    
-    if (!date || !description || !amount || !receiptFile) {
-      alert('Semua field harus diisi.');
-      return;
-    }
-    
-    if (amount <= 0) {
-      alert('Nominal harus lebih dari 0.');
-      return;
-    }
-    
-    // Check file size (max 5MB)
-    if (receiptFile.size > 5 * 1024 * 1024) {
-      alert('Ukuran file maksimal 5MB.');
-      return;
-    }
-    
-    // Convert file to base64 for storage
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      const receiptData = e.target.result;
-      
-      const financeEntry = {
-        id: Date.now(),
-        date: date,
-        description: description,
-        amount: amount,
-        receipt: receiptData,
-        receiptName: receiptFile.name,
-        status: 'pending', // pending, approved, rejected
-        submittedBy: currentUser.username,
-        submittedAt: new Date().toISOString()
-      };
-      
-      saveFinanceData(financeEntry);
-      closeFinanceModal();
-      showToast('Bukti kuitansi berhasil diupload!', 'success');
-    };
-    
-    reader.readAsDataURL(receiptFile);
-  });
+    // Feedback form
+    document.getElementById('feedback-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const message = document.getElementById('fb-message').value;
+      const category = document.getElementById('fb-category').value;
 
-  lucide.createIcons();
-</script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e5c9b608338051a',t:'MTc3NTA5OTA3NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+      // Profanity filter
+      const badWords = ['kasar1', 'kasar2', 'bego', 'tolol', 'anjing', 'bangsat', 'goblok', 'bodoh', 'idiot', 'setan', 'sampah', 'jelek', 'sial', 'sialan', 'kontol', 'memek'];
+      const hasProfanity = badWords.some(word => message.toLowerCase().includes(word));
+
+      if (hasProfanity) {
+        const textarea = document.getElementById('fb-message');
+        textarea.style.borderColor = '#dc2626';
+        textarea.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.25)';
+        document.getElementById('fb-message-error').classList.remove('hidden');
+        showToast('⚠️ Pesan mengandung kata tidak pantas. Harap perbaiki.', 'error');
+        return;
+      }
+
+      if (!category) {
+        showToast('Pilih kategori feedback terlebih dahulu.', 'error');
+        return;
+      }
+
+      const btn = document.getElementById('fb-submit');
+      btn.disabled = true;
+      btn.textContent = 'Mengirim...';
+      btn.style.opacity = '0.6';
+
+      const formData = new FormData(document.getElementById('feedback-form'));
+      formData.append('rating', selectedRating);
+
+      try {
+        const response = await fetch('handle_forms.php?action=feedback', {
+          method: 'POST',
+          body: formData
+        });
+
+        const result = await response.json();
+
+        btn.disabled = false;
+        btn.textContent = 'Kirim Feedback';
+        btn.style.opacity = '1';
+
+        if (result.status === 'success') {
+          showToast('✅ ' + result.message, 'success');
+          document.getElementById('feedback-form').reset();
+          selectedRating = 0;
+          updateStars();
+          document.getElementById('fb-message-error').classList.add('hidden');
+          document.getElementById('fb-message').style.borderColor = '#e2e8f0';
+        } else {
+          showToast('❌ ' + result.message, 'error');
+        }
+      } catch (error) {
+        btn.disabled = false;
+        btn.textContent = 'Kirim Feedback';
+        btn.style.opacity = '1';
+        showToast('❌ Terjadi kesalahan: ' + error.message, 'error');
+      }
+    });
+
+    // Real-time profanity check
+    document.getElementById('fb-message').addEventListener('input', (e) => {
+      const message = e.target.value;
+      const badWords = ['kasar1', 'kasar2', 'bego', 'tolol', 'anjing', 'bangsat', 'goblok', 'bodoh', 'idiot', 'setan', 'sampah', 'jelek', 'sial', 'sialan', 'kontol', 'memek', 'bitch', 'fuck', 'damn', 'ass', 'dongo', 'tai', 'jancuk', 'asu', 'ngentot', 'kimak', 'peler', 'puki', 'tetek', 'pantat', 'monyet', 'babi', 'kambing', 'sapi', 'anjir', 'sialan', 'brengsek', 'kampret', 'bacot', 'ngomong', 'omong', 'bacod', 'bacok', 'bacot', 'bacotan', 'anjg', 'bngst', 'gblk', 'bgsd', 'tlol', 'bg', 'tl', 'ajg', 'bgst', 'goblog', 'bodo', 'idiot', 'stn', 'smph', 'jlk', 'sl', 'sln', 'ktl', 'mmk', 'btch', 'fck', 'dmn', 'ss', 'dngo', 'tay', 'jnck', 'as', 'ngntt', 'kmk', 'plr', 'pk', 'ttk', 'pntt', 'mnyt', 'bb', 'kmbng', 'sp', 'anjr', 'sln', 'brngsk', 'kmprt', 'bcot', 'ngmg', 'omg', 'bcd', 'bck', 'bcot', 'bctn'];
+      const hasProfanity = badWords.some(word => message.toLowerCase().includes(word));
+      console.log('Message:', message, 'Has profanity:', hasProfanity); // Debug log
+      const errorDiv = document.getElementById('fb-message-error');
+      const textarea = document.getElementById('fb-message');
+      const submitBtn = document.getElementById('fb-submit');
+
+      if (hasProfanity) {
+        errorDiv.classList.remove('hidden');
+        textarea.style.borderColor = '#dc2626'; // Red border
+        textarea.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.25)';
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = '0.5';
+      } else {
+        errorDiv.classList.add('hidden');
+        textarea.style.borderColor = '#e2e8f0'; // Default border
+        textarea.style.boxShadow = '';
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '1';
+      }
+    });
+
+    // Element SDK
+    window.elementSdk.init({
+      defaultConfig,
+      async onConfigChange(config) {
+        const c = key => config[key] || defaultConfig[key];
+        const font = c('font_family');
+        const baseSize = c('font_size');
+
+        document.body.style.fontFamily = `${font}, Plus Jakarta Sans, sans-serif`;
+
+        document.getElementById('nav-brand').textContent = c('school_name');
+        document.getElementById('hero-title').textContent = c('hero_title');
+        document.getElementById('hero-subtitle').textContent = c('hero_subtitle');
+        document.getElementById('ketua-name').textContent = c('ketua_name');
+        document.getElementById('wakil-name').textContent = c('wakil_name');
+        document.getElementById('sekretaris-name').textContent = c('sekretaris_name');
+        document.getElementById('bendahara-name').textContent = c('bendahara_name');
+        document.getElementById('contact-email').textContent = c('contact_email');
+        document.getElementById('contact-phone').textContent = c('contact_phone');
+        document.getElementById('contact-address').textContent = c('contact_address');
+
+        // Update stats
+        document.getElementById('stats-divisi').textContent = c('stats_divisi');
+        document.getElementById('stats-anggota').textContent = c('stats_anggota');
+        document.getElementById('stats-program').textContent = c('stats_program');
+
+        // Colors
+        const bg = c('background_color');
+        const surface = c('surface_color');
+        const text = c('text_color');
+        const primary = c('primary_action_color');
+        const secondary = c('secondary_action_color');
+
+        document.getElementById('app').style.backgroundColor = bg;
+
+        document.querySelectorAll('[style*="color: #0f172a"], h2, h3, label').forEach(el => {
+          if (el.closest('#berita') || el.closest('#kontak') || el.closest('footer')) return;
+          el.style.color = text;
+        });
+
+        document.querySelectorAll('.card-hover[style*="background: white"]').forEach(el => {
+          el.style.background = surface;
+        });
+        document.querySelectorAll('form').forEach(el => { el.style.background = surface; });
+
+        document.querySelectorAll('button[type="submit"]').forEach(el => {
+          el.style.background = `linear-gradient(135deg, ${primary}, ${secondary})`;
+        });
+
+        // Font size
+        document.getElementById('hero-title').style.fontSize = `${baseSize * 2.8}px`;
+        document.getElementById('hero-subtitle').style.fontSize = `${baseSize * 1.15}px`;
+      },
+      mapToCapabilities(config) {
+        const c = key => config[key] || defaultConfig[key];
+        const makeColor = (key) => ({
+          get: () => c(key),
+          set: (v) => { config[key] = v; window.elementSdk.setConfig({ [key]: v }); }
+        });
+        return {
+          recolorables: [
+            makeColor('background_color'),
+            makeColor('surface_color'),
+            makeColor('text_color'),
+            makeColor('primary_action_color'),
+            makeColor('secondary_action_color')
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => c('font_family'),
+            set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
+          },
+          fontSizeable: {
+            get: () => c('font_size'),
+            set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
+          }
+        };
+      },
+      mapToEditPanelValues(config) {
+        const c = key => config[key] || defaultConfig[key];
+        return new Map([
+          ['school_name', c('school_name')],
+          ['hero_title', c('hero_title')],
+          ['hero_subtitle', c('hero_subtitle')],
+          ['ketua_name', c('ketua_name')],
+          ['wakil_name', c('wakil_name')],
+          ['sekretaris_name', c('sekretaris_name')],
+          ['bendahara_name', c('bendahara_name')],
+          ['contact_email', c('contact_email')],
+          ['contact_phone', c('contact_phone')],
+          ['contact_address', c('contact_address')],
+          ['stats_divisi', c('stats_divisi')],
+          ['stats_anggota', c('stats_anggota')],
+          ['stats_program', c('stats_program')]
+        ]);
+      }
+    }).catch(() => {
+      // Fallback: load from localStorage if elementSdk fails
+      const savedConfig = JSON.parse(localStorage.getItem('elementSdkConfig') || '{}');
+      const config = { ...defaultConfig, ...savedConfig };
+
+      document.getElementById('stats-divisi').textContent = config.stats_divisi;
+      document.getElementById('stats-anggota').textContent = config.stats_anggota;
+      document.getElementById('stats-program').textContent = config.stats_program;
+    });
+
+    // Finance form handler
+    document.getElementById('finance-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const date = document.getElementById('finance-date').value;
+      const description = document.getElementById('finance-description').value.trim();
+      const amount = parseInt(document.getElementById('finance-amount').value);
+      const receiptFile = document.getElementById('finance-receipt').files[0];
+
+      if (!date || !description || !amount || !receiptFile) {
+        alert('Semua field harus diisi.');
+        return;
+      }
+
+      if (amount <= 0) {
+        alert('Nominal harus lebih dari 0.');
+        return;
+      }
+
+      // Check file size (max 5MB)
+      if (receiptFile.size > 5 * 1024 * 1024) {
+        alert('Ukuran file maksimal 5MB.');
+        return;
+      }
+
+      // Convert file to base64 for storage
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const receiptData = e.target.result;
+
+        const financeEntry = {
+          id: Date.now(),
+          date: date,
+          description: description,
+          amount: amount,
+          receipt: receiptData,
+          receiptName: receiptFile.name,
+          status: 'pending', // pending, approved, rejected
+          submittedBy: currentUser.username,
+          submittedAt: new Date().toISOString()
+        };
+
+        saveFinanceData(financeEntry);
+        closeFinanceModal();
+        showToast('Bukti kuitansi berhasil diupload!', 'success');
+      };
+
+      reader.readAsDataURL(receiptFile);
+    });
+
+    lucide.createIcons();
+  </script>
+  <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'9e5c9b608338051a',t:'MTc3NTA5OTA3NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
+</body>
+</body>
+
 </html>

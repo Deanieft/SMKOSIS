@@ -1,0 +1,16 @@
+{
+  "name": "osis-smkn1",
+  "version": "1.0.0",
+  "description": "Website OSIS SMK Negeri 1 Tarumajaya",
+  "main": "index.html",
+  "scripts": {
+    "build-css": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+    "build-css-prod": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  },
+  "keywords": ["osis", "smkn1", "tailwindcss"],
+  "author": "OSIS SMK Negeri 1 Tarumajaya",
+  "license": "MIT"
+}
